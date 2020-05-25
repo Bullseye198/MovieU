@@ -5,5 +5,5 @@ include ':common:base-mvviewmodel'
 include ':common:base-android'
 include ':common:base'
 include ':cache'
-include ':app'
+include ':android-ui'
 rootProject.name = "MovieU"
