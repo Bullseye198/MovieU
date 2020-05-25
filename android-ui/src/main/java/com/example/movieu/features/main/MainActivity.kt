@@ -1,7 +1,8 @@
-package com.example.movieu
+package com.example.movieu.features.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.movieu.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
