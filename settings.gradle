@@ -1,0 +1,9 @@
+include ':remote'
+include ':domain'
+include ':data'
+include ':common:base-mvviewmodel'
+include ':common:base-android'
+include ':common:base'
+include ':cache'
+include ':app'
+rootProject.name = "MovieU"
