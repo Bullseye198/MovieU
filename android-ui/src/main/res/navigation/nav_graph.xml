@@ -11,18 +11,22 @@
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
+        android:id="@+id/movieDetail"
+        android:name="com.example.movieu.movie.moviedetail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/movieListFragment"
         android:name="com.example.movieu.movie.movielist.MovieListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetail"
+            app:destination="@id/movieDetail" />
     </fragment>
-    <fragment
-        android:id="@+id/movieDetail"
-        android:name="com.example.movieu.movie.moviedetail.MovieDetail"
-        android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail">
-    <action
-        android:id="@+id/action_movieListFragment_to_movieDetail"
-        app:destination="@id/movieDetail" />
-    </fragment>
+
 </navigation>
