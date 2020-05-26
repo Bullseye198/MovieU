@@ -1,5 +1,6 @@
 package com.example.remote.movie
 
+import com.example.remote.movie.model.MovieList
 import com.example.remote.movie.model.Movies
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,5 +18,5 @@ interface MovieService {
         @Query("t") title: String,
         @Query("apikey") key: String,
         @Query("plot") plot: String
-    ): Movies
+    ): MovieList
 }

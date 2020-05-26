@@ -1,7 +1,9 @@
 package com.example.domain.movie.model
 
 data class Movie(
-    val creationDate: String = "2020-05-25",
-    val text: String = "Avengers",
-    val id: Int = 1
+    val released: String,
+    val poster: String,
+    val plot: String,
+    val title: String,
+    val imdbID: String
 )

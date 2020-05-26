@@ -12,7 +12,15 @@ class MovieRemoteImpl @Inject constructor(
 ): MovieRemote{
 
 
-    override suspend fun fetchImages(): List<Movie> {
-        TODO("Not yet implemented")
+    override suspend fun fetchImages(
+    ): List<Movie> {
+        return movieService.getCurrentMovie(
+            title = "Avengers",
+            key = "3e6675f5",
+            plot = "Whatever"
+        ).movies
+            .map {
+                Movie(it.released, it.poster, it.plot, it.title, it.imdbID)
+            }
     }
 }
