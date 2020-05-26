@@ -13,10 +13,11 @@ import retrofit2.http.Query
 
 interface MovieService {
 
-    @GET("")
+    @GET(".")
     suspend fun getCurrentMovie(
         @Query("t") title: String,
-        @Query("apikey") key: String,
-        @Query("plot") plot: String
-    ): MovieList
+        @Query("y") year: String,
+        @Query("plot") plot: String,
+        @Query("apikey") key: String
+        ): MovieList
 }

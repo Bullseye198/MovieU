@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import com.example.movieu.R
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.domain.movie.model.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
@@ -31,9 +32,10 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         getItem(position).let { movie ->
-            holder.content.text = movie.text
+            holder.content.text = movie.title
+            holder.image.load(movie.poster.replace("http:", "https:"))
             holder.itemView.setOnClickListener {
-                event.value = MovieListEvent.OnMovieItemClick(position, movie.id)
+                event.value = MovieListEvent.OnMovieItemClick(position, movie.imdbID)
             }
         }
     }

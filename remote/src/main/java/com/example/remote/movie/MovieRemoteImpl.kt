@@ -9,18 +9,18 @@ import javax.inject.Singleton
 @Singleton
 class MovieRemoteImpl @Inject constructor(
     private val movieService: MovieService
-): MovieRemote{
+) : MovieRemote {
 
 
-    override suspend fun fetchImages(
-    ): List<Movie> {
+    override suspend fun fetchImages(): List<Movie> {
         return movieService.getCurrentMovie(
-            title = "Avengers",
-            key = "3e6675f5",
-            plot = "Whatever"
+            title = "Avengers: Endgame",
+            year = "2019",
+            plot = "full",
+            key = "3e6675f5"
         ).movies
             .map {
-                Movie(it.released, it.poster, it.plot, it.title, it.imdbID)
+                Movie(it.released, it.poster, it.plot, it.title, it.imdbID, it.year)
             }
     }
 }

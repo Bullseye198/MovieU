@@ -15,9 +15,10 @@
         android:name="com.example.movieu.movie.moviedetail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail">
+
         <argument
-            android:name="movieId"
-            app:argType="integer" />
+            android:name="movieID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/movieListFragment"

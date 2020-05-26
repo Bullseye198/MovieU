@@ -2,14 +2,17 @@ package com.example.movieu.core.injection.module
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cache.movies.RoomMovieDatabase
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.cm.base.executor.AppCoroutineDispatchers
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
+import okhttp3.Interceptor
 import javax.inject.Singleton
 
 @Module
 object ApplicationModule {
-
+/*
     @Singleton
     @Provides
         fun provideRoomDatabase(
@@ -19,6 +22,13 @@ object ApplicationModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+*/
 
+    @Provides
+    fun provideChuckerInterceptor(
+        context: Context
+    ): Interceptor{
+        return ChuckerInterceptor(context)
+    }
 
 }

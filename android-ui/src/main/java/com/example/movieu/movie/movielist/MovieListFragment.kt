@@ -53,17 +53,21 @@ class MovieListFragment : DaggerFragment() {
     private fun setUpMovieListAdapter() {
         adapter = MovieListAdapter()
         rec_list_fragment.adapter = adapter
-        adapter.submitList(
-            listOf(Movie(), Movie(), Movie())
-        )
+
         adapter.event.observe(
             viewLifecycleOwner, Observer {
                 if (it is MovieListEvent.OnMovieItemClick) {
                     val direction =
                         MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.movieId)
                     findNavController().navigate(direction)
-
                 }
+            }
+        )
+
+        viewModel.movieList.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.submitList(it)
             }
         )
     }

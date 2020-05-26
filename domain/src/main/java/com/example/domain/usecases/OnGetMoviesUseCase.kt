@@ -2,6 +2,7 @@ package com.example.domain.usecases
 
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.IMovieRepository
+import com.example.domain.movie.model.Movie
 import javax.inject.Inject
 
 class OnGetMoviesUseCase @Inject constructor(
@@ -9,7 +10,8 @@ class OnGetMoviesUseCase @Inject constructor(
     val appDispatchers: AppCoroutineDispatchers
 ){
 
-    suspend fun getMovies() {
+    suspend fun getMovies(): List<Movie> {
+        return iMovieRepository.getMovies()
 
     }
 }
