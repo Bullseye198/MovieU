@@ -11,9 +11,13 @@ object MovieServiceFactory {
     fun makeMovieService(chuckerInterceptor: Interceptor): MovieService {
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.omdbapi.com/")
+            .baseUrl("http://www.omdbapi.com/")
             .addConverterFactory(MoshiConverterFactory.create())
-            .client(makeOkHttpClient(chuckerInterceptor))
+            .client(
+                makeOkHttpClient(
+                    chuckerInterceptor
+                )
+            )
             .build()
 
         return retrofit.create(MovieService::class.java)

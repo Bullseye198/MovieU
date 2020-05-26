@@ -25,6 +25,7 @@ object ApplicationModule {
 */
 
     @Provides
+    @Singleton
     fun provideChuckerInterceptor(
         context: Context
     ): Interceptor{

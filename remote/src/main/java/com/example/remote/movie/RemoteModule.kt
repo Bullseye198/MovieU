@@ -14,10 +14,15 @@ import javax.inject.Singleton
 object RemoteModule {
 
     @Provides
+    @Singleton
     fun provideMovieService(
         chuckerInterceptor: Interceptor
     ): MovieService {
-        return MovieServiceFactory.makeMovieService(chuckerInterceptor)
+        return MovieServiceFactory.makeMovieService(
+            chuckerInterceptor
+        )
             //we need to return PhotoServiceFactory
     }
+
+
 }
