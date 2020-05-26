@@ -34,19 +34,30 @@
 
     </ImageView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_list_fragment"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorTransparentBlack"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="@+id/imv_movie_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imv_movie_background">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorTransparentBlack"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </TableLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/imageView"
