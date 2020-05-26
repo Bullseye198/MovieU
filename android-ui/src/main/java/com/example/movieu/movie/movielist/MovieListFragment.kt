@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.domain.movie.model.Movie
 import com.example.movieu.R
 import com.example.movieu.dependencyInjection.ViewModelFactory
@@ -53,6 +54,7 @@ class MovieListFragment : DaggerFragment() {
     private fun setUpMovieListAdapter() {
         adapter = MovieListAdapter()
         rec_list_fragment.adapter = adapter
+        rec_list_fragment.layoutManager = GridLayoutManager(requireContext(), 3)
 
         adapter.event.observe(
             viewLifecycleOwner, Observer {
