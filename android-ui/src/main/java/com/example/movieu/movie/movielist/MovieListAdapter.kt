@@ -19,6 +19,7 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
 
     class MovieViewHolder(root: View) : RecyclerView.ViewHolder(root) {
         var content: TextView = root.lbl_message
+        var year: TextView = root.lbl_year
         var image: ImageView = root.imv_list_item_icon
     }
 
@@ -33,6 +34,7 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         getItem(position).let { movie ->
             holder.content.text = movie.title
+            holder.year.text = movie.year
             holder.image.load(movie.poster.replace("http:", "https:"))
             holder.itemView.setOnClickListener {
                 event.value = MovieListEvent.OnMovieItemClick(position, movie.imdbID)

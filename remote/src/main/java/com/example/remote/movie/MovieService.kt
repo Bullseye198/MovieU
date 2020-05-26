@@ -1,7 +1,6 @@
 package com.example.remote.movie
 
-import com.example.remote.movie.model.MovieList
-import com.example.remote.movie.model.Movies
+import com.example.remote.movie.model.SearchResults
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,9 +14,7 @@ interface MovieService {
 
     @GET("?")
     suspend fun getCurrentMovie(
-        @Query("t") title: String,
-        @Query("y") year: String,
-        @Query("plot") plot: String,
+        @Query("s") title: String,
         @Query("apikey") apikey: String
-        ): MovieList
+        ): SearchResults
 }
