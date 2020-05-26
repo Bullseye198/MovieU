@@ -14,7 +14,7 @@ class MovieRemoteImpl @Inject constructor(
 
     override suspend fun fetchImages(): List<Movie> {
         return movieService.getCurrentMovie(
-            title = "Avengers",
+            title = "Jurassic",
             apikey = "3e6675f5"
         ).search.map {
                 Movie(it.imdbID, it.poster, it.title, it.type, it.year)

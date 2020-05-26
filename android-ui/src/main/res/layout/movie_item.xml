@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/item_feed_big_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -25,57 +25,51 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp">
-
-            <TextView
-                android:id="@+id/lbl_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="TextView"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imv_list_item_icon"
-                app:layout_constraintTop_toTopOf="@+id/imv_list_item_icon"
-                app:layout_constraintVertical_bias="0.3"
-                tools:text="Movie name will be here" />
-
-            <TextView
-                android:id="@+id/lbl_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="TextView"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imv_list_item_icon"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_message"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="Movie year will be here" />
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imv_list_item_icon"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:contentDescription="TODO"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintDimensionRatio="9:16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
                 tools:srcCompat="@drawable/ic_baseline_face_24px" />
+
+            <TextView
+                android:id="@+id/lbl_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imv_list_item_icon"
+                tools:text="Movie name will be here" />
+
+            <TextView
+                android:id="@+id/lbl_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="@+id/imv_list_item_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_message"
+                app:layout_constraintVertical_bias="0.85"
+                tools:text="Movie year will be here" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
