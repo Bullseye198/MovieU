@@ -21,11 +21,10 @@ RxJava.
 
 To do:
 - [ ] Work on the movie detail
-- [ ] Store the data to our local database with Room
-
+- [ ] Add search function
 
 In Progress:
-- [ ] Add search function
+- [ ] Store the data to our local database with Room
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
