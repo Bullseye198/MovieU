@@ -12,7 +12,7 @@ class MovieRemoteImpl @Inject constructor(
 ) : MovieRemote {
 
 
-    override suspend fun fetchImages(): List<Movie> {
+    override suspend fun fetchMovies(): List<Movie> {
         return movieService.getCurrentMovie(
             title = "Jurassic",
             apikey = "3e6675f5"
