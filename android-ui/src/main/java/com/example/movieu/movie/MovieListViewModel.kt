@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.model.Movie
-import com.example.domain.usecases.OnGetMoviesUseCase
-import com.example.movieu.movie.movielist.MovieListEvent
+import com.example.domain.usecases.RefreshMoviesUseCase
+import com.example.domain.usecases.RequestMoviesUseCase
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
-    private val onGetMoviesUseCase: OnGetMoviesUseCase,
+    private val requestMoviesUseCase: RequestMoviesUseCase,
+    private val refreshMoviesUseCase: RefreshMoviesUseCase,
     private val appCoroutineDispatchers: AppCoroutineDispatchers
 ) : ViewModel() {
 
@@ -28,9 +31,26 @@ class MovieListViewModel @Inject constructor(
     private fun getMovies() {
         viewModelScope.launch {
             val movies = withContext(appCoroutineDispatchers.io) {
-                onGetMoviesUseCase.getMovies()
+                requestMoviesUseCase.requestMovies()
             }
             movieListState.value = movies
+        }
+        refreshMoviesAndUpdate()
+    }
+
+    private fun refreshMoviesAndUpdate() {
+        viewModelScope.launch() {
+
+            try {
+                val movies = withContext(appCoroutineDispatchers.io) {
+                    refreshMoviesUseCase.refresh()
+                    requestMoviesUseCase.requestMovies()
+                }
+                movieListState.value = movies
+
+            } catch (e: Exception) {
+
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.cm.base.executor.AppCoroutineDispatchers
+import com.example.cache.movies.RoomMovieDatabase
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 object ApplicationModule {
-/*
+
     @Singleton
     @Provides
         fun provideRoomDatabase(
@@ -22,7 +23,7 @@ object ApplicationModule {
             .fallbackToDestructiveMigration()
             .build()
     }
-*/
+
 
     @Provides
     @Singleton
