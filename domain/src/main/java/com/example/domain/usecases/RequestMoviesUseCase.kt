@@ -5,13 +5,13 @@ import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.Movie
 import javax.inject.Inject
 
-class OnGetMoviesUseCase @Inject constructor(
+class RequestMoviesUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository,
     val appDispatchers: AppCoroutineDispatchers
 ){
 
-    suspend fun getMovies(): List<Movie> {
-        return iMovieRepository.getMovies()
+    suspend fun requestMovies(): List<Movie> {
+        return iMovieRepository.requestMovies()
 
     }
 }
