@@ -8,6 +8,7 @@ import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.model.Movie
 import com.example.domain.usecases.OnGetMovieByIdUseCase
 import com.example.movieu.movie.moviedetail.MovieDetailEvent
+import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -28,9 +29,21 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     private fun getMovie(imdbID: String) {
-        viewModelScope.launch {
-            val movieResult = onGetMovieByIdUseCase.getMovie(imdbID)
-            movieState.value = movieResult
+
+        onGetMovieByIdUseCase.getMovie(object: DisposableSubscriber<Movie>() {
+            override fun onComplete() {
+
             }
+
+            override fun onNext(t: Movie?) {
+                movieState.value = t
+            }
+
+            override fun onError(t: Throwable?) {
+                throw Exception("Subscription failed because ${t?.localizedMessage}.")
+            }
+
+        }, imdbID)
+
         }
     }

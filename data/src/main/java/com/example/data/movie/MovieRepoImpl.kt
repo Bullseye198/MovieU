@@ -2,6 +2,7 @@ package com.example.data.movie
 
 import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.Movie
+import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,6 +14,10 @@ class MovieRepoImpl @Inject constructor(
 
     override suspend fun getMovieById(imdbID: String): Movie {
         return movieCache.getMovieById(imdbID)
+    }
+
+    override fun observeMovies(): Flowable<List<Movie>> {
+        return movieCache.observeMovies()
     }
 
     override suspend fun requestMovies(titleToSearchFor: String?): List<Movie> {

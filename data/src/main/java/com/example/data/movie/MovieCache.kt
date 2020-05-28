@@ -9,7 +9,7 @@ interface MovieCache {
 
     suspend fun requestMovies(titleToSearchFor: String?): List<Movie>
 
-    suspend fun observeMovies(): Flowable<List<Movie>>
+    fun observeMovies(): Flowable<List<Movie>>
 
     suspend fun storeMovies(movies: List<Movie>)
 }

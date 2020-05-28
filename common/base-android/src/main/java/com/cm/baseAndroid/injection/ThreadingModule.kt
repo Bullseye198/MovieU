@@ -1,9 +1,13 @@
 package com.cm.baseAndroid.injection
 
 import com.cm.base.executor.AppCoroutineDispatchers
+import com.cm.base.executor.AppRxSchedulers
 import dagger.Module
 import dagger.Provides
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Default
 import javax.inject.Singleton
 
 @Module
@@ -15,5 +19,13 @@ object ThreadingModule {
         io = Dispatchers.IO,
         computation = Dispatchers.Default,
         main = Dispatchers.Main
+    )
+
+    @Singleton
+    @Provides
+    fun provideRxDispatchers() = AppRxSchedulers(
+        io = Schedulers.io(),
+        computation = Schedulers.computation(),
+        main = AndroidSchedulers.mainThread()
     )
 }

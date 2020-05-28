@@ -18,9 +18,9 @@ interface MovieDao {
     @Query("SELECT * FROM movie WHERE title LIKE :titleToSearchFor")
     suspend fun getMoviesForTitle(titleToSearchFor: String): List<RoomMovie>
 
-  /*  @Query("SELECT * FROM movie")
-    suspend fun observeMovies(): Flowable<List<RoomMovie>>
-*/
+    @Query("SELECT * FROM movie")
+    fun observeMovies(): Flowable<List<RoomMovie>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllSuspend(entities: List<RoomMovie>)
 }

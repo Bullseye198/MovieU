@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 
 interface IMovieRepository {
 
-    //fun observeImages(): Flowable<List<Movie>>
+    fun observeMovies(): Flowable<List<Movie>>
 
     suspend fun requestMovies(titleToSearchFor: String?): List<Movie>
 

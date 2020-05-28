@@ -22,8 +22,11 @@ class MovieCacheImpl @Inject constructor(
             }
     }
 
-    override suspend fun observeMovies(): Flowable<List<Movie>> {
-        return Flowable.empty()
+    override fun observeMovies(): Flowable<List<Movie>> {
+        return movieDao.observeMovies()
+            .map { roomMovies ->
+            roomMovies.map { it.mapToDomainModel() }
+        }
     }
 
     override suspend fun storeMovies(movies: List<Movie>) {
