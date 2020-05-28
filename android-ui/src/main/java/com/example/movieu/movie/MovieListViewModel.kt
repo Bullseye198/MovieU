@@ -23,15 +23,22 @@ class MovieListViewModel @Inject constructor(
     private val movieListState = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>> get() = movieListState
 
+    var title: String = ""
+
 
     init {
+        getMovies()
+    }
+
+    fun onMovieSearched(titleToSearchFor: String) {
+        this.title = titleToSearchFor
         getMovies()
     }
 
     private fun getMovies() {
         viewModelScope.launch {
             val movies = withContext(appCoroutineDispatchers.io) {
-                requestMoviesUseCase.requestMovies()
+                requestMoviesUseCase.requestMovies(title)
             }
             movieListState.value = movies
         }
@@ -41,8 +48,8 @@ class MovieListViewModel @Inject constructor(
     private fun refreshMoviesAndUpdate() {
         viewModelScope.launch() {
             val movies = withContext(appCoroutineDispatchers.io) {
-                refreshMoviesUseCase.refresh()
-                requestMoviesUseCase.requestMovies()
+                refreshMoviesUseCase.refresh(title)
+                requestMoviesUseCase.requestMovies(title)
             }
             movieListState.value = movies
         }

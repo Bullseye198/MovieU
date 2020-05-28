@@ -4,5 +4,5 @@ import com.example.domain.movie.model.Movie
 
 interface MovieRemote {
 
-    suspend fun fetchMovies(): List<Movie>
+    suspend fun fetchMovies(titleToSearchFor: String): List<Movie>
 }

@@ -10,8 +10,8 @@ class RequestMoviesUseCase @Inject constructor(
     val appDispatchers: AppCoroutineDispatchers
 ){
 
-    suspend fun requestMovies(): List<Movie> {
-        return iMovieRepository.requestMovies()
+    suspend fun requestMovies(titleToSearchFor: String): List<Movie> {
+        return iMovieRepository.requestMovies(titleToSearchFor)
 
     }
 }

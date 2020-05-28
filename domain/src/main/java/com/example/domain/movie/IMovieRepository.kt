@@ -7,11 +7,11 @@ interface IMovieRepository {
 
     //fun observeImages(): Flowable<List<Movie>>
 
-    suspend fun requestMovies(): List<Movie>
+    suspend fun requestMovies(titleToSearchFor: String?): List<Movie>
 
     suspend fun getMovieById(imdbID: String): Movie
 
-    suspend fun fetchMovies(): List<Movie>
+    suspend fun fetchMovies(titleToSearchFor: String): List<Movie>
 
     suspend fun storeMovies(movies: List<Movie>)
 

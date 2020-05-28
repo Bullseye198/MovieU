@@ -7,9 +7,9 @@ import javax.inject.Inject
 class RefreshMoviesUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository
 ) {
-    suspend fun refresh() {
+    suspend fun refresh(titleToSearchFor: String) {
         try {
-            val serverMovies = iMovieRepository.fetchMovies()
+            val serverMovies = iMovieRepository.fetchMovies(titleToSearchFor)
             iMovieRepository.storeMovies(serverMovies)
         } catch (e: Exception) {
 

@@ -12,6 +12,9 @@ interface MovieDao {
     @Query("SELECT * FROM movie")
     suspend fun getMovies(): List<RoomMovie>
 
+    @Query("SELECT * FROM movie WHERE title LIKE :titleToSearchFor")
+    suspend fun getMoviesForTitle(titleToSearchFor: String): List<RoomMovie>
+
   /*  @Query("SELECT * FROM movie")
     suspend fun observeMovies(): Flowable<List<RoomMovie>>
 */

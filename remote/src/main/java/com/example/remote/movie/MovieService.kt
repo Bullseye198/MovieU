@@ -14,7 +14,7 @@ interface MovieService {
 
     @GET("?")
     suspend fun getCurrentMovie(
-        @Query("s") title: String,
+        @Query("s") titleToSearchFor: String,
         @Query("apikey") apikey: String
         ): SearchResults
 }
