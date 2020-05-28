@@ -11,6 +11,9 @@ import javax.inject.Singleton
 class MovieCacheImpl @Inject constructor(
     private val movieDao: MovieDao
 ) : MovieCache {
+    override suspend fun getMovieById(imdbID: String): Movie {
+        return movieDao.getMovieByImdbID(imdbID).mapToDomainModel()
+    }
 
     override suspend fun requestMovies(titleToSearchFor: String?): List<Movie> {
         return movieDao.getMoviesForTitle("%$titleToSearchFor%")

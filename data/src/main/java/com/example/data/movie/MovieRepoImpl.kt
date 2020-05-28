@@ -12,8 +12,7 @@ class MovieRepoImpl @Inject constructor(
 ) : IMovieRepository {
 
     override suspend fun getMovieById(imdbID: String): Movie {
-        return requestMovies(null)
-            .first { it.imdbID == imdbID }
+        return movieCache.getMovieById(imdbID)
     }
 
     override suspend fun requestMovies(titleToSearchFor: String?): List<Movie> {

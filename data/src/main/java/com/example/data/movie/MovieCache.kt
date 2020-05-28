@@ -5,6 +5,8 @@ import io.reactivex.Flowable
 
 interface MovieCache {
 
+    suspend fun getMovieById(imdbID: String): Movie
+
     suspend fun requestMovies(titleToSearchFor: String?): List<Movie>
 
     suspend fun observeMovies(): Flowable<List<Movie>>

@@ -5,11 +5,10 @@ import com.example.domain.movie.model.Movie
 
 class MovieDiffUtilCallback : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-        return oldItem.year == newItem.year
+        return oldItem.title == newItem.title && oldItem.imdbID == newItem.imdbID
     }
 
     override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-        return oldItem.year == newItem.year
+        return oldItem == newItem
     }
-
 }
