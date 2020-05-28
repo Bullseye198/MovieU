@@ -21,10 +21,9 @@ RxJava.
 
 To do:
 - [ ] Work on the movie detail
-- [ ] Add search function
 
 In Progress:
-- [ ] Store the data to our local database with Room
+- [ ] Implement RX Java
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
@@ -34,3 +33,5 @@ Done:
 - [x] Refractor (move PhotoServiceFactory and Remote Module from UI module)
 - [x] Display an list of data and images (Adapter, List Fragment and ListViewModel)
 - [x] Click on item inside of a list goes to movie detail
+- [x] Store the data to our local database with Room
+- [x] Add search function
