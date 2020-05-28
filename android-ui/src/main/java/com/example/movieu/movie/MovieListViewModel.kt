@@ -40,17 +40,11 @@ class MovieListViewModel @Inject constructor(
 
     private fun refreshMoviesAndUpdate() {
         viewModelScope.launch() {
-
-            try {
-                val movies = withContext(appCoroutineDispatchers.io) {
-                    refreshMoviesUseCase.refresh()
-                    requestMoviesUseCase.requestMovies()
-                }
-                movieListState.value = movies
-
-            } catch (e: Exception) {
-
+            val movies = withContext(appCoroutineDispatchers.io) {
+                refreshMoviesUseCase.refresh()
+                requestMoviesUseCase.requestMovies()
             }
+            movieListState.value = movies
         }
     }
 }
