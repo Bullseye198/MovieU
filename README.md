@@ -23,7 +23,6 @@ To do:
 - [ ] Work on the movie detail
 
 In Progress:
-- [ ] Implement RX Java
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
@@ -35,3 +34,4 @@ Done:
 - [x] Click on item inside of a list goes to movie detail
 - [x] Store the data to our local database with Room
 - [x] Add search function
+- [x] Implement RX Java
