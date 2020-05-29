@@ -20,9 +20,10 @@ Room,
 RxJava.
 
 To do:
-- [ ] Work on the movie detail
 
 In Progress:
+- [ ] Work on the movie detail
+- [ ] More RxJava Stuff
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
