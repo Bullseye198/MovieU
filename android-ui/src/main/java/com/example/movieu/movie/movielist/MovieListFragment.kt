@@ -57,12 +57,13 @@ class MovieListFragment : DaggerFragment() {
     private fun onMovieSearched() {
         searchView.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.onMovieSearched(titleToSearchFor = query.toString())
+                //viewModel.onMovieSearched(titleToSearchFor = query.toString())
+                viewModel.onNewMoviesSearched(newMovies = query.toString())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.onMovieSearched(titleToSearchFor = newText.toString())
+                viewModel.onNewMoviesSearched(newMovies = newText.toString())
                 return true
             }
         })

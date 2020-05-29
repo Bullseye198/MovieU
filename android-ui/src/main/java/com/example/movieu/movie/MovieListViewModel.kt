@@ -7,15 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.model.Movie
 import com.example.domain.usecases.RefreshMoviesUseCase
-import com.example.domain.usecases.RequestMoviesUseCase
-import kotlinx.coroutines.CoroutineExceptionHandler
+import com.example.domain.usecases.ObserveMoviesUseCase
+import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
-    private val requestMoviesUseCase: RequestMoviesUseCase,
+    private val observeMoviesUseCase: ObserveMoviesUseCase,
     private val refreshMoviesUseCase: RefreshMoviesUseCase,
     private val appCoroutineDispatchers: AppCoroutineDispatchers
 ) : ViewModel() {
@@ -23,6 +22,7 @@ class MovieListViewModel @Inject constructor(
     private val movieListState = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>> get() = movieListState
 
+    var currentMovies: String? = null
     var title: String = ""
 
 
@@ -30,28 +30,36 @@ class MovieListViewModel @Inject constructor(
         getMovies()
     }
 
-    fun onMovieSearched(titleToSearchFor: String) {
-        this.title = titleToSearchFor
-        getMovies()
+    fun onNewMoviesSearched(newMovies: String) {
+       this.currentMovies = newMovies
+        observeMoviesUseCase.onSearchTermChanged(newMovies)
+        refreshMoviesAndUpdate()
     }
 
     private fun getMovies() {
-        viewModelScope.launch {
-            val movies = withContext(appCoroutineDispatchers.io) {
-                requestMoviesUseCase.requestMovies(title)
+        observeMoviesUseCase.requestMovies(object : DisposableSubscriber<List<Movie>>() {
+            override fun onComplete() {
+
             }
-            movieListState.value = movies
-        }
-        refreshMoviesAndUpdate()
+
+            override fun onNext(t: List<Movie>?) {
+                movieListState.value = t
+            }
+
+            override fun onError(t: Throwable?) {
+                throw Exception("Subscription failed at ${t?.localizedMessage}")
+            }
+        })
     }
 
     private fun refreshMoviesAndUpdate() {
         viewModelScope.launch() {
-            val movies = withContext(appCoroutineDispatchers.io) {
-                refreshMoviesUseCase.refresh(title)
-                requestMoviesUseCase.requestMovies(title)
-            }
-            movieListState.value = movies
+            currentMovies?.let { refreshMoviesUseCase.refresh(it) }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        observeMoviesUseCase.dispose()
     }
 }
