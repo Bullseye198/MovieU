@@ -1,5 +1,6 @@
 package com.example.movieu.movie.moviedetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,7 @@ class MovieDetailFragment : DaggerFragment() {
         observeViewModel()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.movie.observe(
             viewLifecycleOwner,
@@ -55,10 +57,10 @@ class MovieDetailFragment : DaggerFragment() {
                 binding.lblMovieYear.text = movie.year
                 binding.lblMovieRuntime.text = movie.runtime
                 binding.lblMoviePlot.text = movie.plot
-                binding.lblMovieGenre.text = movie.genre
-                binding.lblMovieLanguage.text = movie.language
-                binding.lblMovieCast.text = movie.actors
-                binding.lblMovieDirector.text = movie.director
+                binding.lblMovieGenre.text = "Genre: " + movie.genre
+                binding.lblMovieLanguage.text = "Language: " + movie.language
+                binding.lblMovieCast.text = "Cast: " + movie.actors
+                binding.lblMovieDirector.text = "Director: " + movie.director
             }
         )
     }
