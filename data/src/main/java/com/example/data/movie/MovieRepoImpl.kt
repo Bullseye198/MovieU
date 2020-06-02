@@ -33,11 +33,15 @@ class MovieRepoImpl @Inject constructor(
         return movieCache.storeMovies(movies)
     }
 
-    override suspend fun fetchMovieDetail(): MovieDetail {
-        return movieRemote.fetchMovieDetail()
+    override suspend fun fetchMovieDetail(imdbID: String): MovieDetail {
+        return movieRemote.fetchMovieDetail(imdbID)
     }
 
     override suspend fun storeMovieDetail(movieDetail: MovieDetail) {
         return movieCache.storeMovieDetail(movieDetail)
+    }
+
+    override fun observeMovieDetail(imdbID: String): Flowable<MovieDetail> {
+        return movieCache.observeMovieDetail(imdbID)
     }
 }

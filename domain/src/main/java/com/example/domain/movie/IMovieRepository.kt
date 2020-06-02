@@ -16,8 +16,10 @@ interface IMovieRepository {
 
     suspend fun storeMovies(movies: List<Movie>)
 
-    suspend fun fetchMovieDetail(): MovieDetail
+    suspend fun fetchMovieDetail(imdbID: String): MovieDetail
 
     suspend fun storeMovieDetail(movieDetail: MovieDetail)
+
+    fun observeMovieDetail(imdbID: String): Flowable<MovieDetail>
 
 }

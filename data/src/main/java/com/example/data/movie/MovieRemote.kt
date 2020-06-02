@@ -7,5 +7,5 @@ interface MovieRemote {
 
     suspend fun fetchMovies(titleToSearchFor: String): List<Movie>
 
-    suspend fun fetchMovieDetail(): MovieDetail
+    suspend fun fetchMovieDetail(imdbID: String): MovieDetail
 }

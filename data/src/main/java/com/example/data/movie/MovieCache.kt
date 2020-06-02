@@ -3,6 +3,7 @@ package com.example.data.movie
 import com.example.domain.movie.model.Movie
 import com.example.domain.movie.model.MovieDetail
 import io.reactivex.Flowable
+import org.intellij.lang.annotations.Flow
 
 interface MovieCache {
 
@@ -15,4 +16,6 @@ interface MovieCache {
     suspend fun storeMovies(movies: List<Movie>)
 
     suspend fun storeMovieDetail(movieDetail: MovieDetail)
+
+    fun observeMovieDetail(imdbID: String): Flowable<MovieDetail>
 }

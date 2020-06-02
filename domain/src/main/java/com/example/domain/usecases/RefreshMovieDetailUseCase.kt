@@ -7,13 +7,11 @@ import javax.inject.Inject
 class RefreshMovieDetailUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository
 ) {
-    suspend fun refresh() {
+    suspend fun refresh(imdbID: String) {
         try {
-            val serverMovieDetail = iMovieRepository.fetchMovieDetail()
+            val serverMovieDetail = iMovieRepository.fetchMovieDetail(imdbID)
             iMovieRepository.storeMovieDetail(serverMovieDetail)
         } catch (e: Exception) {
-
         }
     }
-
 }
