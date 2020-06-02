@@ -6,44 +6,60 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
+import com.example.domain.usecases.ObserveMovieDetailUseCase
 import com.example.domain.usecases.OnGetMovieByIdUseCase
+import com.example.domain.usecases.RefreshMovieDetailUseCase
 import com.example.movieu.movie.moviedetail.MovieDetailEvent
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
-    private val onGetMovieByIdUseCase: OnGetMovieByIdUseCase,
-    private val appCoroutineDispatchers: AppCoroutineDispatchers
+    private val observeMovieDetailUseCase: ObserveMovieDetailUseCase,
+    private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase
 ) : ViewModel() {
 
-    private val movieState = MutableLiveData<Movie>()
-    val movie: LiveData<Movie> get() = movieState
+    private val movieState = MutableLiveData<MovieDetail>()
+    val movie: LiveData<MovieDetail> get() = movieState
+    val imdbID: String? = null
+
+    val currentMovieDetail: String? = null
 
 
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
-            is MovieDetailEvent.OnStart -> getMovie(event.imdbID)
+            is MovieDetailEvent.OnStart -> {
+                observeMovieDetail(imdbID = event.imdbID)
+                refresh(event.imdbID)
+            }
         }
     }
 
-    private fun getMovie(imdbID: String) {
+    private fun observeMovieDetail(imdbID: String) {
+        observeMovieDetailUseCase.requestMovieDetail(
+            imdbID,
+            object : DisposableSubscriber<MovieDetail>() {
+                override fun onComplete() {
 
-        onGetMovieByIdUseCase.getMovie(object: DisposableSubscriber<Movie>() {
-            override fun onComplete() {
+                }
 
-            }
+                override fun onNext(t: MovieDetail?) {
+                    movieState.value = t
+                }
 
-            override fun onNext(t: Movie?) {
-                movieState.value = t
-            }
+                override fun onError(t: Throwable?) {
+                    throw Exception("Subscription failed at ${t?.localizedMessage}")
+                }
 
-            override fun onError(t: Throwable?) {
-                throw Exception("Subscription failed because ${t?.localizedMessage}.")
-            }
+            })
+    }
 
-        }, imdbID)
-
+    fun refresh(imdbID: String) {
+        viewModelScope.launch {
+            currentMovieDetail.let { refreshMovieDetailUseCase.refresh(imdbID) }
         }
     }
+}
