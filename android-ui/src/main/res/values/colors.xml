@@ -3,6 +3,7 @@
     <color name="colorPrimary">#484848</color>
     <color name="colorPrimaryDark">#020202</color>
     <color name="colorAccent">#F1F1F1</color>
+    <color name="grey600">#AEAEAE</color>
 
     <!-- 52 = 32%, hex to alpha -->
     <color name="colorTransparentBlack">#52000000</color>

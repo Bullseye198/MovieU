@@ -2,10 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frag_movie_detail"
+    android:id="@+id/movie_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".movie.moviedetail.MovieDetail">
+    android:background="@color/colorPrimaryDark"
+    tools:context=".movie.moviedetail.MovieDetailFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,15 +19,19 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/lbl_message_detail"
+                android:id="@+id/lbl_movie_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/hello_blank_fragment"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="2020"
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/movieDetailView"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
-                tools:text="Movie text will be here" />
+                tools:text="2020" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/movieDetailView"
@@ -35,6 +40,7 @@
                 android:layout_marginTop="32dp"
                 android:adjustViewBounds="true"
                 android:focusable="true"
+                android:textColor="@color/colorAccent"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="9:16"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,17 +49,110 @@
                 tools:src="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/lbl_movie_runtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/hello_blank_fragment"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:text="124 min"
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/movieDetailView"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
+                tools:text="124 min" />
+
+            <TextView
+                android:id="@+id/lbl_movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="Harry Potter"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_message_detail"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="Movie year will be here" />
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailView" />
+
+            <TextView
+                android:id="@+id/lbl_movie_plot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                android:text="Movie Plot Will be here. Once upon a time there was a wolf. And there was a little red riding hood also. And a grandma. But the wolf was hungry and grandma made him a sandwich. And they lived happily ever after."
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_title" />
+
+            <TextView
+                android:id="@+id/lbl_movie_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Genres:"
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_plot" />
+
+            <TextView
+                android:id="@+id/lbl_movie_director"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Director: "
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_genre" />
+
+            <TextView
+                android:id="@+id/lbl_movie_language"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Language: "
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_director" />
+
+            <TextView
+                android:id="@+id/lbl_movie_cast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Cast:"
+                android:textColor="@color/grey600"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_language" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
