@@ -1,6 +1,7 @@
 package com.example.data.movie
 
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
 import io.reactivex.Flowable
 
 interface MovieCache {
@@ -12,4 +13,6 @@ interface MovieCache {
     fun observeMovies(): Flowable<List<Movie>>
 
     suspend fun storeMovies(movies: List<Movie>)
+
+    suspend fun storeMovieDetail(movieDetail: MovieDetail)
 }

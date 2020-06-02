@@ -1,6 +1,7 @@
 package com.example.domain.movie
 
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
 import io.reactivex.Flowable
 
 interface IMovieRepository {
@@ -14,5 +15,9 @@ interface IMovieRepository {
     suspend fun fetchMovies(titleToSearchFor: String): List<Movie>
 
     suspend fun storeMovies(movies: List<Movie>)
+
+    suspend fun fetchMovieDetail(): MovieDetail
+
+    suspend fun storeMovieDetail(movieDetail: MovieDetail)
 
 }

@@ -3,6 +3,7 @@ package com.example.cache.movies
 import com.example.cache.movies.dao.MovieDao
 import com.example.data.movie.MovieCache
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,6 +34,10 @@ class MovieCacheImpl @Inject constructor(
         movieDao.insertAllSuspend(movies.map { domainMovie ->
             domainMovie.mapToRoomModel()
         })
+    }
+
+    override suspend fun storeMovieDetail(movieDetail: MovieDetail) {
+        TODO("Not yet implemented")
     }
 
 

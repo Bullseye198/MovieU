@@ -2,6 +2,7 @@ package com.example.data.movie
 
 import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,5 +31,13 @@ class MovieRepoImpl @Inject constructor(
 
     override suspend fun storeMovies(movies: List<Movie>) {
         return movieCache.storeMovies(movies)
+    }
+
+    override suspend fun fetchMovieDetail(): MovieDetail {
+        return movieRemote.fetchMovieDetail()
+    }
+
+    override suspend fun storeMovieDetail(movieDetail: MovieDetail) {
+        return movieCache.storeMovieDetail(movieDetail)
     }
 }

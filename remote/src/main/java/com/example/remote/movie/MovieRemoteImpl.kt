@@ -2,6 +2,9 @@ package com.example.remote.movie
 
 import com.example.data.movie.MovieRemote
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
+import com.example.remote.movie.model.MovieDetailRaw
+import com.example.remote.movie.model.mapToDomain
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,7 +20,14 @@ class MovieRemoteImpl @Inject constructor(
             titleToSearchFor = titleToSearchFor,
             apikey = "3e6675f5"
         ).search.map {
-                Movie(it.imdbID, it.poster, it.title, it.type, it.year)
-            }
+            Movie(it.imdbID, it.poster, it.title, it.type, it.year)
+        }
+    }
+
+    override suspend fun fetchMovieDetail(): MovieDetail {
+        return movieService.getMovieDetail(
+            imdbID = "tt0133093",
+            apikey = "3e6675f5"
+        ).mapToDomain()
     }
 }
