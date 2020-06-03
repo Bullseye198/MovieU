@@ -35,7 +35,7 @@ class MovieCacheImpl @Inject constructor(
     }
 
     override suspend fun storeMovies(movies: List<Movie>) {
-        movieDao.insertAllSuspend(movies.map { domainMovie ->
+        movieDao.insertAllIgnore(movies.map { domainMovie ->
             domainMovie.mapToRoomModel()
         })
     }

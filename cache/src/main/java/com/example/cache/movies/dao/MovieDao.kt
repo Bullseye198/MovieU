@@ -28,5 +28,8 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOneSuspend(entities: RoomMovie)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAllIgnore(entities: List<RoomMovie>)
 }
 
