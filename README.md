@@ -22,7 +22,6 @@ RxJava.
 To do:
 
 In Progress:
-- [ ] Work on the movie detail
 - [ ] More RxJava Stuff
 
 Done:
@@ -36,3 +35,4 @@ Done:
 - [x] Store the data to our local database with Room
 - [x] Add search function
 - [x] Implement RX Java
+- [x] Work on the movie detail
