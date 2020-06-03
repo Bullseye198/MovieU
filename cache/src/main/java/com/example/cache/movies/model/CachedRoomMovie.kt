@@ -1,11 +1,9 @@
 package com.example.cache.movies.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Room
+import androidx.room.*
 import com.example.domain.movie.model.Movie
 import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.Rating
 
 @Entity(
     tableName = "movie"
@@ -49,7 +47,7 @@ fun RoomMovie.mapToDomainModelList(): Movie {
     )
 }
 
-fun RoomMovie.mapToDomainModelDetail(): MovieDetail {
+fun RoomMovie.mapToDomainModelDetail(ratings: List<RoomRatings>): MovieDetail {
     return MovieDetail(
         imdbID = imdbID,
         poster = poster,
@@ -75,7 +73,7 @@ fun RoomMovie.mapToDomainModelDetail(): MovieDetail {
         runtime = runtime,
         website = website,
         writer = writer,
-        ratings = emptyList()
+        ratings = ratings.map { Rating(it.source, it.value) }
     )
 }
 

@@ -8,7 +8,9 @@ import dagger.Provides
 object DaoModule {
 
     @Provides
-    fun provideImageDao(roomMovieDatabase: RoomMovieDatabase) = roomMovieDatabase.roomMovieDao()
+    fun provideMovieDao(roomMovieDatabase: RoomMovieDatabase) = roomMovieDatabase.roomMovieDao()
 
+    @Provides
+    fun provideRatingsDao(roomMovieDatabase: RoomMovieDatabase) = roomMovieDatabase.roomRatingsDao()
 
 }
