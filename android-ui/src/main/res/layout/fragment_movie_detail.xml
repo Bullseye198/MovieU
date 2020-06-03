@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginEnd="32dp"
                 android:text="Movie Plot Will be here. Once upon a time there was a wolf. And there was a little red riding hood also. And a grandma. But the wolf was hungry and grandma made him a sandwich. And they lived happily ever after."
                 android:textColor="@color/colorAccent"
@@ -169,8 +169,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_cast" />
 
+            <ListView
+                android:id="@+id/rec_list_ratings"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/holo_blue_dark"
+                app:layout_constraintBottom_toTopOf="@+id/lbl_movie_plot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_title" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 </FrameLayout>
