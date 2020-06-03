@@ -61,6 +61,7 @@ class MovieDetailFragment : DaggerFragment() {
                 binding.lblMovieLanguage.text = "Language: " + movie.language
                 binding.lblMovieCast.text = "Cast: " + movie.actors
                 binding.lblMovieDirector.text = "Director: " + movie.director
+                binding.lblMovieRatings.text = "Ratings: " + movie.ratings
             }
         )
     }
