@@ -1,10 +1,8 @@
 package com.example.cache.movies
 
 import com.example.cache.movies.dao.MovieDao
-import com.example.cache.movies.model.mapToDomainModelDetail
-import com.example.cache.movies.model.mapToDomainModelList
-import com.example.cache.movies.model.mapToFullRoomModel
-import com.example.cache.movies.model.mapToRoomModel
+import com.example.cache.movies.dao.RatingsDao
+import com.example.cache.movies.model.*
 import com.example.data.movie.MovieCache
 import com.example.domain.movie.model.Movie
 import com.example.domain.movie.model.MovieDetail
@@ -14,7 +12,8 @@ import javax.inject.Singleton
 
 @Singleton
 class MovieCacheImpl @Inject constructor(
-    private val movieDao: MovieDao
+    private val movieDao: MovieDao,
+    private val ratingsDao: RatingsDao
 ) : MovieCache {
     override suspend fun getMovieById(imdbID: String): Movie {
         return movieDao.getMovieByImdbID(imdbID).mapToDomainModelList()
@@ -42,10 +41,17 @@ class MovieCacheImpl @Inject constructor(
 
     override suspend fun storeMovieDetail(movieDetail: MovieDetail) {
         movieDao.insertOneSuspend(movieDetail.mapToFullRoomModel())
+        ratingsDao.InsertRatings(movieDetail.ratings?.map { movieRatings ->
+            RoomRatings(
+                movieRatings.source,
+                movieDetail.imdbID,
+                movieRatings.value
+            )
+        })
     }
 
     override fun observeMovieDetail(imdbID: String): Flowable<MovieDetail> {
         return movieDao.observeMovieDetail(imdbID)
-            .map { roomMovieDetail -> roomMovieDetail.mapToDomainModelDetail() }
+            .map { roomMovieDetail -> roomMovieDetail.mapToDomainModel() }
     }
 }

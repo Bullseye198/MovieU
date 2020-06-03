@@ -1,9 +1,7 @@
 package com.example.cache.movies.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.example.cache.movies.model.MovieAndRatings
 import com.example.cache.movies.model.RoomMovie
 import io.reactivex.Flowable
 
@@ -21,7 +19,7 @@ interface MovieDao {
 
     //Observe one movie
     @Query("SELECT * FROM movie WHERE id =:imdbID")
-    fun observeMovieDetail(imdbID: String): Flowable<RoomMovie>
+    fun observeMovieDetail(imdbID: String): Flowable<MovieAndRatings>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllSuspend(entities: List<RoomMovie>)
@@ -31,5 +29,9 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllIgnore(entities: List<RoomMovie>)
+
+    @Transaction
+    @Query("SELECT * from movie")
+    fun getMovieAndRatings(): List<MovieAndRatings>
 }
 
