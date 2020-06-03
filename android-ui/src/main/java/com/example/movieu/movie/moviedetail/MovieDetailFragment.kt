@@ -50,21 +50,6 @@ class MovieDetailFragment : DaggerFragment() {
         super.onStart()
 
         observeViewModel()
-        setupRatingsAdapter()
-    }
-
-    private fun setupRatingsAdapter() {
-        val ratings = mutableListOf("rotten", "imdb", "whatever")
-        
-        val listView = requireView().findViewById<ListView>(R.id.rec_list_ratings)
-        if (listView != null) {
-            listViewAdapter = ArrayAdapter(
-                requireContext(),
-               R.layout.ratings_item, ratings
-            )
-        listView.adapter = listViewAdapter
-        }
-
     }
 
     @SuppressLint("SetTextI18n")
