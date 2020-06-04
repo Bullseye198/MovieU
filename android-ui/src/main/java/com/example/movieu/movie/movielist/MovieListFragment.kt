@@ -36,6 +36,7 @@ class MovieListFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeViewModel()
         setUpMovieListAdapter()
         onMovieSearched()
     }
@@ -55,7 +56,7 @@ class MovieListFragment : DaggerFragment() {
     }
 
     private fun onMovieSearched() {
-        searchView.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 //viewModel.onMovieSearched(titleToSearchFor = query.toString())
                 viewModel.onNewMoviesSearched(newMovies = query.toString())
@@ -83,17 +84,17 @@ class MovieListFragment : DaggerFragment() {
                 }
             }
         )
-
-        viewModel.movieList.observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter.submitList(it)
-            }
-        )
     }
 
     private fun observeViewModel() {
-
+        viewModel.getState().observe(
+            viewLifecycleOwner,
+            Observer { t ->
+                if (t != null) {
+                    adapter.submitList(t.feed)
+                }
+            }
+        )
     }
 }
 
