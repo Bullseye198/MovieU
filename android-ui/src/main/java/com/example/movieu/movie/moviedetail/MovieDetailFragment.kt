@@ -57,28 +57,32 @@ class MovieDetailFragment : DaggerFragment() {
         ratingsAdapter = MovieRatingsAdapter()
         rec_list_ratings.adapter = ratingsAdapter
 
-        viewModel.ratings.observe(
+        viewModel.getState().observe(
             viewLifecycleOwner,
-            Observer {
-                ratingsAdapter.submitList(it)
+            Observer { t ->
+                if (t != null) {
+                    ratingsAdapter.submitList(t.movieDetail?.ratings)
+                }
             }
         )
     }
 
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
-        viewModel.movie.observe(
+        viewModel.getState().observe(
             viewLifecycleOwner,
-            Observer { movie ->
-                movieDetailView.load(movie.poster.replace("http:", "https:"))
-                binding.lblMovieTitle.text = movie.title
-                binding.lblMovieYear.text = movie.year
-                binding.lblMovieRuntime.text = movie.runtime
-                binding.lblMoviePlot.text = movie.plot
-                binding.lblMovieGenre.text = "Genre: " + movie.genre
-                binding.lblMovieLanguage.text = "Language: " + movie.language
-                binding.lblMovieCast.text = "Cast: " + movie.actors
-                binding.lblMovieDirector.text = "Director: " + movie.director
+            Observer { t ->
+                if (t != null) {
+                    movieDetailView.load(t.movieDetail?.poster?.replace("http:", "https:"))
+                    binding.lblMovieTitle.text = t.movieDetail?.title
+                    binding.lblMovieYear.text = t.movieDetail?.year
+                    binding.lblMovieRuntime.text = t.movieDetail?.runtime
+                    binding.lblMoviePlot.text = t.movieDetail?.plot
+                    binding.lblMovieGenre.text = "Genre: " + t.movieDetail?.genre
+                    binding.lblMovieLanguage.text = "Language: " + t.movieDetail?.language
+                    binding.lblMovieCast.text = "Cast: " + t.movieDetail?.actors
+                    binding.lblMovieDirector.text = "Director: " + t.movieDetail?.director
+                }
             }
         )
     }
