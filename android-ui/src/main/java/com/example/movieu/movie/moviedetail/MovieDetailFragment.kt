@@ -18,7 +18,7 @@ import javax.inject.Inject
 class MovieDetailFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
-
+    private lateinit var ratingsAdapter: MovieRatingsAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
     @Inject
@@ -41,10 +41,28 @@ class MovieDetailFragment : DaggerFragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rec_list_ratings.adapter = null
+    }
+
     override fun onStart() {
         super.onStart()
 
         observeViewModel()
+        setUpMovieRatingsAdapter()
+    }
+
+    private fun setUpMovieRatingsAdapter() {
+        ratingsAdapter = MovieRatingsAdapter()
+        rec_list_ratings.adapter = ratingsAdapter
+
+        viewModel.ratings.observe(
+            viewLifecycleOwner,
+            Observer {
+                ratingsAdapter.submitList(it)
+            }
+        )
     }
 
     @SuppressLint("SetTextI18n")

@@ -11,6 +11,7 @@ import com.example.movieu.R
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.domain.movie.model.Movie
+import com.example.domain.movie.model.MovieDetail
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveData()) :
