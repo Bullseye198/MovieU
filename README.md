@@ -23,7 +23,6 @@ To do:
 
 In Progress:
 - [ ] More RxJava Stuff
-- [ ] Migrate to state pattern
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
@@ -38,3 +37,4 @@ Done:
 - [x] Implement RX Java
 - [x] Work on the movie detail
 - [x] Work on Movie Ratings
+- [x] Migrate to state pattern
