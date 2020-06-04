@@ -2,8 +2,8 @@ package com.example.movieu.dependencyInjection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.movieu.movie.MovieDetailViewModel
-import com.example.movieu.movie.MovieListViewModel
+import com.example.movieu.movie.moviedetail.MovieDetailViewModel
+import com.example.movieu.movie.movielist.MovieListViewModel
 import com.example.movieu.userInterface.MainActivityViewModel
 import dagger.Binds
 import dagger.MapKey
