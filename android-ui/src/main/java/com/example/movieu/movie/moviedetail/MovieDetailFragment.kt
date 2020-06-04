@@ -1,17 +1,13 @@
 package com.example.movieu.movie.moviedetail
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
-import com.example.movieu.R
 import com.example.movieu.databinding.FragmentMovieDetailBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
 import com.example.movieu.movie.MovieDetailViewModel
@@ -22,8 +18,7 @@ import javax.inject.Inject
 class MovieDetailFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
-    private lateinit var listViewAdapter: ArrayAdapter<String>
-
+    private lateinit var ratingsAdapter: MovieRatingsAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
     @Inject
@@ -46,10 +41,28 @@ class MovieDetailFragment : DaggerFragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rec_list_ratings.adapter = null
+    }
+
     override fun onStart() {
         super.onStart()
 
         observeViewModel()
+        setUpMovieRatingsAdapter()
+    }
+
+    private fun setUpMovieRatingsAdapter() {
+        ratingsAdapter = MovieRatingsAdapter()
+        rec_list_ratings.adapter = ratingsAdapter
+
+        viewModel.ratings.observe(
+            viewLifecycleOwner,
+            Observer {
+                ratingsAdapter.submitList(it)
+            }
+        )
     }
 
     @SuppressLint("SetTextI18n")
@@ -66,7 +79,6 @@ class MovieDetailFragment : DaggerFragment() {
                 binding.lblMovieLanguage.text = "Language: " + movie.language
                 binding.lblMovieCast.text = "Cast: " + movie.actors
                 binding.lblMovieDirector.text = "Director: " + movie.director
-                binding.lblMovieRatings.text = "Ratings: " + movie.ratings
             }
         )
     }

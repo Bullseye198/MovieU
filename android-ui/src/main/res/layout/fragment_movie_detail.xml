@@ -40,8 +40,8 @@
                 android:layout_marginTop="32dp"
                 android:adjustViewBounds="true"
                 android:focusable="true"
-                android:textColor="@color/colorAccent"
                 android:scaleType="centerCrop"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintDimensionRatio="9:16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:text="Movie Plot Will be here. Once upon a time there was a wolf. And there was a little red riding hood also. And a grandma. But the wolf was hungry and grandma made him a sandwich. And they lived happily ever after."
                 android:textColor="@color/colorAccent"
@@ -159,7 +159,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:text="Ratings:"
                 android:textColor="@color/grey600"
@@ -169,16 +169,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_cast" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_list_ratings"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@android:color/holo_blue_dark"
-                app:layout_constraintBottom_toTopOf="@+id/lbl_movie_plot"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_title" />
-
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_ratings" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
