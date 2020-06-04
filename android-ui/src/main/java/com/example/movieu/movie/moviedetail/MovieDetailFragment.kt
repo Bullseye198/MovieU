@@ -10,9 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.movieu.databinding.FragmentMovieDetailBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
-import com.example.movieu.movie.MovieDetailViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import javax.inject.Inject
 
 class MovieDetailFragment : DaggerFragment() {
@@ -43,7 +41,7 @@ class MovieDetailFragment : DaggerFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rec_list_ratings.adapter = null
+        binding.recListRatings.adapter = null
     }
 
     override fun onStart() {
@@ -55,13 +53,13 @@ class MovieDetailFragment : DaggerFragment() {
 
     private fun setUpMovieRatingsAdapter() {
         ratingsAdapter = MovieRatingsAdapter()
-        rec_list_ratings.adapter = ratingsAdapter
+        binding.recListRatings.adapter = ratingsAdapter
 
         viewModel.getState().observe(
             viewLifecycleOwner,
-            Observer { t ->
-                if (t != null) {
-                    ratingsAdapter.submitList(t.movieDetail?.ratings)
+            Observer { movieDetailState ->
+                if (movieDetailState != null) {
+                    ratingsAdapter.submitList(movieDetailState.movieDetail?.ratings)
                 }
             }
         )
@@ -73,7 +71,7 @@ class MovieDetailFragment : DaggerFragment() {
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {
-                    movieDetailView.load(t.movieDetail?.poster?.replace("http:", "https:"))
+                    binding.movieDetailView.load(t.movieDetail?.poster?.replace("http:", "https:"))
                     binding.lblMovieTitle.text = t.movieDetail?.title
                     binding.lblMovieYear.text = t.movieDetail?.year
                     binding.lblMovieRuntime.text = t.movieDetail?.runtime

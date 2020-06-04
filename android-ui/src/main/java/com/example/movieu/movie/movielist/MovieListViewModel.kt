@@ -1,4 +1,4 @@
-package com.example.movieu.movie
+package com.example.movieu.movie.movielist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.movie.model.Movie
 import com.example.domain.usecases.ObserveMoviesUseCase
 import com.example.domain.usecases.RefreshMoviesUseCase
+import com.example.movieu.movie.moviedetail.MovieDetailState
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,9 +17,9 @@ class MovieListViewModel @Inject constructor(
     private val refreshMoviesUseCase: RefreshMoviesUseCase
 ) : ViewModel() {
 
-    private val movieState = MutableLiveData(MovieState())
+    private val movieState = MutableLiveData(MovieListState())
 
-    fun getState(): LiveData<MovieState> = movieState
+    fun getState(): LiveData<MovieListState> = movieState
 
     var currentMovies: String? = null
 

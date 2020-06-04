@@ -1,9 +1,8 @@
-package com.example.movieu.movie
+package com.example.movieu.movie.moviedetail
 
 import com.example.domain.movie.model.Movie
 import com.example.domain.movie.model.MovieDetail
 
-data class MovieState(
-    val feed: List<Movie>? = null,
+data class MovieDetailState(
     val movieDetail: MovieDetail? = null
 )

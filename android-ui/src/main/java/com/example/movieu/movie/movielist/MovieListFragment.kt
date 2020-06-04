@@ -1,22 +1,16 @@
 package com.example.movieu.movie.movielist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.domain.movie.model.Movie
 import com.example.movieu.R
 import com.example.movieu.dependencyInjection.ViewModelFactory
-import com.example.movieu.movie.MovieListViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import javax.inject.Inject
 
@@ -89,9 +83,9 @@ class MovieListFragment : DaggerFragment() {
     private fun observeViewModel() {
         viewModel.getState().observe(
             viewLifecycleOwner,
-            Observer { t ->
-                if (t != null) {
-                    adapter.submitList(t.feed)
+            Observer { movieListState ->
+                if (movieListState != null) {
+                    adapter.submitList(movieListState.feed)
                 }
             }
         )
