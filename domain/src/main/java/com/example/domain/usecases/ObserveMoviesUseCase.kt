@@ -29,7 +29,7 @@ class ObserveMoviesUseCase @Inject constructor(
                 val moviesForSearchTerm = movies.filter {
                     it.title.toLowerCase().contains(searchTerm.toLowerCase())
                 }
-                moviesForSearchTerm.sortedWith(compareBy({it.imdbID}, {it.title}))
+                moviesForSearchTerm.sortedWith(compareBy({ it.imdbID }, { it.title }))
             }
             .subscribeOn(rxSchedulers.io)
             .observeOn(rxSchedulers.main)

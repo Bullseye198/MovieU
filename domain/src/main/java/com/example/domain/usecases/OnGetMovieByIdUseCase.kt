@@ -1,6 +1,5 @@
 package com.example.domain.usecases
 
-import com.cm.base.executor.AppCoroutineDispatchers
 import com.cm.base.executor.AppRxSchedulers
 import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.Movie

@@ -11,7 +11,6 @@ data class MovieAndRatings(
     var roomRatings: List<RoomRatings>
 )
 
-fun MovieAndRatings.mapToDomainModel() : MovieDetail {
+fun MovieAndRatings.mapToDomainModel(): MovieDetail {
     return roomMovie.mapToDomainModelDetail(roomRatings)
-
 }

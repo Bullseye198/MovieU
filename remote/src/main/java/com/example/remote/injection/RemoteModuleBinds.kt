@@ -1,7 +1,6 @@
 package com.example.remote.injection
 
 import com.example.data.movie.MovieRemote
-import com.example.data.movie.MovieRepoImpl
 import com.example.remote.movie.MovieRemoteImpl
 import dagger.Binds
 import dagger.Module

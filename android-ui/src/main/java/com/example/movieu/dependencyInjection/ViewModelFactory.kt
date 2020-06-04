@@ -14,15 +14,20 @@ import javax.inject.Provider
 import javax.inject.Singleton
 import kotlin.reflect.KClass
 
-
 @Singleton
 class ViewModelFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
-): ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = viewModels[modelClass]?.get() as T
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+        viewModels[modelClass]?.get() as T
 }
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
+
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER
+)
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 @MapKey
 internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
@@ -35,17 +40,16 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey (MainActivityViewModel::class)
+    @ViewModelKey(MainActivityViewModel::class)
     internal abstract fun mainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey (MovieDetailViewModel::class)
+    @ViewModelKey(MovieDetailViewModel::class)
     internal abstract fun movieDetailViewModel(viewModel: MovieDetailViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey (MovieListViewModel::class)
+    @ViewModelKey(MovieListViewModel::class)
     internal abstract fun movieListViewModel(viewModel: MovieListViewModel): ViewModel
-
 }

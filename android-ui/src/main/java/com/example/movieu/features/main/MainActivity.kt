@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
 
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 

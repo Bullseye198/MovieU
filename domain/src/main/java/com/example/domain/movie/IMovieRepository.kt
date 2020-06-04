@@ -21,5 +21,4 @@ interface IMovieRepository {
     suspend fun storeMovieDetail(movieDetail: MovieDetail)
 
     fun observeMovieDetail(imdbID: String): Flowable<MovieDetail>
-
 }

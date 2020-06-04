@@ -13,7 +13,6 @@ class MovieRemoteImpl @Inject constructor(
     private val movieService: MovieService
 ) : MovieRemote {
 
-
     override suspend fun fetchMovies(titleToSearchFor: String): List<Movie> {
         return movieService.getCurrentMovie(
             titleToSearchFor = titleToSearchFor,

@@ -12,5 +12,4 @@ object DaoModule {
 
     @Provides
     fun provideRatingsDao(roomMovieDatabase: RoomMovieDatabase) = roomMovieDatabase.roomRatingsDao()
-
 }
