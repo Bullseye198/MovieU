@@ -1,11 +1,6 @@
 package com.example.domain.movie.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
 data class MovieDetail(
-
-
     val actors: String?, // Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
     val awards: String?, // Won 4 Oscars. Another 37 wins & 50 nominations.
     val boxOffice: String?, // N/A

@@ -2,7 +2,7 @@ package com.cm.base.executor
 
 import io.reactivex.Scheduler
 
-data class AppRxSchedulers (
+data class AppRxSchedulers(
     val io: Scheduler,
     val computation: Scheduler,
     val main: Scheduler

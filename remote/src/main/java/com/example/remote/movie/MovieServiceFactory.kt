@@ -21,7 +21,6 @@ object MovieServiceFactory {
             .build()
 
         return retrofit.create(MovieService::class.java)
-
     }
 
 
