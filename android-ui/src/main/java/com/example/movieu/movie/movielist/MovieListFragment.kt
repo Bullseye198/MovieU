@@ -8,25 +8,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.movieu.R
+import com.example.movieu.databinding.FragmentMovieListBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_movie_list.*
 import javax.inject.Inject
 
 class MovieListFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieListViewModel
     private lateinit var adapter: MovieListAdapter
-
+    private lateinit var binding: FragmentMovieListBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,20 +33,21 @@ class MovieListFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentMovieListBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        return binding.root
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rec_list_fragment.adapter = null
+        binding.recListFragment.adapter = null
     }
 
     private fun onMovieSearched() {
-        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //viewModel.onMovieSearched(titleToSearchFor = query.toString())
                 viewModel.onNewMoviesSearched(newMovies = query.toString())
                 return true
             }
@@ -66,8 +61,8 @@ class MovieListFragment : DaggerFragment() {
 
     private fun setUpMovieListAdapter() {
         adapter = MovieListAdapter()
-        rec_list_fragment.adapter = adapter
-        rec_list_fragment.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.recListFragment.adapter = adapter
+        binding.recListFragment.layoutManager = GridLayoutManager(requireContext(), 3)
 
         adapter.event.observe(
             viewLifecycleOwner, Observer {
