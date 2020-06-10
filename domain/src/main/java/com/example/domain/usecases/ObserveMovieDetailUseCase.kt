@@ -1,22 +1,22 @@
 package com.example.domain.usecases
 
 import com.cm.base.executor.AppRxSchedulers
+import com.cm.base.interactors.base.FlowableUseCase
 import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.MovieDetail
-import io.reactivex.subscribers.DisposableSubscriber
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 class ObserveMovieDetailUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository,
-    private val rxSchedulers: AppRxSchedulers
-) {
-    fun requestMovieDetail(
-        imdbID: String,
-        subscriber: DisposableSubscriber<MovieDetail>
-    ) {
-        iMovieRepository.observeMovieDetail(imdbID = imdbID)
-            .subscribeOn(rxSchedulers.io)
-            .observeOn(rxSchedulers.main)
-            .subscribeWith(subscriber)
+    rxSchedulers: AppRxSchedulers
+) : FlowableUseCase<MovieDetail, ObserveMovieDetailUseCase.Params>(rxSchedulers) {
+
+    override fun buildUseCaseObservable(params: Params?): Flowable<MovieDetail> {
+        return iMovieRepository.observeMovieDetail(params!!.imdbID)
     }
+
+    data class Params(
+        val imdbID: String
+    )
 }
