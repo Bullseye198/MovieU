@@ -51,7 +51,7 @@ class MovieDetailViewModel @Inject constructor(
 
     fun refresh(imdbID: String) {
         viewModelScope.launch {
-            currentMovieDetail.let { refreshMovieDetailUseCase.refresh(imdbID) }
+            currentMovieDetail.let { refreshMovieDetailUseCase.invokeUseCase(params = RefreshMovieDetailUseCase.Params(imdbID)) }
         }
     }
 }
