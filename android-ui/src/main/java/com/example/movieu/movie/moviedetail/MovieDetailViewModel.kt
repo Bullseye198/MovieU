@@ -32,8 +32,7 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     private fun observeMovieDetail(imdbID: String) {
-        observeMovieDetailUseCase.requestMovieDetail(
-            imdbID,
+        observeMovieDetailUseCase.invokeUseCase(
             object : DisposableSubscriber<MovieDetail>() {
                 override fun onComplete() {
 
@@ -46,7 +45,7 @@ class MovieDetailViewModel @Inject constructor(
                 override fun onError(t: Throwable?) {
                     throw Exception("Subscription failed at ${t?.localizedMessage}")
                 }
-            })
+            }, ObserveMovieDetailUseCase.Params(imdbID))
     }
 
     fun refresh(imdbID: String) {
