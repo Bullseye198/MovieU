@@ -51,7 +51,7 @@ class MovieListViewModel @Inject constructor(
 
     private fun refreshMoviesAndUpdate() {
         viewModelScope.launch() {
-            currentMovies?.let { refreshMoviesUseCase.refresh(it) }
+            currentMovies?.let { refreshMoviesUseCase.invokeUseCase(params = RefreshMoviesUseCase.Params(it)) }
         }
     }
 
