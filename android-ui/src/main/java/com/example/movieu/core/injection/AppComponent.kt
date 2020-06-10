@@ -12,7 +12,7 @@ import com.example.movieu.core.injection.module.DaoModule
 import com.example.movieu.dependencyInjection.AppDataModule
 import com.example.movieu.dependencyInjection.MovieUIModule
 import com.example.movieu.dependencyInjection.ViewModelModule
-import com.example.remote.movie.RemoteModule
+import com.example.remote.injection.RemoteModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

@@ -1,17 +1,18 @@
-package com.example.remote.movie
+package com.example.remote.tmdbmovie
 
+import com.example.remote.movie.MovieService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-object MovieServiceFactory {
+object TMDbMovieServiceFactory {
 
-    fun makeOMDbMovieService(chuckerInterceptor: Interceptor): MovieService {
+    fun makeTMDbMovieService(chuckerInterceptor: Interceptor): TMDbMovieService {
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://www.omdbapi.com/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(
                 makeOkHttpClient(
@@ -20,7 +21,7 @@ object MovieServiceFactory {
             )
             .build()
 
-        return retrofit.create(MovieService::class.java)
+        return retrofit.create(TMDbMovieService::class.java)
     }
 
     private fun makeOkHttpClient(chuckerInterceptor: Interceptor): OkHttpClient {

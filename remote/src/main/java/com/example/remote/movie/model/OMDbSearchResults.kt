@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SearchResults(
+data class OMDbSearchResults(
     @Json(name = "Response")
     val response: String, // True
     @Json(name = "Search")

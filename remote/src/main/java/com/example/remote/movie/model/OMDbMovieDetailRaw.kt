@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class MovieDetailRaw(
+data class OMDbMovieDetailRaw(
     @Json(name = "Actors")
     val actors: String, // Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
     @Json(name = "Awards")
@@ -59,7 +59,7 @@ data class MovieDetailRaw(
     val year: String // 1999
 )
 
-fun MovieDetailRaw.mapToDomain() = MovieDetail(
+fun OMDbMovieDetailRaw.mapToDomain() = MovieDetail(
     actors = actors,
     awards = awards,
     boxOffice = boxOffice,
