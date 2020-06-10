@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class ObserveMovieDetailUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository,
-    private val rxSchedulers: AppRxSchedulers
+    rxSchedulers: AppRxSchedulers
 ) : FlowableUseCase<MovieDetail, ObserveMovieDetailUseCase.Params>(rxSchedulers) {
 
     override fun buildUseCaseObservable(params: Params?): Flowable<MovieDetail> {

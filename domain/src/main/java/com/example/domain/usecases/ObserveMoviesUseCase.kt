@@ -6,15 +6,14 @@ import com.example.domain.movie.IMovieRepository
 import com.example.domain.movie.model.Movie
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.combineLatest
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subscribers.DisposableSubscriber
+import java.util.*
 import javax.inject.Inject
 
 class ObserveMoviesUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository,
-    private val rxSchedulers: AppRxSchedulers
+    rxSchedulers: AppRxSchedulers
 ) : FlowableUseCase<List<Movie>, Void?>(rxSchedulers) {
 
     private val localDatabaseSearchStream: BehaviorSubject<String> = BehaviorSubject.create()
@@ -27,7 +26,7 @@ class ObserveMoviesUseCase @Inject constructor(
                 val searchTerm = moviesWithSearchTerm.second
 
                 val moviesForSearchTerm = movies.filter {
-                    it.title.toLowerCase().contains(searchTerm.toLowerCase())
+                    it.title.toLowerCase(Locale.ROOT).contains(searchTerm.toLowerCase(Locale.ROOT))
                 }
                 moviesForSearchTerm.sortedWith(compareBy({ it.imdbID }, { it.title }))
             }
