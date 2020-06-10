@@ -34,7 +34,7 @@ class MovieListViewModel @Inject constructor(
     }
 
     private fun getMovies() {
-        observeMoviesUseCase.requestMovies(object : DisposableSubscriber<List<Movie>>() {
+        observeMoviesUseCase.invokeUseCase(object : DisposableSubscriber<List<Movie>>() {
             override fun onComplete() {
 
             }
@@ -46,7 +46,7 @@ class MovieListViewModel @Inject constructor(
             override fun onError(t: Throwable?) {
                 throw Exception("Subscription failed at ${t?.localizedMessage}")
             }
-        })
+        }, params = null)
     }
 
     private fun refreshMoviesAndUpdate() {

@@ -33,7 +33,7 @@ abstract class FlowableUseCase<T, in Params>(
         )
     }
 
-    private fun dispose() {
+    fun dispose() {
         if (disposables.isDisposed) {
             disposables.dispose()
         }
