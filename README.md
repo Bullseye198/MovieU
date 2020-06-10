@@ -20,9 +20,10 @@ Room,
 RxJava.
 
 To do:
+- [ ] Integrate TMDb API
 
 In Progress:
-- [ ] More RxJava Stuff
+
 
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
@@ -38,3 +39,4 @@ Done:
 - [x] Work on the movie detail
 - [x] Work on Movie Ratings
 - [x] Migrate to state pattern
+- [x] More RxJava Stuff
