@@ -8,13 +8,13 @@ import retrofit2.http.Query
 //"https://api.themoviedb.org/3/search/movie?api_key=2797198b75a6557cae56bdfdb2dd1b52&query=Jurassic"
 
 //Get TMDb movie detail url:
-//"https://api.themoviedb.org/3/movie/135397?api_key=2797198b75a6557cae56bdfdb2dd1b52&"
+//"https://api.themoviedb.org/3/movie/135397?api_key=2797198b75a6557cae56bdfdb2dd1b52"
 
 interface TMDbMovieService {
 
     @GET("search/movie")
     suspend fun getCurrentMovieList(
-        @Query("query") query: String,
+        @Query("query") tmdbTitleToSearchFor: String,
         @Query("api_key") apikey: String
     ): TMDbMovieSearchResultsRaw
 }

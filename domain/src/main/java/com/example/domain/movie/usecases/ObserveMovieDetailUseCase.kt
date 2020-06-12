@@ -1,4 +1,4 @@
-package com.example.domain.usecases
+package com.example.domain.movie.usecases
 
 import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowableUseCase

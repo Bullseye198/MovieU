@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.movie.model.Movie
-import com.example.domain.usecases.ObserveMoviesUseCase
-import com.example.domain.usecases.RefreshMoviesUseCase
-import com.example.movieu.movie.moviedetail.MovieDetailState
+import com.example.domain.movie.usecases.ObserveMoviesUseCase
+import com.example.domain.movie.usecases.RefreshMoviesUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject

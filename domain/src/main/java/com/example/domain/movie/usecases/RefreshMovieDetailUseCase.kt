@@ -1,4 +1,4 @@
-package com.example.domain.usecases
+package com.example.domain.movie.usecases
 
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.cm.base.interactors.base.CoroutineCompletableUseCase
@@ -6,20 +6,21 @@ import com.example.domain.movie.IMovieRepository
 import java.lang.Exception
 import javax.inject.Inject
 
-class RefreshMoviesUseCase @Inject constructor(
+class RefreshMovieDetailUseCase @Inject constructor(
     private val iMovieRepository: IMovieRepository,
     appCoroutineDispatchers: AppCoroutineDispatchers
-) : CoroutineCompletableUseCase<RefreshMoviesUseCase.Params>(appCoroutineDispatchers) {
+) : CoroutineCompletableUseCase<RefreshMovieDetailUseCase.Params>(appCoroutineDispatchers) {
 
     override suspend fun execute(params: Params?) {
         try {
-            val serverMovies = iMovieRepository.fetchMovies(params!!.titleToSearchFor)
-            iMovieRepository.storeMovies(serverMovies)
+            val serverMovieDetail = iMovieRepository.fetchMovieDetail(params!!.imdbID)
+            iMovieRepository.storeMovieDetail(serverMovieDetail)
         } catch (e: Exception) {
         }
     }
 
     data class Params(
-        val titleToSearchFor: String
+        val imdbID: String
     )
+
 }
