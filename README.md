@@ -20,9 +20,9 @@ Room,
 RxJava.
 
 To do:
-- [ ] Integrate TMDb API
 
 In Progress:
+- [ ] Integrate TMDb API
 
 
 Done:
