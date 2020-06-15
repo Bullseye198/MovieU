@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class RefreshTMDbMoviesUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository
-){
+) {
 
     suspend fun refresh(tmdbTitleToSearchFor: String) {
         try {
