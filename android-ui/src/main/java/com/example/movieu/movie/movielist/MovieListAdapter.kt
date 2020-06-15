@@ -35,7 +35,8 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
         getItem(position).let { movie ->
             holder.content.text = movie.title
             holder.year.text = movie.releaseDate
-            holder.image.load(movie.posterPath?.replace("http:", "https:"))
+            val posterPath = "http://image.tmdb.org/t/p/w500/${movie.posterPath}"
+            holder.image.load(posterPath)
             holder.itemView.setOnClickListener {
                 event.value = MovieListEvent.OnMovieItemClick(position, movie.id.toString())
             }
