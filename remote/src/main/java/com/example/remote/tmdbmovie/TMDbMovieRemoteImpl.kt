@@ -13,7 +13,7 @@ class TMDbMovieRemoteImpl @Inject constructor(
 ) : TMDbMovieRemote {
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {
         return tmDbMovieService.getCurrentMovieList(
-            tmdbTitleToSearchFor = "jurassic",
+            tmdbTitleToSearchFor = tmdbTitleToSearchFor,
             apikey = "2797198b75a6557cae56bdfdb2dd1b52"
         ).resultsRaw.map {
             Result(

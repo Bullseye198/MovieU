@@ -10,7 +10,7 @@ class RefreshTMDbMoviesUseCase @Inject constructor(
 
     suspend fun refresh(tmdbTitleToSearchFor: String) {
         try {
-            val tmdbServerMovies = tmDbMovieRepository.fetchTMDbMovies(tmdbTitleToSearchFor = "Jurassic")
+            val tmdbServerMovies = tmDbMovieRepository.fetchTMDbMovies(tmdbTitleToSearchFor)
             tmDbMovieRepository.storeTMDbMovies(tmdbServerMovies)
         } catch (e: Exception) {
         }

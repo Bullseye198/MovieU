@@ -9,7 +9,6 @@ import com.example.domain.movie.model.Movie
 import com.example.domain.movie.usecases.ObserveMoviesUseCase
 import com.example.domain.movie.usecases.RefreshMoviesUseCase
 import com.example.domain.tmdbmovie.model.Result
-import com.example.domain.tmdbmovie.usecases.FetchTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.RequestTMDbMoviesUseCase
 import io.reactivex.subscribers.DisposableSubscriber
@@ -21,7 +20,6 @@ class MovieListViewModel @Inject constructor(
     private val observeMoviesUseCase: ObserveMoviesUseCase,
     private val refreshMoviesUseCase: RefreshMoviesUseCase,
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
-    private val fetchTMDbMoviesUseCase: FetchTMDbMoviesUseCase,
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
     private val requestTMDbMoviesUseCase: RequestTMDbMoviesUseCase
 ) : ViewModel() {
@@ -49,7 +47,7 @@ class MovieListViewModel @Inject constructor(
     private fun getMovies() {
         viewModelScope.launch {
             val movies = withContext(appCoroutineDispatchers.io) {
-                fetchTMDbMoviesUseCase.fetchTMDbMovies(title)
+                requestTMDbMoviesUseCase.requestTMDbMovies(title)
             }
             movieListState.value = movies
         }
