@@ -1,14 +1,14 @@
 package com.example.movieu.movie.movielist
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.domain.movie.model.Movie
+import com.example.domain.tmdbmovie.model.Result
 
-class MovieDiffUtilCallback : DiffUtil.ItemCallback<Movie>() {
-    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-        return oldItem.title == newItem.title && oldItem.imdbID == newItem.imdbID
+class MovieDiffUtilCallback : DiffUtil.ItemCallback<Result>() {
+    override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+        return oldItem.title == newItem.title && oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
         return oldItem == newItem
     }
 }

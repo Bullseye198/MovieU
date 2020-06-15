@@ -12,7 +12,7 @@ object TMDbMovieServiceFactory {
     fun makeTMDbMovieService(chuckerInterceptor: Interceptor): TMDbMovieService {
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl("http://api.themoviedb.org/3/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(
                 makeOkHttpClient(

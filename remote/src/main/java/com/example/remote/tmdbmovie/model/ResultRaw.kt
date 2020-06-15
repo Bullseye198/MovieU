@@ -9,7 +9,7 @@ data class ResultRaw(
     @Json(name = "adult")
     val adult: Boolean, // false
     @Json(name = "backdrop_path")
-    val backdropPath: String, // /xX0IzuFa1Fj06iU2NlOmeMPe7oS.jpg
+    val backdropPath: String?, // /xX0IzuFa1Fj06iU2NlOmeMPe7oS.jpg
     @Json(name = "genre_ids")
     val genreIds: List<Int>,
     @Json(name = "id")
@@ -23,7 +23,7 @@ data class ResultRaw(
     @Json(name = "popularity")
     val popularity: Double, // 30.11
     @Json(name = "poster_path")
-    val posterPath: String, // /2c0ajTi8nvrsYl5Oi1lVi6F0kd2.jpg
+    val posterPath: String?, // /2c0ajTi8nvrsYl5Oi1lVi6F0kd2.jpg
     @Json(name = "release_date")
     val releaseDate: String, // 2015-06-06
     @Json(name = "title")

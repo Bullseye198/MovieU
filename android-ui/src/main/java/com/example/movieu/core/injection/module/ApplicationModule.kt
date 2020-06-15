@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.cache.movies.RoomMovieDatabase
+import com.example.cache.tmdbmovies.TMDbRoomMovieDatabase
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -21,6 +22,20 @@ object ApplicationModule {
             applicationContext,
             RoomMovieDatabase::class.java,
             "moviedagger"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTMDbRoomDatabase(
+        applicationContext: Context
+    ): TMDbRoomMovieDatabase {
+        return Room.databaseBuilder(
+            applicationContext,
+            TMDbRoomMovieDatabase::class.java,
+            "tmdbmoviedagger"
         )
             .fallbackToDestructiveMigration()
             .build()
