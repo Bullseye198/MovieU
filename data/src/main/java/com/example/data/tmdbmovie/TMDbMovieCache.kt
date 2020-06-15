@@ -1,6 +1,7 @@
 package com.example.data.tmdbmovie
 
 import com.example.domain.tmdbmovie.model.Result
+import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable
 
 interface TMDbMovieCache {
@@ -12,4 +13,7 @@ interface TMDbMovieCache {
     //suspend fun observeTMDbMovies(): Flowable<List<Result>>
 
     suspend fun storeTMDbMovies(tmdbMovies: List<Result>)
+
+    suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
+
 }

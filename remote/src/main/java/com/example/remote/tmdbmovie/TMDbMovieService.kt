@@ -1,5 +1,6 @@
 package com.example.remote.tmdbmovie
 
+import com.example.remote.tmdbmovie.model.TMDbMovieDetailRaw
 import com.example.remote.tmdbmovie.model.TMDbMovieSearchResultsRaw
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -21,4 +22,11 @@ interface TMDbMovieService {
         @Query("query") tmdbTitleToSearchFor: String,
         @Query("api_key") apikey: String
     ): TMDbMovieSearchResultsRaw
+
+    @GET("movie/")
+    suspend fun getTMDbMovieDetail(
+        @Query("") id: Int,
+        @Query("api_key") apikey: String
+    ): TMDbMovieDetailRaw
+
 }
