@@ -24,9 +24,10 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result> {
-        return tmDbMovieDao.getTMDbMoviesForTitle("%$tmdbTitleToSearchFor%").map { databaseTMDbMovie ->
-            databaseTMDbMovie.mapToDomainModelList()
-        }
+        return tmDbMovieDao.getTMDbMoviesForTitle("%$tmdbTitleToSearchFor%")
+            .map { databaseTMDbMovie ->
+                databaseTMDbMovie.mapToDomainModelList()
+            }
     }
 
     override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
@@ -44,7 +45,10 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
-        return tmDbMovieDao.updateTMDbMovie(omdbOMDbBaseInformation.imdbID, omdbOMDbBaseInformation.imdbRating)
+        return tmDbMovieDao.updateTMDbMovie(
+            omdbOMDbBaseInformation.imdbID,
+            omdbOMDbBaseInformation.imdbRating
+        )
     }
 
     override fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail> {
