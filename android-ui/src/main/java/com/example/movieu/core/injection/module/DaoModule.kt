@@ -15,5 +15,14 @@ object DaoModule {
     fun provideRatingsDao(roomMovieDatabase: RoomMovieDatabase) = roomMovieDatabase.roomRatingsDao()
 
     @Provides
-    fun provideTMDbMovieDao(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) = tmDbRoomMovieDatabase.tmdbRoomMovieDao()
+    fun provideTMDbMovieDao(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbRoomMovieDao()
+
+    @Provides
+    fun provideTMDbGenreDao(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbRoomGenreDao()
+
+    @Provides
+    fun provideTMDbSpokenLanguageDao(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbRoomSpokenLanguageDao()
 }

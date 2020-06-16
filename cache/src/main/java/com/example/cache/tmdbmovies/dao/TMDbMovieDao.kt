@@ -1,10 +1,9 @@
 package com.example.cache.tmdbmovies.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.cache.tmdbmovies.model.TMDbCachedRoomResultFull
+import com.example.cache.tmdbmovies.model.TMDbMovieGenresAndSpokenLanguages
+import io.reactivex.Flowable
 
 @Dao
 interface TMDbMovieDao {
@@ -18,6 +17,18 @@ interface TMDbMovieDao {
     @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
     suspend fun getTMDbMoviesForTitle(titleToSearchFor: String): List<TMDbCachedRoomResultFull>
 
+    @Query("SELECT * FROM tmdbMovie")
+    fun observeTMDbMovies(): Flowable<List<TMDbCachedRoomResultFull>>
+
+    @Query("SELECT * FROM tmdbMovie WHERE id =:id")
+    fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieGenresAndSpokenLanguages>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllSuspend(entities: List<TMDbCachedRoomResultFull>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOneSuspend(entity: TMDbCachedRoomResultFull)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAllIgnore(entities: List<TMDbCachedRoomResultFull>)
 }
