@@ -14,12 +14,6 @@ import retrofit2.http.Query
 interface MovieService {
 
     @GET("?")
-    suspend fun getCurrentMovie(
-        @Query("s") titleToSearchFor: String,
-        @Query("apikey") apikey: String
-    ): OMDbSearchResults
-
-    @GET("?")
     suspend fun getMovieDetail(
         @Query("i") imdbID: String,
         @Query("apikey") apikey: String

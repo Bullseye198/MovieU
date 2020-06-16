@@ -1,7 +1,9 @@
 package com.example.remote.tmdbmovie.model
 
 
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.remote.movie.model.OMDbMovieDetailRaw
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
