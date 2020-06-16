@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.model.Movie
-import com.example.domain.movie.usecases.ObserveMoviesUseCase
-import com.example.domain.movie.usecases.RefreshMoviesUseCase
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.RequestTMDbMoviesUseCase
@@ -17,8 +15,6 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
-    private val observeMoviesUseCase: ObserveMoviesUseCase,
-    private val refreshMoviesUseCase: RefreshMoviesUseCase,
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
     private val requestTMDbMoviesUseCase: RequestTMDbMoviesUseCase
@@ -55,13 +51,17 @@ class MovieListViewModel @Inject constructor(
     }
 
     private fun refreshMoviesAndUpdate() {
-    viewModelScope.launch {
-        val movies = withContext(appCoroutineDispatchers.io) {
-            refreshTMDbMoviesUseCase.refresh(title)
-            requestTMDbMoviesUseCase.requestTMDbMovies(title)
+        viewModelScope.launch {
+            val movies = withContext(appCoroutineDispatchers.io) {
+                refreshTMDbMoviesUseCase.invokeUseCase(
+                    params = RefreshTMDbMoviesUseCase.Params(
+                        title
+                    )
+                )
+                requestTMDbMoviesUseCase.requestTMDbMovies(title)
+            }
+            movieListState.value = movies
         }
-        movieListState.value = movies
-    }
     }
 
 /*

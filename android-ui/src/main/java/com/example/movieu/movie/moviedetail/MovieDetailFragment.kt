@@ -22,7 +22,7 @@ class MovieDetailFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private var imdbID: String = ""
+    private var imdbID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +80,7 @@ class MovieDetailFragment : DaggerFragment() {
                     binding.lblMovieGenre.text = "Genre: " + t.tmDbMovieDetail?.genres
                     binding.lblMovieLanguage.text = "Language: " + t.tmDbMovieDetail?.originalLanguage
                     binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget
-                    binding.lblMovieDirector.text = "Director: " + t.tmDbMovieDetail?.adult
+                    binding.lblMovieDirector.text = "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
                 }
             }
         )

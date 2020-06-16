@@ -9,6 +9,6 @@ import androidx.room.Entity
 
 data class RoomSpokenLanguage(
 val iso6391: String,
-val spokenLanguageTMDbID: String,
+val spokenLanguageTMDbID: Int,
 val name: String
 )

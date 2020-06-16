@@ -45,7 +45,7 @@ class TMDbMovieCacheImpl @Inject constructor(
         genreDao.InsertGenre(tmDbMovieDetail.genres?.map { tmdbMovieRatings ->
             RoomGenre(
                 tmdbMovieRatings.id,
-                tmDbMovieDetail.id.toString(),  //not  sure about this id?
+                tmDbMovieDetail.imdbID.toString(),  //not  sure about this id?
                 tmdbMovieRatings.name
             )
         })

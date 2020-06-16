@@ -30,7 +30,6 @@ data class TMDbCachedRoomResultFull(
     val voteCount: Int,
 
     //TMDb Detail
-    val belongsToCollection: Any?,
     val budget: Int?,
     val homepage: String?,
     val imdbId: String?,
@@ -40,7 +39,6 @@ data class TMDbCachedRoomResultFull(
     val tagline: String?,
 
     //OMDb
-    val imdbID: String?,
     val imdRating: String?,
     val imdbVotes: String?
 )
@@ -91,12 +89,12 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
         homepage = homepage,
         genres = genres.map { Genre(it.id, it.name) },
         budget = budget,
-        belongsToCollection = belongsToCollection,
         backdropPath = backdropPath,
         video = video,
         imdbVotes = imdbVotes,
-        imdbID = imdbID,
-        imdbRating = imdRating
+        imdbRating = imdRating,
+        imdbID = imdbId,
+        belongsToCollection = null
     )
 }
 
@@ -122,9 +120,7 @@ fun TMDbMovieDetail.mapToFullRoomModel(): TMDbCachedRoomResultFull {
         imdbId = imdbId,
         homepage = homepage,
         budget = budget,
-        belongsToCollection = belongsToCollection,
         imdRating = imdbRating,
-        imdbID = imdbID,
         imdbVotes = imdbVotes
     )
 }
@@ -144,7 +140,6 @@ fun Result.mapToRoomModel(): TMDbCachedRoomResultFull {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        belongsToCollection = null,
         budget = null,
         homepage = null,
         imdbId = null,
@@ -153,7 +148,6 @@ fun Result.mapToRoomModel(): TMDbCachedRoomResultFull {
         status = null,
         tagline = null,
         imdRating = null,
-        imdbID = null,
         imdbVotes = null
     )
 }
