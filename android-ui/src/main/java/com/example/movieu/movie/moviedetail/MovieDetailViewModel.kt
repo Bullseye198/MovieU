@@ -47,8 +47,6 @@ class MovieDetailViewModel @Inject constructor(
                 override fun onError(t: Throwable?) {
                     throw Exception("Subscription failed at ${t?.localizedMessage}")
                 }
-
-
             }, ObserveTMDbMovieDetailUseCase.Params(imdbID)
         )
     }
@@ -62,18 +60,4 @@ class MovieDetailViewModel @Inject constructor(
             }
         }
     }
-
-/*
-    fun refresh(imdbID: String) {
-        viewModelScope.launch {
-            currentMovieDetail.let {
-                refreshMovieDetailUseCase.invokeUseCase(
-                    params = RefreshMovieDetailUseCase.Params(
-                        imdbID
-                    )
-                )
-            }
-        }
-    }
-    */
 }
