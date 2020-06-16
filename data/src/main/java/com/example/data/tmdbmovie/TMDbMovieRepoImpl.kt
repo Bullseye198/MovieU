@@ -16,7 +16,7 @@ class TMDbMovieRepoImpl @Inject constructor(
     }
 
     override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
-        TODO("Not yet implemented")
+        return tmDbMovieCache.observeTMDbMovies()
     }
 
     override suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result> {
@@ -32,15 +32,15 @@ class TMDbMovieRepoImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
-        TODO("Not yet implemented")
+        return tmDbMovieCache.storeTMDbMovieDetail(tmDbMovieDetail)
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
-        TODO("Not yet implemented")
+        return tmDbMovieCache.addOmdbInformation(omdbOMDbBaseInformation)
     }
 
     override fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail> {
-        TODO("Not yet implemented")
+        return tmDbMovieCache.observeTMDbMovieDetail(id)
     }
 
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {

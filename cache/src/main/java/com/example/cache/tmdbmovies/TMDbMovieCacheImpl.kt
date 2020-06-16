@@ -3,8 +3,7 @@ package com.example.cache.tmdbmovies
 import com.example.cache.tmdbmovies.dao.TMDbGenreDao
 import com.example.cache.tmdbmovies.dao.TMDbMovieDao
 import com.example.cache.tmdbmovies.dao.TMDbSpokenLanguageDao
-import com.example.cache.tmdbmovies.model.mapToDomainModelList
-import com.example.cache.tmdbmovies.model.mapToRoomModel
+import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.model.Result
@@ -31,7 +30,8 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
-        TODO("Not yet implemented")
+        return tmDbMovieDao.observeTMDbMovies()
+            .map { roomTMDbMovies -> roomTMDbMovies.map { it.mapToDomainModelList() } }
     }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
@@ -41,7 +41,14 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
-        TODO("Not yet implemented")
+        tmDbMovieDao.insertOneSuspend(tmDbMovieDetail.mapToFullRoomModel())
+        genreDao.InsertGenre(tmDbMovieDetail.genres?.map { tmdbMovieRatings ->
+            RoomGenre(
+                tmdbMovieRatings.id,
+                tmDbMovieDetail.id.toString(),  //not  sure about this id?
+                tmdbMovieRatings.name
+            )
+        })
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
@@ -52,6 +59,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail> {
-        TODO("Not yet implemented")
+        return tmDbMovieDao.observeTMDbMovieDetail(id)
+            .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 }
