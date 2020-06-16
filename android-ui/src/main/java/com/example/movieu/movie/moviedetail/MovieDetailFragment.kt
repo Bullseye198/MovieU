@@ -50,35 +50,41 @@ class MovieDetailFragment : DaggerFragment() {
         observeViewModel()
         //setUpMovieRatingsAdapter()
     }
-/*
-    private fun setUpMovieRatingsAdapter() {
-        ratingsAdapter = MovieRatingsAdapter()
-        binding.recListRatings.adapter = ratingsAdapter
 
-        viewModel.getState().observe(
-            viewLifecycleOwner,
-            Observer { movieDetailState ->
-                if (movieDetailState != null) {
-                    ratingsAdapter.submitList(movieDetailState.OMDbBaseInformation?.ratings)
+    /*
+        private fun setUpMovieRatingsAdapter() {
+            ratingsAdapter = MovieRatingsAdapter()
+            binding.recListRatings.adapter = ratingsAdapter
+
+            viewModel.getState().observe(
+                viewLifecycleOwner,
+                Observer { movieDetailState ->
+                    if (movieDetailState != null) {
+                        ratingsAdapter.submitList(movieDetailState.OMDbBaseInformation?.ratings)
+                    }
                 }
-            }
-        )
-    }
-*/
+            )
+        }
+    */
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.getState().observe(
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {
-                    val posterPath = "http://image.tmdb.org/t/p/w500/${t.tmDbMovieDetail?.posterPath}"
+                    val posterPath =
+                        "http://image.tmdb.org/t/p/w500/${t.tmDbMovieDetail?.posterPath}"
                     binding.movieDetailView.load(posterPath)
+                    val backdropPath =
+                        "https://image.tmdb.org/t/p/w780/${t.tmDbMovieDetail?.backdropPath}"
+                    binding.movieDetailBackdrop.load(backdropPath)
                     binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
                     binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
                     binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString()
                     binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
                     binding.lblMovieGenre.text = "Genre: " + t.tmDbMovieDetail?.genres
-                    binding.lblMovieLanguage.text = "Language: " + t.tmDbMovieDetail?.originalLanguage
+                    binding.lblMovieLanguage.text =
+                        "Language: " + t.tmDbMovieDetail?.originalLanguage
                     binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget
                     binding.lblMovieDirector.text = "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
                 }
