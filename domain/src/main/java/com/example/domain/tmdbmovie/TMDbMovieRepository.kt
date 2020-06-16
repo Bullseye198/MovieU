@@ -11,7 +11,7 @@ interface TMDbMovieRepository {
 
     suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result>
 
-    suspend fun getTMDbMovieById(id: String): Result
+    suspend fun getTMDbMovieById(id: Int): Result
 
     suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result>
 
@@ -23,5 +23,5 @@ interface TMDbMovieRepository {
 
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
 
-    fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail>
+    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 }

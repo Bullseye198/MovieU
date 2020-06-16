@@ -18,7 +18,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val genreDao: TMDbGenreDao,
     private val spokenLanguageDao: TMDbSpokenLanguageDao
 ) : TMDbMovieCache {
-    override suspend fun getTMDbMovieById(id: String): Result {
+    override suspend fun getTMDbMovieById(id: Int): Result {
         return tmDbMovieDao.getTMDbMovieByID(id).mapToDomainModelList()
     }
 
@@ -58,7 +58,7 @@ class TMDbMovieCacheImpl @Inject constructor(
         )
     }
 
-    override fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail> {
+    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
         return tmDbMovieDao.observeTMDbMovieDetail(id)
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }

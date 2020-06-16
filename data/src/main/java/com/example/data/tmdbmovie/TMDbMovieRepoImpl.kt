@@ -11,16 +11,16 @@ class TMDbMovieRepoImpl @Inject constructor(
     private val tmDbMovieRemote: TMDbMovieRemote,
     private val tmDbMovieCache: TMDbMovieCache
 ) : TMDbMovieRepository {
-    override suspend fun getTMDbMovieById(id: String): Result {
-        return requestTMDbMovies(null).first { it.id.toString() == id }
-    }
-
     override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
         return tmDbMovieCache.observeTMDbMovies()
     }
 
     override suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result> {
         return tmDbMovieCache.requestTMDbMovies(tmdbTitleToSearchFor)
+    }
+
+    override suspend fun getTMDbMovieById(id: Int): Result {
+        return requestTMDbMovies(null).first { it.id == id }
     }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
@@ -35,12 +35,12 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieCache.storeTMDbMovieDetail(tmDbMovieDetail)
     }
 
-    override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
-        return tmDbMovieCache.addOmdbInformation(omdbOMDbBaseInformation)
+    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
+        return tmDbMovieCache.observeTMDbMovieDetail(id)
     }
 
-    override fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail> {
-        return tmDbMovieCache.observeTMDbMovieDetail(id)
+    override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
+        return tmDbMovieCache.addOmdbInformation(omdbOMDbBaseInformation)
     }
 
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {

@@ -12,7 +12,7 @@ interface TMDbMovieDao {
     suspend fun getTMDbMovies(): List<TMDbCachedRoomResultFull>
 
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
-    suspend fun getTMDbMovieByID(id: String): TMDbCachedRoomResultFull
+    suspend fun getTMDbMovieByID(id: Int): TMDbCachedRoomResultFull
 
     @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
     suspend fun getTMDbMoviesForTitle(titleToSearchFor: String): List<TMDbCachedRoomResultFull>
@@ -21,7 +21,7 @@ interface TMDbMovieDao {
     fun observeTMDbMovies(): Flowable<List<TMDbCachedRoomResultFull>>
 
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
-    fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieGenresAndSpokenLanguages>
+    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieGenresAndSpokenLanguages>
 
     @Query("UPDATE tmdbMovie SET imdRating = :imdbRating WHERE imdbID =:imdbID ")
     fun updateTMDbMovie(imdbID: String, imdbRating: String?)

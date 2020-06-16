@@ -7,7 +7,7 @@ import io.reactivex.Flowable
 
 interface TMDbMovieCache {
 
-    suspend fun getTMDbMovieById(id: String): Result
+    suspend fun getTMDbMovieById(id: Int): Result
 
     suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result>
 
@@ -19,5 +19,5 @@ interface TMDbMovieCache {
 
     suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation)
 
-    fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail>
+    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 }

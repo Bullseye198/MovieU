@@ -48,9 +48,9 @@ class MovieDetailFragment : DaggerFragment() {
         super.onStart()
 
         observeViewModel()
-        setUpMovieRatingsAdapter()
+        //setUpMovieRatingsAdapter()
     }
-
+/*
     private fun setUpMovieRatingsAdapter() {
         ratingsAdapter = MovieRatingsAdapter()
         binding.recListRatings.adapter = ratingsAdapter
@@ -64,22 +64,23 @@ class MovieDetailFragment : DaggerFragment() {
             }
         )
     }
-
+*/
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.getState().observe(
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {
-                    binding.movieDetailView.load(t.OMDbBaseInformation?.poster?.replace("http:", "https:"))
-                    binding.lblMovieTitle.text = t.OMDbBaseInformation?.title
-                    binding.lblMovieYear.text = t.OMDbBaseInformation?.year
-                    binding.lblMovieRuntime.text = t.OMDbBaseInformation?.runtime
-                    binding.lblMoviePlot.text = t.OMDbBaseInformation?.plot
-                    binding.lblMovieGenre.text = "Genre: " + t.OMDbBaseInformation?.genre
-                    binding.lblMovieLanguage.text = "Language: " + t.OMDbBaseInformation?.language
-                    binding.lblMovieCast.text = "Cast: " + t.OMDbBaseInformation?.actors
-                    binding.lblMovieDirector.text = "Director: " + t.OMDbBaseInformation?.director
+                    val posterPath = "http://image.tmdb.org/t/p/w500/${t.tmDbMovieDetail?.posterPath}"
+                    binding.movieDetailView.load(posterPath)
+                    binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
+                    binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
+                    binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString()
+                    binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
+                    binding.lblMovieGenre.text = "Genre: " + t.tmDbMovieDetail?.genres
+                    binding.lblMovieLanguage.text = "Language: " + t.tmDbMovieDetail?.originalLanguage
+                    binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget
+                    binding.lblMovieDirector.text = "Director: " + t.tmDbMovieDetail?.adult
                 }
             }
         )
