@@ -1,6 +1,6 @@
 package com.example.domain.tmdbmovie.model
 
-data class TMDbMovieDetail (
+data class TMDbMovieDetail(
     val adult: Boolean, // false
     val backdropPath: String?, // /fHY9TfKwC702kPxEcjkxCoLqUv6.jpg
     val belongsToCollection: Any?, // null

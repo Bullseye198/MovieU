@@ -24,6 +24,4 @@ interface TMDbMovieRepository {
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
 
     fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieDetail>
-
-
 }

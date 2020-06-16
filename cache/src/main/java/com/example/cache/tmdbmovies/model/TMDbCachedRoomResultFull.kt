@@ -3,7 +3,6 @@ package com.example.cache.tmdbmovies.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.domain.movie.model.Rating
 import com.example.domain.tmdbmovie.model.Genre
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.SpokenLanguage
@@ -19,7 +18,6 @@ data class TMDbCachedRoomResultFull(
     val id: Int,
     val adult: Boolean,
     val backdropPath: String?,
-    //val genreIds: List<Int>,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
@@ -31,12 +29,11 @@ data class TMDbCachedRoomResultFull(
     val voteAverage: Double,
     val voteCount: Int,
 
+    //TMDb Detail
     val belongsToCollection: Any?,
     val budget: Int?,
     val homepage: String?,
     val imdbId: String?,
-    //val productionCompanies: List<Any>,
-    //val productionCountries: List<Any>,
     val revenue: Int?,
     val runtime: Int?,
     val status: String?,
@@ -47,9 +44,6 @@ data class TMDbCachedRoomResultFull(
     val imdRating: String?,
     val imdbVotes: String?
 )
-
-//ratings = ratings.map { Rating(it.source, it.value) }
-
 
 fun TMDbCachedRoomResultFull.mapToDomainModelList(): Result {
     return Result(
@@ -141,7 +135,6 @@ fun Result.mapToRoomModel(): TMDbCachedRoomResultFull {
         adult = adult,
         backdropPath = backdropPath,
         originalLanguage = originalLanguage,
-        //genreIds = emptyList(),
         originalTitle = originalTitle,
         overview = overview,
         popularity = popularity,

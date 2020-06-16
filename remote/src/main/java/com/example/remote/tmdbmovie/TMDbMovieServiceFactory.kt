@@ -1,6 +1,5 @@
 package com.example.remote.tmdbmovie
 
-import com.example.remote.movie.MovieService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

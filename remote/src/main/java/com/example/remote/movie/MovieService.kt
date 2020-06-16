@@ -1,7 +1,6 @@
 package com.example.remote.movie
 
 import com.example.remote.movie.model.OMDbMovieDetailRaw
-import com.example.remote.movie.model.OMDbSearchResults
 import retrofit2.http.GET
 import retrofit2.http.Query
 

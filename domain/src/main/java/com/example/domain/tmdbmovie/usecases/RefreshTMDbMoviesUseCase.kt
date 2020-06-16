@@ -3,7 +3,6 @@ package com.example.domain.tmdbmovie.usecases
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import javax.inject.Inject
 
-
 class RefreshTMDbMoviesUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository
 ) {

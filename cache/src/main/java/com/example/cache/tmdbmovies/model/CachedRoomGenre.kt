@@ -1,6 +1,5 @@
 package com.example.cache.tmdbmovies.model
 
-
 import androidx.room.Entity
 
 @Entity(

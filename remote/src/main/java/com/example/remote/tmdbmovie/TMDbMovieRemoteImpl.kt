@@ -6,10 +6,6 @@ import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.remote.tmdbmovie.model.mapToDomain
 import javax.inject.Inject
 
-//All the communication with the api
-//Give some information to the server (post request)
-//Whatever I receive from URL, I must map to domain
-
 class TMDbMovieRemoteImpl @Inject constructor(
     private val tmDbMovieService: TMDbMovieService
 ) : TMDbMovieRemote {

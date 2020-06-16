@@ -1,9 +1,7 @@
 package com.example.data.movie
 
 import com.example.domain.movie.IMovieRepository
-import com.example.domain.movie.model.Movie
 import com.example.domain.movie.model.OMDbBaseInformation
-import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,5 +13,4 @@ class MovieRepoImpl @Inject constructor(
     override suspend fun fetchMovieDetail(imdbID: String): OMDbBaseInformation {
         return movieRemote.fetchMovieDetail(imdbID)
     }
-
 }

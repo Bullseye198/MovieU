@@ -1,9 +1,7 @@
 package com.example.remote.tmdbmovie.model
 
 
-import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
-import com.example.remote.movie.model.OMDbMovieDetailRaw
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -66,7 +64,7 @@ fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
     backdropPath = backdropPath,
     belongsToCollection = belongsToCollection,
     budget = budget,
-    genres = genres.map {it.mapDomainGenresModel()},
+    genres = genres.map { it.mapDomainGenresModel() },
     homepage = homepage,
     id = id,
     imdbId = imdbId,
@@ -80,11 +78,14 @@ fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
     releaseDate = releaseDate,
     revenue = revenue,
     runtime = runtime,
-    spokenLanguages = spokenLanguages.map {it.domainSpokenLanguagesModel()},
+    spokenLanguages = spokenLanguages.map { it.domainSpokenLanguagesModel() },
     status = status,
     tagline = tagline,
     title = title,
     video = video,
     voteAverage = voteAverage,
-    voteCount = voteCount
+    voteCount = voteCount,
+    imdbVotes = null,
+    imdbRating = null,
+    imdbID = null
 )
