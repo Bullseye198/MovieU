@@ -3,7 +3,9 @@ package com.example.cache.tmdbmovies.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.domain.tmdbmovie.model.Genre
 import com.example.domain.tmdbmovie.model.Result
+import com.example.domain.tmdbmovie.model.SpokenLanguage
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 
 @Entity(
@@ -16,7 +18,7 @@ data class TMDbCachedRoomResultFull(
     val id: Int,
     val adult: Boolean,
     val backdropPath: String,
-    // val genreIds: List<Int>,
+    //val genreIds: List<Int>,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
@@ -30,14 +32,12 @@ data class TMDbCachedRoomResultFull(
 
     val belongsToCollection: Any?,
     val budget: Int?,
-    //val genres: List<Genre>,
     val homepage: String?,
     val imdbId: String?,
     //val productionCompanies: List<Any>,
     //val productionCountries: List<Any>,
     val revenue: Int?,
     val runtime: Int?,
-    //val spokenLanguages: List<SpokenLanguage>,
     val status: String?,
     val tagline: String?
 
@@ -62,7 +62,10 @@ fun TMDbCachedRoomResultFull.mapToDomainModelList(): Result {
     )
 }
 
-fun TMDbCachedRoomResultFull.mapToDomainModelDetail(): TMDbMovieDetail {
+fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
+    genres: List<RoomGenre>,
+    spokenLanguages: List<RoomSpokenLanguage>
+): TMDbMovieDetail {
     return TMDbMovieDetail(
         id = id,
         adult = adult,
@@ -71,7 +74,7 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(): TMDbMovieDetail {
         title = title,
         tagline = tagline,
         status = status,
-        spokenLanguages = emptyList(),
+        spokenLanguages = spokenLanguages.map { SpokenLanguage(it.iso6391, it.name) },
         runtime = runtime,
         revenue = revenue,
         releaseDate = releaseDate,
@@ -84,7 +87,7 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(): TMDbMovieDetail {
         originalLanguage = originalLanguage,
         imdbId = imdbId,
         homepage = homepage,
-        genres = emptyList(),
+        genres = genres.map { Genre(it.id, it.name) },
         budget = budget,
         belongsToCollection = belongsToCollection,
         backdropPath = backdropPath,
@@ -97,7 +100,6 @@ fun TMDbMovieDetail.mapToFullRoomModel(): TMDbCachedRoomResultFull {
         id = id,
         adult = adult,
         backdropPath = backdropPath,
-        // val genreIds: List<Int>,
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,
         overview = overview,
@@ -116,6 +118,7 @@ fun TMDbMovieDetail.mapToFullRoomModel(): TMDbCachedRoomResultFull {
         homepage = homepage,
         budget = budget,
         belongsToCollection = belongsToCollection
+        // genreIds = emptyList()
     )
 }
 
@@ -125,6 +128,7 @@ fun Result.mapToRoomModel(): TMDbCachedRoomResultFull {
         adult = adult,
         backdropPath = backdropPath,
         originalLanguage = originalLanguage,
+        //genreIds = emptyList(),
         originalTitle = originalTitle,
         overview = overview,
         popularity = popularity,
