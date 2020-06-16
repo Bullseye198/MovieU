@@ -1,5 +1,6 @@
 package com.example.data.tmdbmovie
 
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
@@ -31,6 +32,10 @@ class TMDbMovieRepoImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
         TODO("Not yet implemented")
     }
 

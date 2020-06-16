@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.movie.usecases.ObserveMovieDetailUseCase
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
@@ -33,13 +33,13 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun observeMovieDetail(imdbID: String) {
         observeMovieDetailUseCase.invokeUseCase(
-            object : DisposableSubscriber<MovieDetail>() {
+            object : DisposableSubscriber<OMDbBaseInformation>() {
                 override fun onComplete() {
 
                 }
 
-                override fun onNext(t: MovieDetail?) {
-                    movieState.value = movieState.value!!.copy(movieDetail = t)
+                override fun onNext(t: OMDbBaseInformation?) {
+                    movieState.value = movieState.value!!.copy(OMDbBaseInformation = t)
                 }
 
                 override fun onError(t: Throwable?) {

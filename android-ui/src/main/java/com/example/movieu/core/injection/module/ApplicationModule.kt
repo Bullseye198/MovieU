@@ -3,7 +3,6 @@ package com.example.movieu.core.injection.module
 import android.content.Context
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.cache.movies.RoomMovieDatabase
 import com.example.cache.tmdbmovies.TMDbRoomMovieDatabase
 import dagger.Module
 import dagger.Provides
@@ -12,20 +11,6 @@ import javax.inject.Singleton
 
 @Module
 object ApplicationModule {
-
-    @Singleton
-    @Provides
-    fun provideRoomDatabase(
-        applicationContext: Context
-    ): RoomMovieDatabase {
-        return Room.databaseBuilder(
-            applicationContext,
-            RoomMovieDatabase::class.java,
-            "moviedagger"
-        )
-            .fallbackToDestructiveMigration()
-            .build()
-    }
 
     @Singleton
     @Provides

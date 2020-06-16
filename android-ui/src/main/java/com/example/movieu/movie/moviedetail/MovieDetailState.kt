@@ -1,8 +1,7 @@
 package com.example.movieu.movie.moviedetail
 
-import com.example.domain.movie.model.Movie
-import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.OMDbBaseInformation
 
 data class MovieDetailState(
-    val movieDetail: MovieDetail? = null
+    val OMDbBaseInformation: OMDbBaseInformation? = null
 )

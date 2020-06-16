@@ -23,6 +23,9 @@ interface TMDbMovieDao {
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
     fun observeTMDbMovieDetail(id: String): Flowable<TMDbMovieGenresAndSpokenLanguages>
 
+    @Query("UPDATE tmdbMovie SET imdRating = :imdbRating WHERE imdbID =:imdbID ")
+    fun updateTMDbMovie(imdbID: String, imdbRating: String?)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllSuspend(entities: List<TMDbCachedRoomResultFull>)
 

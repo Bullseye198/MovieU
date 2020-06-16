@@ -1,7 +1,7 @@
 package com.example.remote.movie.model
 
 
-import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -59,30 +59,8 @@ data class OMDbMovieDetailRaw(
     val year: String // 1999
 )
 
-fun OMDbMovieDetailRaw.mapToDomain() = MovieDetail(
-    actors = actors,
-    awards = awards,
-    boxOffice = boxOffice,
-    country = country,
-    dVD = dVD,
-    director = director,
-    genre = genre,
+fun OMDbMovieDetailRaw.mapToDomain() = OMDbBaseInformation(
     imdbID = imdbID,
     imdbRating = imdbRating,
-    imdbVotes = imdbVotes,
-    language = language,
-    metascore = metascore,
-    plot = plot,
-    poster = poster,
-    production = production,
-    rated = rated,
-    ratings = ratings.map { it.mapDomainRatingModel() },
-    released = released,
-    response = response,
-    runtime = runtime,
-    title = title,
-    type = type,
-    website = website,
-    writer = writer,
-    year = year
+    imdbVotes = imdbVotes
 )

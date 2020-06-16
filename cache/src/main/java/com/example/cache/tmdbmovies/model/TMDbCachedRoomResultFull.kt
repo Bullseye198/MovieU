@@ -3,6 +3,7 @@ package com.example.cache.tmdbmovies.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.domain.movie.model.Rating
 import com.example.domain.tmdbmovie.model.Genre
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.SpokenLanguage
@@ -17,13 +18,13 @@ data class TMDbCachedRoomResultFull(
     @ColumnInfo
     val id: Int,
     val adult: Boolean,
-    val backdropPath: String,
+    val backdropPath: String?,
     //val genreIds: List<Int>,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
     val popularity: Double,
-    val posterPath: String,
+    val posterPath: String?,
     val releaseDate: String,
     val title: String,
     val video: Boolean,
@@ -39,9 +40,16 @@ data class TMDbCachedRoomResultFull(
     val revenue: Int?,
     val runtime: Int?,
     val status: String?,
-    val tagline: String?
+    val tagline: String?,
 
+    //OMDb
+    val imdbID: String?,
+    val imdRating: String?,
+    val imdbVotes: String?
 )
+
+//ratings = ratings.map { Rating(it.source, it.value) }
+
 
 fun TMDbCachedRoomResultFull.mapToDomainModelList(): Result {
     return Result(
@@ -91,7 +99,10 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
         budget = budget,
         belongsToCollection = belongsToCollection,
         backdropPath = backdropPath,
-        video = video
+        video = video,
+        imdbVotes = imdbVotes,
+        imdbID = imdbID,
+        imdbRating = imdRating
     )
 }
 
@@ -117,8 +128,10 @@ fun TMDbMovieDetail.mapToFullRoomModel(): TMDbCachedRoomResultFull {
         imdbId = imdbId,
         homepage = homepage,
         budget = budget,
-        belongsToCollection = belongsToCollection
-        // genreIds = emptyList()
+        belongsToCollection = belongsToCollection,
+        imdRating = imdbRating,
+        imdbID = imdbID,
+        imdbVotes = imdbVotes
     )
 }
 
@@ -145,6 +158,9 @@ fun Result.mapToRoomModel(): TMDbCachedRoomResultFull {
         revenue = null,
         runtime = null,
         status = null,
-        tagline = null
+        tagline = null,
+        imdRating = null,
+        imdbID = null,
+        imdbVotes = null
     )
 }

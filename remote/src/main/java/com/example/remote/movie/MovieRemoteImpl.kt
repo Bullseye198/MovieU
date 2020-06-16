@@ -2,7 +2,7 @@ package com.example.remote.movie
 
 import com.example.data.movie.MovieRemote
 import com.example.domain.movie.model.Movie
-import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.remote.movie.model.mapToDomain
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,7 +22,7 @@ class MovieRemoteImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchMovieDetail(imdbID: String): MovieDetail {
+    override suspend fun fetchMovieDetail(imdbID: String): OMDbBaseInformation {
         return movieService.getMovieDetail(
             imdbID = imdbID,
             apikey = "3e6675f5"

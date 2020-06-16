@@ -59,7 +59,7 @@ class MovieDetailFragment : DaggerFragment() {
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
-                    ratingsAdapter.submitList(movieDetailState.movieDetail?.ratings)
+                    ratingsAdapter.submitList(movieDetailState.OMDbBaseInformation?.ratings)
                 }
             }
         )
@@ -71,15 +71,15 @@ class MovieDetailFragment : DaggerFragment() {
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {
-                    binding.movieDetailView.load(t.movieDetail?.poster?.replace("http:", "https:"))
-                    binding.lblMovieTitle.text = t.movieDetail?.title
-                    binding.lblMovieYear.text = t.movieDetail?.year
-                    binding.lblMovieRuntime.text = t.movieDetail?.runtime
-                    binding.lblMoviePlot.text = t.movieDetail?.plot
-                    binding.lblMovieGenre.text = "Genre: " + t.movieDetail?.genre
-                    binding.lblMovieLanguage.text = "Language: " + t.movieDetail?.language
-                    binding.lblMovieCast.text = "Cast: " + t.movieDetail?.actors
-                    binding.lblMovieDirector.text = "Director: " + t.movieDetail?.director
+                    binding.movieDetailView.load(t.OMDbBaseInformation?.poster?.replace("http:", "https:"))
+                    binding.lblMovieTitle.text = t.OMDbBaseInformation?.title
+                    binding.lblMovieYear.text = t.OMDbBaseInformation?.year
+                    binding.lblMovieRuntime.text = t.OMDbBaseInformation?.runtime
+                    binding.lblMoviePlot.text = t.OMDbBaseInformation?.plot
+                    binding.lblMovieGenre.text = "Genre: " + t.OMDbBaseInformation?.genre
+                    binding.lblMovieLanguage.text = "Language: " + t.OMDbBaseInformation?.language
+                    binding.lblMovieCast.text = "Cast: " + t.OMDbBaseInformation?.actors
+                    binding.lblMovieDirector.text = "Director: " + t.OMDbBaseInformation?.director
                 }
             }
         )
