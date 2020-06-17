@@ -27,8 +27,6 @@
                 android:text="2020"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/movieDetailView"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
                 tools:text="2020" />
@@ -71,8 +69,6 @@
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/movieDetailView"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
                 tools:text="124 min" />
 
@@ -168,13 +164,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_language" />
 
             <TextView
-                android:id="@+id/lbl_movie_ratings"
+                android:id="@+id/lbl_movie_popularity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Ratings:"
+                android:text="Popularity :"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -192,7 +188,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_ratings" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_popularity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

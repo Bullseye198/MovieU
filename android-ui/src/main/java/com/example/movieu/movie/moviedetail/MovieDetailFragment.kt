@@ -80,13 +80,14 @@ class MovieDetailFragment : DaggerFragment() {
                     binding.movieDetailBackdrop.load(backdropPath)
                     binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
                     binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
-                    binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString()
+                    binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString() + " Min"
                     binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
                     binding.lblMovieGenre.text = "Genre: " + t.tmDbMovieDetail?.genres
                     binding.lblMovieLanguage.text =
                         "Language: " + t.tmDbMovieDetail?.originalLanguage
-                    binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget
+                    binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
                     binding.lblMovieDirector.text = "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
+                    binding.lblMoviePopularity.text = "Popularity: " + t.tmDbMovieDetail?.popularity
                 }
             }
         )
