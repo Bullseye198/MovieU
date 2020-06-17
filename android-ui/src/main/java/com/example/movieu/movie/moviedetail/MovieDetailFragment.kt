@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MovieDetailFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
-    private lateinit var ratingsAdapter: MovieRatingsAdapter
+    private lateinit var genreAdapter: MovieGenreAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
     @Inject
@@ -41,31 +41,31 @@ class MovieDetailFragment : DaggerFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.recListRatings.adapter = null
+        binding.recListGenre.adapter = null
     }
 
     override fun onStart() {
         super.onStart()
 
         observeViewModel()
-        //setUpMovieRatingsAdapter()
+        setUPMovieGenreAdapter()
     }
 
-    /*
-        private fun setUpMovieRatingsAdapter() {
-            ratingsAdapter = MovieRatingsAdapter()
-            binding.recListRatings.adapter = ratingsAdapter
+
+        private fun setUPMovieGenreAdapter() {
+            genreAdapter = MovieGenreAdapter()
+            binding.recListGenre.adapter = genreAdapter
 
             viewModel.getState().observe(
                 viewLifecycleOwner,
                 Observer { movieDetailState ->
                     if (movieDetailState != null) {
-                        ratingsAdapter.submitList(movieDetailState.OMDbBaseInformation?.ratings)
+                        genreAdapter.submitList(movieDetailState.tmDbMovieDetail?.genres)
                     }
                 }
             )
         }
-    */
+
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.getState().observe(
@@ -82,7 +82,7 @@ class MovieDetailFragment : DaggerFragment() {
                     binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
                     binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString() + " Min"
                     binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
-                    binding.lblMovieGenre.text = "Genre: " + t.tmDbMovieDetail?.genres
+                    binding.lblMovieGenre.text = "Genre: "
                     binding.lblMovieLanguage.text =
                         "Language: " + t.tmDbMovieDetail?.originalLanguage
                     binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
