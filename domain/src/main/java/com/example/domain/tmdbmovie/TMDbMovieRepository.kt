@@ -7,7 +7,9 @@ import io.reactivex.Flowable
 
 interface TMDbMovieRepository {
 
-    suspend fun observeTMDbMovies(): Flowable<List<Result>>
+    fun observeTMDbMovies(): Flowable<List<Result>>
+
+    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
     suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result>
 
@@ -22,6 +24,4 @@ interface TMDbMovieRepository {
     suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation)
 
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
-
-    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 }

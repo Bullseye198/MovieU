@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.domain.tmdbmovie.usecases.ObserveTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
+    private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
     private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
     private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase
@@ -27,13 +30,13 @@ class MovieDetailViewModel @Inject constructor(
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.OnStart -> {
-                observeMovieDetail(imdbID = event.imdbID)
+                observeMovieDetail(id = event.imdbID)
                 refresh(event.imdbID)
             }
         }
     }
 
-    private fun observeMovieDetail(imdbID: Int) {
+    private fun observeMovieDetail(id: Int) {
         observeTMDbMovieDetailUseCase.invokeUseCase(
             object : DisposableSubscriber<TMDbMovieDetail>() {
                 override fun onComplete() {
@@ -47,8 +50,18 @@ class MovieDetailViewModel @Inject constructor(
                 override fun onError(t: Throwable?) {
                     throw Exception("Subscription failed at ${t?.localizedMessage}")
                 }
-            }, ObserveTMDbMovieDetailUseCase.Params(imdbID)
+            }, ObserveTMDbMovieDetailUseCase.Params(id)
         )
+    }
+
+    private suspend fun refreshOMDbBaseInformation(imdbID: String) {
+        val omdbMovies = withContext(appCoroutineDispatchers.io) {
+            refreshMovieDetailUseCase.invokeUseCase(
+                params = RefreshMovieDetailUseCase.Params(imdbID)
+            )
+
+        }
+
     }
 
     fun refresh(id: Int) {

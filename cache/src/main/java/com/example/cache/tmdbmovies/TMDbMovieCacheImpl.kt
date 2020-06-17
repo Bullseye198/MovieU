@@ -29,7 +29,7 @@ class TMDbMovieCacheImpl @Inject constructor(
             }
     }
 
-    override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
+    override fun observeTMDbMovies(): Flowable<List<Result>> {
         return tmDbMovieDao.observeTMDbMovies()
             .map { roomTMDbMovies -> roomTMDbMovies.map { it.mapToDomainModelList() } }
     }

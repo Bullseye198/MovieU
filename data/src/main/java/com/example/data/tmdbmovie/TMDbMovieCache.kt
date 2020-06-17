@@ -11,7 +11,7 @@ interface TMDbMovieCache {
 
     suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result>
 
-    suspend fun observeTMDbMovies(): Flowable<List<Result>>
+    fun observeTMDbMovies(): Flowable<List<Result>>
 
     suspend fun storeTMDbMovies(tmdbMovies: List<Result>)
 

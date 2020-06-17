@@ -11,7 +11,7 @@ class TMDbMovieRepoImpl @Inject constructor(
     private val tmDbMovieRemote: TMDbMovieRemote,
     private val tmDbMovieCache: TMDbMovieCache
 ) : TMDbMovieRepository {
-    override suspend fun observeTMDbMovies(): Flowable<List<Result>> {
+    override fun observeTMDbMovies(): Flowable<List<Result>> {
         return tmDbMovieCache.observeTMDbMovies()
     }
 

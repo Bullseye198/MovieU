@@ -5,79 +5,42 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cm.base.executor.AppCoroutineDispatchers
-import com.example.domain.movie.model.Movie
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
-import com.example.domain.tmdbmovie.usecases.RequestTMDbMoviesUseCase
+import com.example.domain.tmdbmovie.usecases.ObserveTMDbMoviesUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
-    private val requestTMDbMoviesUseCase: RequestTMDbMoviesUseCase
+    private val observeTMDbMoviesUseCase: ObserveTMDbMoviesUseCase
 ) : ViewModel() {
 
-    //private val movieState = MutableLiveData(MovieListState())
+    var currentMovies: String? = null
 
-    //fun getState(): LiveData<MovieListState> = movieState
+    private val movieState = MutableLiveData(MovieListState())
 
-    //var currentMovies: String? = null
-
-    private val movieListState = MutableLiveData<List<Result>>()
-    val movieList: LiveData<List<Result>> get() = movieListState
-
-    var title: String = ""
+    fun getState(): LiveData<MovieListState> = movieState
 
     init {
-        getMovies()
+        observeTMDbMovies()
     }
 
-    fun onTMDbMovieSearched(titleToSearchFor: String) {
-        this.title = titleToSearchFor
-        getMovies()
-    }
-
-    private fun getMovies() {
-        viewModelScope.launch {
-            val movies = withContext(appCoroutineDispatchers.io) {
-                requestTMDbMoviesUseCase.requestTMDbMovies(title)
-            }
-            movieListState.value = movies
-        }
-        refreshMoviesAndUpdate()
-    }
-
-    private fun refreshMoviesAndUpdate() {
-        viewModelScope.launch {
-            val movies = withContext(appCoroutineDispatchers.io) {
-                refreshTMDbMoviesUseCase.invokeUseCase(
-                    params = RefreshTMDbMoviesUseCase.Params(
-                        title
-                    )
-                )
-                requestTMDbMoviesUseCase.requestTMDbMovies(title)
-            }
-            movieListState.value = movies
-        }
-    }
-
-/*
     fun onNewMoviesSearched(newMovies: String) {
         this.currentMovies = newMovies
-        observeMoviesUseCase.onSearchTermChanged(newMovies)
-        refreshMoviesAndUpdate()
+        observeTMDbMoviesUseCase.onSearchTermChanged(newMovies)
+        refreshTMDbMoviesAndUpdate()
     }
 
-    private fun getMovies() {
-        observeMoviesUseCase.invokeUseCase(object : DisposableSubscriber<List<Movie>>() {
+    private fun observeTMDbMovies() {
+        observeTMDbMoviesUseCase.invokeUseCase(object : DisposableSubscriber<List<Result>>() {
             override fun onComplete() {
 
             }
 
-            override fun onNext(t: List<Movie>?) {
+            override fun onNext(t: List<Result>?) {
                 movieState.value = movieState.value!!.copy(feed = t)
             }
 
@@ -87,16 +50,20 @@ class MovieListViewModel @Inject constructor(
         }, params = null)
     }
 
-    private fun refreshMoviesAndUpdate() {
-        viewModelScope.launch() {
-            currentMovies?.let { refreshMoviesUseCase.invokeUseCase(params = RefreshMoviesUseCase.Params(it)) }
+    private fun refreshTMDbMoviesAndUpdate() {
+        viewModelScope.launch {
+            currentMovies?.let {
+                refreshTMDbMoviesUseCase.invokeUseCase(
+                    params = RefreshTMDbMoviesUseCase.Params(
+                        it
+                    )
+                )
+            }
         }
     }
 
     override fun onCleared() {
         super.onCleared()
-        observeMoviesUseCase.dispose()
+        observeTMDbMoviesUseCase.dispose()
     }
-
- */
 }

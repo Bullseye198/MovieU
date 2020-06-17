@@ -48,14 +48,12 @@ class MovieListFragment : DaggerFragment() {
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-               // viewModel.onNewMoviesSearched(newMovies = query.toString())
-                viewModel.onTMDbMovieSearched(titleToSearchFor = query.toString())
+                viewModel.onNewMoviesSearched(newMovies = query.toString())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //viewModel.onNewMoviesSearched(newMovies = newText.toString())
-                viewModel.onTMDbMovieSearched(titleToSearchFor = newText.toString())
+                viewModel.onNewMoviesSearched(newMovies = newText.toString())
                 return true
             }
         })
@@ -78,15 +76,6 @@ class MovieListFragment : DaggerFragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.movieList.observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter.submitList(it)
-            }
-        )
-    }
-/*
-    private fun observeViewModel() {
         viewModel.getState().observe(
             viewLifecycleOwner,
             Observer { movieListState ->
@@ -96,6 +85,5 @@ class MovieListFragment : DaggerFragment() {
             }
         )
     }
-    */
 }
 
