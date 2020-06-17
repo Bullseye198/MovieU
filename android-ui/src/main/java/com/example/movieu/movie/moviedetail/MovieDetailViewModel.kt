@@ -31,7 +31,7 @@ class MovieDetailViewModel @Inject constructor(
             is MovieDetailEvent.OnStart -> {
                 observeMovieDetail(id = event.id)
                 refresh(event.id)
-               // refreshOMDbBaseInformation(event.imdbID.toString())
+                refreshOMDbBaseInformation(event.id.toString())
             }
         }
     }

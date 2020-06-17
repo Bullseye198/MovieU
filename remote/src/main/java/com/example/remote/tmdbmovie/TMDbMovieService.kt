@@ -3,6 +3,7 @@ package com.example.remote.tmdbmovie
 import com.example.remote.tmdbmovie.model.TMDbMovieDetailRaw
 import com.example.remote.tmdbmovie.model.TMDbMovieSearchResultsRaw
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 //Get TMDb movie list url:
@@ -19,9 +20,9 @@ interface TMDbMovieService {
         @Query("api_key") apikey: String
     ): TMDbMovieSearchResultsRaw
 
-    @GET("movie/")
+    @GET("movie/{id}")
     suspend fun getTMDbMovieDetail(
-        @Query("") id: Int,
+        @Path("id") id: Int,
         @Query("api_key") apikey: String
     ): TMDbMovieDetailRaw
 
