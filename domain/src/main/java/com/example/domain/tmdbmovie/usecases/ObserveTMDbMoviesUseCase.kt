@@ -36,9 +36,4 @@ class ObserveTMDbMoviesUseCase @Inject constructor(
     fun onSearchTermChanged(newSearchTerm: String) {
         localDatabaseSearchStream.onNext(newSearchTerm)
     }
-
-
-    suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {
-        return tmDbMovieRepository.requestTMDbMovies(tmdbTitleToSearchFor)
-    }
 }

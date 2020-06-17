@@ -12,16 +12,8 @@ class TMDbMovieRepoImpl @Inject constructor(
     private val tmDbMovieCache: TMDbMovieCache
 ) : TMDbMovieRepository {
 
-    override suspend fun getTMDbMovieById(id: Int): Result {
-        return tmDbMovieCache.getTMDbMovieById(id)
-    }
-
     override fun observeTMDbMovies(): Flowable<List<Result>> {
         return tmDbMovieCache.observeTMDbMovies()
-    }
-
-    override suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result> {
-        return tmDbMovieCache.requestTMDbMovies(tmdbTitleToSearchFor)
     }
 
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {

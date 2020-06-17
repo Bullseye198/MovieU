@@ -25,5 +25,4 @@ interface TMDbMovieService {
         @Path("id") id: Int,
         @Query("api_key") apikey: String
     ): TMDbMovieDetailRaw
-
 }

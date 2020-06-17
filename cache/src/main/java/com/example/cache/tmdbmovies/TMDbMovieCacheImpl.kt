@@ -18,20 +18,15 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val genreDao: TMDbGenreDao,
     private val spokenLanguageDao: TMDbSpokenLanguageDao
 ) : TMDbMovieCache {
-    override suspend fun getTMDbMovieById(id: Int): Result {
-        return tmDbMovieDao.getTMDbMovieByID(id).mapToDomainModelList()
-    }
-
-    override suspend fun requestTMDbMovies(tmdbTitleToSearchFor: String?): List<Result> {
-        return tmDbMovieDao.getTMDbMoviesForTitle("%$tmdbTitleToSearchFor%")
-            .map { databaseTMDbMovie ->
-                databaseTMDbMovie.mapToDomainModelList()
-            }
-    }
 
     override fun observeTMDbMovies(): Flowable<List<Result>> {
         return tmDbMovieDao.observeTMDbMovies()
             .map { roomTMDbMovies -> roomTMDbMovies.map { it.mapToDomainModelList() } }
+    }
+
+    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
+        return tmDbMovieDao.observeTMDbMovieDetail(id)
+            .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
@@ -45,14 +40,14 @@ class TMDbMovieCacheImpl @Inject constructor(
         genreDao.InsertGenre(tmDbMovieDetail.genres?.map { tmdbMovieRatings ->
             RoomGenre(
                 tmdbMovieRatings.id,
-                tmDbMovieDetail.id.toString(),  //not  sure about this id?
+                tmDbMovieDetail.id.toString(),
                 tmdbMovieRatings.name
             )
         })
         spokenLanguageDao.InsertSpokenLanguage(tmDbMovieDetail.spokenLanguages?.map { tmdbMovieSpokenLanguages ->
             RoomSpokenLanguage(
                 tmdbMovieSpokenLanguages.iso6391,
-                tmDbMovieDetail.id,  //also not sure
+                tmDbMovieDetail.id,
                 tmdbMovieSpokenLanguages.name
             )
         })
@@ -63,10 +58,5 @@ class TMDbMovieCacheImpl @Inject constructor(
             omdbOMDbBaseInformation.imdbID,
             omdbOMDbBaseInformation.imdbRating
         )
-    }
-
-    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
-        return tmDbMovieDao.observeTMDbMovieDetail(id)
-            .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 }

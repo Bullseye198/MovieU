@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.domain.tmdbmovie.usecases.ObserveTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(

@@ -24,5 +24,4 @@ class RefreshMovieDetailUseCase @Inject constructor(
     data class Params(
         val imdbID: String
     )
-
 }

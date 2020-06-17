@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cm.base.executor.AppCoroutineDispatchers
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.ObserveTMDbMoviesUseCase
@@ -13,7 +12,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
-    private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
     private val observeTMDbMoviesUseCase: ObserveTMDbMoviesUseCase
 ) : ViewModel() {
