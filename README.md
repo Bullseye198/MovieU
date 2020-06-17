@@ -1,6 +1,6 @@
 # MovieU
 
-App that will connect to the OMDb API Open Movie Database and show movies and data from OMDb.
+App that will connect to the TMDb API and OMDb API Open Movie Database and show movies and data from TMDb and OMDb.
 So we got our first movies from remote database.
 
 ![Image description](https://i.ibb.co/rGyJ8cC/screenshot.jpg)
@@ -22,7 +22,6 @@ RxJava.
 To do:
 
 In Progress:
-- [ ] Integrate TMDb API
 
 
 Done:
@@ -40,3 +39,4 @@ Done:
 - [x] Work on Movie Ratings
 - [x] Migrate to state pattern
 - [x] More RxJava Stuff
+- [x] Integrate TMDb API
