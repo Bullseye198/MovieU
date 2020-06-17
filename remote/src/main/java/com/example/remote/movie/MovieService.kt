@@ -1,7 +1,6 @@
 package com.example.remote.movie
 
-import com.example.remote.movie.model.MovieDetailRaw
-import com.example.remote.movie.model.SearchResults
+import com.example.remote.movie.model.OMDbMovieDetailRaw
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,14 +13,8 @@ import retrofit2.http.Query
 interface MovieService {
 
     @GET("?")
-    suspend fun getCurrentMovie(
-        @Query("s") titleToSearchFor: String,
-        @Query("apikey") apikey: String
-    ): SearchResults
-
-    @GET("?")
     suspend fun getMovieDetail(
         @Query("i") imdbID: String,
         @Query("apikey") apikey: String
-    ): MovieDetailRaw
+    ): OMDbMovieDetailRaw
 }

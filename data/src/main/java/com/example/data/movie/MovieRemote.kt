@@ -1,11 +1,8 @@
 package com.example.data.movie
 
-import com.example.domain.movie.model.Movie
-import com.example.domain.movie.model.MovieDetail
+import com.example.domain.movie.model.OMDbBaseInformation
 
 interface MovieRemote {
 
-    suspend fun fetchMovies(titleToSearchFor: String): List<Movie>
-
-    suspend fun fetchMovieDetail(imdbID: String): MovieDetail
+    suspend fun fetchMovieDetail(imdbID: String): OMDbBaseInformation
 }

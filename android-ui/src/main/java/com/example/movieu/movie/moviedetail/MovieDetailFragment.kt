@@ -16,13 +16,13 @@ import javax.inject.Inject
 class MovieDetailFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
-    private lateinit var ratingsAdapter: MovieRatingsAdapter
+    private lateinit var genreAdapter: MovieGenreAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private var imdbID: String = ""
+    private var imdbID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,25 +41,26 @@ class MovieDetailFragment : DaggerFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.recListRatings.adapter = null
+        binding.recListGenre.adapter = null
     }
 
     override fun onStart() {
         super.onStart()
 
         observeViewModel()
-        setUpMovieRatingsAdapter()
+        setUPMovieGenreAdapter()
     }
 
-    private fun setUpMovieRatingsAdapter() {
-        ratingsAdapter = MovieRatingsAdapter()
-        binding.recListRatings.adapter = ratingsAdapter
+
+    private fun setUPMovieGenreAdapter() {
+        genreAdapter = MovieGenreAdapter()
+        binding.recListGenre.adapter = genreAdapter
 
         viewModel.getState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
-                    ratingsAdapter.submitList(movieDetailState.movieDetail?.ratings)
+                    genreAdapter.submitList(movieDetailState.tmDbMovieDetail?.genres)
                 }
             }
         )
@@ -71,15 +72,42 @@ class MovieDetailFragment : DaggerFragment() {
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {
-                    binding.movieDetailView.load(t.movieDetail?.poster?.replace("http:", "https:"))
-                    binding.lblMovieTitle.text = t.movieDetail?.title
-                    binding.lblMovieYear.text = t.movieDetail?.year
-                    binding.lblMovieRuntime.text = t.movieDetail?.runtime
-                    binding.lblMoviePlot.text = t.movieDetail?.plot
-                    binding.lblMovieGenre.text = "Genre: " + t.movieDetail?.genre
-                    binding.lblMovieLanguage.text = "Language: " + t.movieDetail?.language
-                    binding.lblMovieCast.text = "Cast: " + t.movieDetail?.actors
-                    binding.lblMovieDirector.text = "Director: " + t.movieDetail?.director
+                    val posterPath =
+                        "http://image.tmdb.org/t/p/w500/${t.tmDbMovieDetail?.posterPath}"
+                    binding.movieDetailView.load(posterPath)
+                    val backdropPath =
+                        "https://image.tmdb.org/t/p/w780/${t.tmDbMovieDetail?.backdropPath}"
+                    binding.movieDetailBackdrop.load(backdropPath)
+                    binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
+                    binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
+
+                    if (t.tmDbMovieDetail?.runtime == null) {
+                        binding.lblMovieRuntime.text = ""
+                    } else {
+                        binding.lblMovieRuntime.text =
+                            t.tmDbMovieDetail?.runtime.toString() + " Min"
+                    }
+
+                    binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
+                    binding.lblMovieGenre.text = "Genre: "
+                    binding.lblMovieLanguage.text =
+                        "Language: " + t.tmDbMovieDetail?.originalLanguage
+
+                    if (t.tmDbMovieDetail?.budget == null) {
+                        binding.lblMovieBudget.text = "Budget: Unknown"
+                    } else {
+                        binding.lblMovieBudget.text =
+                            "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
+                    }
+
+                    if (t.tmDbMovieDetail?.imdbId == null) {
+                        binding.lblMovieImdbRating.text = "IMDb Rating: Unknown"
+                    } else {
+                        binding.lblMovieImdbRating.text =
+                            "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
+                    }
+
+                    binding.lblMoviePopularity.text = "Popularity: " + t.tmDbMovieDetail?.popularity
                 }
             }
         )

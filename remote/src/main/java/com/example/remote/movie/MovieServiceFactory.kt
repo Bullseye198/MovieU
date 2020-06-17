@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object MovieServiceFactory {
 
-    fun makeMovieService(chuckerInterceptor: Interceptor): MovieService {
+    fun makeOMDbMovieService(chuckerInterceptor: Interceptor): MovieService {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://www.omdbapi.com/")
@@ -22,7 +22,6 @@ object MovieServiceFactory {
 
         return retrofit.create(MovieService::class.java)
     }
-
 
     private fun makeOkHttpClient(chuckerInterceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()

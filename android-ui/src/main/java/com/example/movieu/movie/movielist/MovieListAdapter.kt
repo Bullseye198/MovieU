@@ -5,16 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.example.domain.movie.model.Movie
+import com.example.domain.tmdbmovie.model.Result
 import com.example.movieu.R
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveData()) :
-    ListAdapter<Movie, MovieListAdapter.MovieViewHolder>
+    ListAdapter<Result, MovieListAdapter.MovieViewHolder>
         (MovieDiffUtilCallback()) {
 
     class MovieViewHolder(root: View) : RecyclerView.ViewHolder(root) {
@@ -34,10 +35,15 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         getItem(position).let { movie ->
             holder.content.text = movie.title
-            holder.year.text = movie.year
-            holder.image.load(movie.poster.replace("http:", "https:"))
+            holder.year.text = movie.releaseDate
+            val posterPath = "http://image.tmdb.org/t/p/w500/${movie.posterPath}"
+            holder.image.load(posterPath)
+            if (movie.posterPath == null) {
+                holder.content.isVisible = true
+                holder.year.isVisible = true
+            }
             holder.itemView.setOnClickListener {
-                event.value = MovieListEvent.OnMovieItemClick(position, movie.imdbID)
+                event.value = MovieListEvent.OnMovieItemClick(position, movie.id)
             }
         }
     }

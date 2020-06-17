@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.movie.model.MovieDetail
-import com.example.domain.usecases.ObserveMovieDetailUseCase
-import com.example.domain.usecases.RefreshMovieDetailUseCase
+import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
+import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.usecases.ObserveTMDbMovieDetailUseCase
+import com.example.domain.tmdbmovie.usecases.RefreshTMDbMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
-    private val observeMovieDetailUseCase: ObserveMovieDetailUseCase,
-    private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase
+    private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
+    private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
+    private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase
 ) : ViewModel() {
 
     private val movieState = MutableLiveData(MovieDetailState())
@@ -22,35 +24,56 @@ class MovieDetailViewModel @Inject constructor(
 
     val currentMovieDetail: String? = null
 
+    var fetchedOmdbInformation: Boolean = false
+
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.OnStart -> {
-                observeMovieDetail(imdbID = event.imdbID)
-                refresh(event.imdbID)
+                observeMovieDetail(id = event.id)
+                refresh(event.id)
             }
         }
     }
 
-    private fun observeMovieDetail(imdbID: String) {
-        observeMovieDetailUseCase.invokeUseCase(
-            object : DisposableSubscriber<MovieDetail>() {
+    private fun observeMovieDetail(id: Int) {
+        observeTMDbMovieDetailUseCase.invokeUseCase(
+            object : DisposableSubscriber<TMDbMovieDetail>() {
                 override fun onComplete() {
 
                 }
 
-                override fun onNext(t: MovieDetail?) {
-                    movieState.value = movieState.value!!.copy(movieDetail = t)
+                override fun onNext(t: TMDbMovieDetail?) {
+                    movieState.value = movieState.value!!.copy(tmDbMovieDetail = t)
+                    if(t?.imdbId != null && !fetchedOmdbInformation){
+                        refreshOMDbBaseInformation(t.imdbId!!)
+                        fetchedOmdbInformation = true
+                    }
                 }
 
                 override fun onError(t: Throwable?) {
                     throw Exception("Subscription failed at ${t?.localizedMessage}")
                 }
-            }, ObserveMovieDetailUseCase.Params(imdbID))
+            }, ObserveTMDbMovieDetailUseCase.Params(id)
+        )
     }
 
-    fun refresh(imdbID: String) {
+    private fun refresh(id: Int) {
         viewModelScope.launch {
-            currentMovieDetail.let { refreshMovieDetailUseCase.invokeUseCase(params = RefreshMovieDetailUseCase.Params(imdbID)) }
+            currentMovieDetail.let {
+                refreshTMDbMovieDetailUseCase.invokeUseCase(
+                    params = RefreshTMDbMovieDetailUseCase.Params(id = id)
+                )
+            }
+        }
+    }
+
+    private fun refreshOMDbBaseInformation(imdbID: String) {
+        viewModelScope.launch {
+            currentMovieDetail.let {
+                refreshMovieDetailUseCase.invokeUseCase(
+                    params = RefreshMovieDetailUseCase.Params(imdbID)
+                )
+            }
         }
     }
 }

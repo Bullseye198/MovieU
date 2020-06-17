@@ -4,42 +4,41 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.movie.model.Movie
-import com.example.domain.usecases.ObserveMoviesUseCase
-import com.example.domain.usecases.RefreshMoviesUseCase
-import com.example.movieu.movie.moviedetail.MovieDetailState
+import com.example.domain.tmdbmovie.model.Result
+import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
+import com.example.domain.tmdbmovie.usecases.ObserveTMDbMoviesUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
-    private val observeMoviesUseCase: ObserveMoviesUseCase,
-    private val refreshMoviesUseCase: RefreshMoviesUseCase
+    private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
+    private val observeTMDbMoviesUseCase: ObserveTMDbMoviesUseCase
 ) : ViewModel() {
+
+    var currentMovies: String? = null
 
     private val movieState = MutableLiveData(MovieListState())
 
     fun getState(): LiveData<MovieListState> = movieState
 
-    var currentMovies: String? = null
-
     init {
-        getMovies()
+        observeTMDbMovies()
     }
 
     fun onNewMoviesSearched(newMovies: String) {
         this.currentMovies = newMovies
-        observeMoviesUseCase.onSearchTermChanged(newMovies)
-        refreshMoviesAndUpdate()
+        observeTMDbMoviesUseCase.onSearchTermChanged(newMovies)
+        refreshTMDbMoviesAndUpdate()
     }
 
-    private fun getMovies() {
-        observeMoviesUseCase.invokeUseCase(object : DisposableSubscriber<List<Movie>>() {
+    private fun observeTMDbMovies() {
+        observeTMDbMoviesUseCase.invokeUseCase(object : DisposableSubscriber<List<Result>>() {
             override fun onComplete() {
 
             }
 
-            override fun onNext(t: List<Movie>?) {
+            override fun onNext(t: List<Result>?) {
                 movieState.value = movieState.value!!.copy(feed = t)
             }
 
@@ -49,14 +48,20 @@ class MovieListViewModel @Inject constructor(
         }, params = null)
     }
 
-    private fun refreshMoviesAndUpdate() {
-        viewModelScope.launch() {
-            currentMovies?.let { refreshMoviesUseCase.invokeUseCase(params = RefreshMoviesUseCase.Params(it)) }
+    private fun refreshTMDbMoviesAndUpdate() {
+        viewModelScope.launch {
+            currentMovies?.let {
+                refreshTMDbMoviesUseCase.invokeUseCase(
+                    params = RefreshTMDbMoviesUseCase.Params(
+                        it
+                    )
+                )
+            }
         }
     }
 
     override fun onCleared() {
         super.onCleared()
-        observeMoviesUseCase.dispose()
+        observeTMDbMoviesUseCase.dispose()
     }
 }

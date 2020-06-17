@@ -27,15 +27,26 @@
                 android:text="2020"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/movieDetailView"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
                 tools:text="2020" />
 
+            <ImageView
+                android:id="@+id/movieDetailBackdrop"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="64dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/movieDetailView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:src="@tools:sample/avatars" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/movieDetailView"
-                android:layout_width="170dp"
+                android:layout_width="195dp"
                 android:layout_height="274dp"
                 android:layout_marginTop="32dp"
                 android:adjustViewBounds="true"
@@ -58,8 +69,6 @@
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/movieDetailView"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailView"
                 tools:text="124 min" />
 
@@ -100,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="32dp"
                 android:text="Genres:"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
@@ -109,27 +118,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_plot" />
 
-            <TextView
-                android:id="@+id/lbl_movie_director"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_genre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_genre" />
+
+            <TextView
+                android:id="@+id/lbl_movie_imdbRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Director: "
+                android:text="IMDb Rating:: "
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_genre" />
+                app:layout_constraintTop_toBottomOf="@+id/rec_list_genre" />
 
             <TextView
                 android:id="@+id/lbl_movie_language"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:text="Language: "
                 android:textColor="@color/grey600"
@@ -137,16 +157,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_director" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_imdbRating" />
 
             <TextView
-                android:id="@+id/lbl_movie_cast"
+                android:id="@+id/lbl_movie_budget"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Cast:"
+                android:text="Budget:"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,31 +175,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_language" />
 
             <TextView
-                android:id="@+id/lbl_movie_ratings"
+                android:id="@+id/lbl_movie_popularity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Ratings:"
+                android:text="Popularity :"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_cast" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rec_list_ratings"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_ratings" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_budget" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
