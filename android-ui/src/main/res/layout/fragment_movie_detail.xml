@@ -130,13 +130,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_genre" />
 
             <TextView
-                android:id="@+id/lbl_movie_director"
+                android:id="@+id/lbl_movie_imdbRating"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Director: "
+                android:text="IMDb Rating:: "
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -157,16 +157,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_director" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_imdbRating" />
 
             <TextView
-                android:id="@+id/lbl_movie_cast"
+                android:id="@+id/lbl_movie_budget"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Cast:"
+                android:text="Budget:"
                 android:textColor="@color/grey600"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_cast" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_budget" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

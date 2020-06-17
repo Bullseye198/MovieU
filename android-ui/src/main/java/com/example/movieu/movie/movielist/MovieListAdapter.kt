@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,10 @@ class MovieListAdapter(val event: MutableLiveData<MovieListEvent> = MutableLiveD
             holder.year.text = movie.releaseDate
             val posterPath = "http://image.tmdb.org/t/p/w500/${movie.posterPath}"
             holder.image.load(posterPath)
+            if (movie.posterPath == null) {
+                holder.content.isVisible = true
+                holder.year.isVisible = true
+            }
             holder.itemView.setOnClickListener {
                 event.value = MovieListEvent.OnMovieItemClick(position, movie.id)
             }

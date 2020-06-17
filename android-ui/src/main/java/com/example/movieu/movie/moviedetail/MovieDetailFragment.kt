@@ -52,19 +52,19 @@ class MovieDetailFragment : DaggerFragment() {
     }
 
 
-        private fun setUPMovieGenreAdapter() {
-            genreAdapter = MovieGenreAdapter()
-            binding.recListGenre.adapter = genreAdapter
+    private fun setUPMovieGenreAdapter() {
+        genreAdapter = MovieGenreAdapter()
+        binding.recListGenre.adapter = genreAdapter
 
-            viewModel.getState().observe(
-                viewLifecycleOwner,
-                Observer { movieDetailState ->
-                    if (movieDetailState != null) {
-                        genreAdapter.submitList(movieDetailState.tmDbMovieDetail?.genres)
-                    }
+        viewModel.getState().observe(
+            viewLifecycleOwner,
+            Observer { movieDetailState ->
+                if (movieDetailState != null) {
+                    genreAdapter.submitList(movieDetailState.tmDbMovieDetail?.genres)
                 }
-            )
-        }
+            }
+        )
+    }
 
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
@@ -80,13 +80,33 @@ class MovieDetailFragment : DaggerFragment() {
                     binding.movieDetailBackdrop.load(backdropPath)
                     binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
                     binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
-                    binding.lblMovieRuntime.text = t.tmDbMovieDetail?.runtime.toString() + " Min"
+
+                    if (t.tmDbMovieDetail?.runtime == null) {
+                        binding.lblMovieRuntime.text = ""
+                    } else {
+                        binding.lblMovieRuntime.text =
+                            t.tmDbMovieDetail?.runtime.toString() + " Min"
+                    }
+
                     binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
                     binding.lblMovieGenre.text = "Genre: "
                     binding.lblMovieLanguage.text =
                         "Language: " + t.tmDbMovieDetail?.originalLanguage
-                    binding.lblMovieCast.text = "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
-                    binding.lblMovieDirector.text = "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
+
+                    if (t.tmDbMovieDetail?.budget == null) {
+                        binding.lblMovieBudget.text = "Budget: Unknown"
+                    } else {
+                        binding.lblMovieBudget.text =
+                            "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
+                    }
+
+                    if (t.tmDbMovieDetail?.imdbId == null) {
+                        binding.lblMovieImdbRating.text = "IMDb Rating: Unknown"
+                    } else {
+                        binding.lblMovieImdbRating.text =
+                            "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
+                    }
+
                     binding.lblMoviePopularity.text = "Popularity: " + t.tmDbMovieDetail?.popularity
                 }
             }
