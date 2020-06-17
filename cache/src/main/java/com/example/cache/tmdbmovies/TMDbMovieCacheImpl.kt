@@ -35,7 +35,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
-        tmDbMovieDao.insertAllSuspend(tmdbMovies.map { domainTMDbMovie ->
+        tmDbMovieDao.insertAllIgnore(tmdbMovies.map { domainTMDbMovie ->
             domainTMDbMovie.mapToRoomModel()
         })
     }
@@ -47,6 +47,13 @@ class TMDbMovieCacheImpl @Inject constructor(
                 tmdbMovieRatings.id,
                 tmDbMovieDetail.id.toString(),  //not  sure about this id?
                 tmdbMovieRatings.name
+            )
+        })
+        spokenLanguageDao.InsertSpokenLanguage(tmDbMovieDetail.spokenLanguages?.map { tmdbMovieSpokenLanguages ->
+            RoomSpokenLanguage(
+                tmdbMovieSpokenLanguages.iso6391,
+                tmDbMovieDetail.id,  //also not sure
+                tmdbMovieSpokenLanguages.name
             )
         })
     }

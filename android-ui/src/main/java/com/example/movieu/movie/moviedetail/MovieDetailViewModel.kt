@@ -15,7 +15,6 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
-    private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
     private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
     private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase
@@ -30,8 +29,8 @@ class MovieDetailViewModel @Inject constructor(
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.OnStart -> {
-                observeMovieDetail(id = event.imdbID)
-                refresh(event.imdbID)
+                observeMovieDetail(id = event.id)
+                refresh(event.id)
                // refreshOMDbBaseInformation(event.imdbID.toString())
             }
         }
