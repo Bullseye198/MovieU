@@ -2,6 +2,7 @@ package com.example.domain.tmdbmovie.usecases
 
 import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowableUseCase
+import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable

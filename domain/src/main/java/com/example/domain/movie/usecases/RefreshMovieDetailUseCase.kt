@@ -18,6 +18,7 @@ class RefreshMovieDetailUseCase @Inject constructor(
             val serverMovieDetail = iMovieRepository.fetchMovieDetail(params!!.imdbID)
             tmDbMovieRepository.addOmdbInformation(serverMovieDetail)
         } catch (e: Exception) {
+            val x = e
         }
     }
 

@@ -24,12 +24,13 @@ class MovieDetailViewModel @Inject constructor(
 
     val currentMovieDetail: String? = null
 
+    var fetchedOmdbInformation: Boolean = false
+
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.OnStart -> {
                 observeMovieDetail(id = event.id)
                 refresh(event.id)
-                refreshOMDbBaseInformation(event.id.toString())
             }
         }
     }
@@ -43,6 +44,10 @@ class MovieDetailViewModel @Inject constructor(
 
                 override fun onNext(t: TMDbMovieDetail?) {
                     movieState.value = movieState.value!!.copy(tmDbMovieDetail = t)
+                    if(t?.imdbId != null && !fetchedOmdbInformation){
+                        refreshOMDbBaseInformation(t.imdbId!!)
+                        fetchedOmdbInformation = true
+                    }
                 }
 
                 override fun onError(t: Throwable?) {
