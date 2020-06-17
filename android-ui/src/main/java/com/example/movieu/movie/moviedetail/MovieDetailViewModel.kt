@@ -32,6 +32,7 @@ class MovieDetailViewModel @Inject constructor(
             is MovieDetailEvent.OnStart -> {
                 observeMovieDetail(id = event.imdbID)
                 refresh(event.imdbID)
+                refreshOMDbBaseInformation(event.imdbID.toString())
             }
         }
     }
@@ -54,21 +55,21 @@ class MovieDetailViewModel @Inject constructor(
         )
     }
 
-    private suspend fun refreshOMDbBaseInformation(imdbID: String) {
-        val omdbMovies = withContext(appCoroutineDispatchers.io) {
-            refreshMovieDetailUseCase.invokeUseCase(
-                params = RefreshMovieDetailUseCase.Params(imdbID)
-            )
-
-        }
-
-    }
-
     fun refresh(id: Int) {
         viewModelScope.launch {
             currentMovieDetail.let {
                 refreshTMDbMovieDetailUseCase.invokeUseCase(
                     params = RefreshTMDbMovieDetailUseCase.Params(id)
+                )
+            }
+        }
+    }
+
+    private fun refreshOMDbBaseInformation(imdbID: String) {
+        viewModelScope.launch {
+            currentMovieDetail.let {
+                refreshMovieDetailUseCase.invokeUseCase(
+                    params = RefreshMovieDetailUseCase.Params(imdbID)
                 )
             }
         }
