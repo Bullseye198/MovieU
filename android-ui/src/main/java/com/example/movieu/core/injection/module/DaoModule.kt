@@ -18,4 +18,12 @@ object DaoModule {
     @Provides
     fun provideTMDbSpokenLanguageDao(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
         tmDbRoomMovieDatabase.tmdbRoomSpokenLanguageDao()
+
+    @Provides
+    fun provideTMDbCast(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbRoomCastDao()
+
+    @Provides
+    fun provideTMDbCrew(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbRoomCrewDao()
 }

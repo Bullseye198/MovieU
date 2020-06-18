@@ -30,5 +30,10 @@ data class TMDbMovieDetail(
     //OMDb
     val imdbID: String?, // tt0133093
     val imdbRating: String?, // 8.7// 11
-    val imdbVotes: String?
+    val imdbVotes: String?,
+
+    //Credits
+    val cast: List<Cast>?,
+    val crew: List<Crew>?
+
 )

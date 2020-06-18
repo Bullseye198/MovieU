@@ -1,9 +1,11 @@
 package com.example.remote.tmdbmovie
 
 import com.example.data.tmdbmovie.TMDbMovieRemote
+import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.remote.tmdbmovie.model.mapToDomain
+import com.example.remote.tmdbmovie.model.mapToDomainCredits
 import javax.inject.Inject
 
 class TMDbMovieRemoteImpl @Inject constructor(
@@ -38,5 +40,12 @@ class TMDbMovieRemoteImpl @Inject constructor(
             id = id,
             apikey = "2797198b75a6557cae56bdfdb2dd1b52"
         ).mapToDomain()
+    }
+
+    override suspend fun fetchTMDbCredits(id: Int): Credits {
+        return tmDbMovieService.getTMDbCredits(
+            id = id,
+            apikey = "2797198b75a6557cae56bdfdb2dd1b52"
+        ).mapToDomainCredits()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.data.tmdbmovie
 
 import com.example.domain.movie.model.OMDbBaseInformation
+import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable
@@ -14,6 +15,8 @@ interface TMDbMovieCache {
     suspend fun storeTMDbMovies(tmdbMovies: List<Result>)
 
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
+
+    suspend fun storeTMDbCredits(credits: Credits)
 
     suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation)
 }

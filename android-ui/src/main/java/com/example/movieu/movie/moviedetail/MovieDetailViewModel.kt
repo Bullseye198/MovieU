@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.usecases.RefreshTMDbCreditsUseCase
 import com.example.domain.tmdbmovie.usecases.ObserveTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
     private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
-    private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase
+    private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase,
+    private val refreshTMDbCreditsUseCase: RefreshTMDbCreditsUseCase
 ) : ViewModel() {
 
     private val movieState = MutableLiveData(MovieDetailState())
@@ -44,7 +46,7 @@ class MovieDetailViewModel @Inject constructor(
 
                 override fun onNext(t: TMDbMovieDetail?) {
                     movieState.value = movieState.value!!.copy(tmDbMovieDetail = t)
-                    if(t?.imdbId != null && !fetchedOmdbInformation){
+                    if (t?.imdbId != null && !fetchedOmdbInformation) {
                         refreshOMDbBaseInformation(t.imdbId!!)
                         fetchedOmdbInformation = true
                     }
@@ -62,6 +64,9 @@ class MovieDetailViewModel @Inject constructor(
             currentMovieDetail.let {
                 refreshTMDbMovieDetailUseCase.invokeUseCase(
                     params = RefreshTMDbMovieDetailUseCase.Params(id = id)
+                )
+                refreshTMDbCreditsUseCase.invokeUseCase(
+                    params = RefreshTMDbCreditsUseCase.Params(id = id)
                 )
             }
         }

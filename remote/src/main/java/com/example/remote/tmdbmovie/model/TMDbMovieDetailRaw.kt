@@ -1,6 +1,8 @@
 package com.example.remote.tmdbmovie.model
 
 
+import com.example.domain.tmdbmovie.model.Cast
+import com.example.domain.tmdbmovie.model.Crew
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -87,5 +89,7 @@ fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
     voteCount = voteCount,
     imdbVotes = null,
     imdbRating = null,
-    imdbID = null
+    imdbID = null,
+    cast = null,
+    crew = null
 )
