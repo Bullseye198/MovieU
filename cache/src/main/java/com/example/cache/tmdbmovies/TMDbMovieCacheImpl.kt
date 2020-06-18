@@ -6,6 +6,7 @@ import com.example.cache.tmdbmovies.dao.TMDbSpokenLanguageDao
 import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
+import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable
@@ -27,6 +28,10 @@ class TMDbMovieCacheImpl @Inject constructor(
     override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
         return tmDbMovieDao.observeTMDbMovieDetail(id)
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
+    }
+
+    override fun observeTMDbCredits(id: Int): Flowable<Credits> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
@@ -51,6 +56,10 @@ class TMDbMovieCacheImpl @Inject constructor(
                 tmdbMovieSpokenLanguages.name
             )
         })
+    }
+
+    override suspend fun storeTMDbCredits(credits: Credits) {
+        TODO("Not yet implemented")
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {

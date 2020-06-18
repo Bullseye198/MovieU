@@ -3,6 +3,7 @@ package com.example.data.tmdbmovie
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.Cast
+import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable
@@ -17,6 +18,14 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieCache.observeTMDbMovies()
     }
 
+    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
+        return tmDbMovieCache.observeTMDbMovieDetail(id)
+    }
+
+    override fun observeTMDbCredits(id: Int): Flowable<Credits> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {
         return tmDbMovieRemote.fetchTMDbMovies(tmdbTitleToSearchFor)
     }
@@ -29,17 +38,18 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieRemote.fetchTMDbMovieDetail(id)
     }
 
-    override suspend fun fetchTMDbCast(id: Int): List<Cast> {
-        return tmDbMovieRemote.fetchTMDbCast(id)
+    override suspend fun fetchTMDbCredits(id: Int): Credits {
+        return tmDbMovieRemote.fetchTMDbCredits(id)
     }
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
         return tmDbMovieCache.storeTMDbMovieDetail(tmDbMovieDetail)
     }
 
-    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
-        return tmDbMovieCache.observeTMDbMovieDetail(id)
+    override suspend fun storeTMDbCredits(credits: Credits) {
+        TODO("Not yet implemented")
     }
+
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
         return tmDbMovieCache.addOmdbInformation(omdbOMDbBaseInformation)

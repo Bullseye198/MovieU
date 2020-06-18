@@ -1,12 +1,12 @@
 package com.example.remote.tmdbmovie.model
 
 
-import com.example.domain.tmdbmovie.model.CastList
+import com.example.domain.tmdbmovie.model.Credits
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class CastListRaw(
+data class CreditsRaw(
     @Json(name = "cast")
     val cast: List<CastRaw>,
     @Json(name = "crew")
@@ -15,7 +15,7 @@ data class CastListRaw(
     val id: Int // 603
 )
 
-fun CastListRaw.mapToDomainCastList() = CastList(
+fun CreditsRaw.mapToDomainCredits() = Credits(
     cast = cast.map { it.mapToDomain() },
     crew = crew.map { it.mapDomainCrewModel() },
     id = id
