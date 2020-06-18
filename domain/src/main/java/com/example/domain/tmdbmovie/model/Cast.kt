@@ -8,5 +8,5 @@ data class Cast(
     val id: Int, // 6384
     val name: String, // Keanu Reeves
     val order: Int, // 0
-    val profilePath: String // /d9HyjGMCt4wgJIOxAGlaYWhKsiN.jpg
+    val profilePath: String? // /d9HyjGMCt4wgJIOxAGlaYWhKsiN.jpg
 )

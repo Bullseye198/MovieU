@@ -20,7 +20,7 @@ data class CrewRaw(
     @Json(name = "name")
     val name: String, // Barrie M. Osborne
     @Json(name = "profile_path")
-    val profilePath: String // /xWtXYk6M5NFroddcQDviLlxOnkU.jpg
+    val profilePath: String? // /xWtXYk6M5NFroddcQDviLlxOnkU.jpg
 )
 
 fun CrewRaw.mapDomainCrewModel() = Crew(

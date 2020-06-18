@@ -2,6 +2,7 @@ package com.example.data.tmdbmovie
 
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.TMDbMovieRepository
+import com.example.domain.tmdbmovie.model.Cast
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import io.reactivex.Flowable
@@ -26,6 +27,10 @@ class TMDbMovieRepoImpl @Inject constructor(
 
     override suspend fun fetchTMDbMovieDetail(id: Int): TMDbMovieDetail {
         return tmDbMovieRemote.fetchTMDbMovieDetail(id)
+    }
+
+    override suspend fun fetchTMDbCast(id: Int): List<Cast> {
+        return tmDbMovieRemote.fetchTMDbCast(id)
     }
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {

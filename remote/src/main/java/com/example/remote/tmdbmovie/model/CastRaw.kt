@@ -22,7 +22,7 @@ data class CastRaw(
     @Json(name = "order")
     val order: Int, // 0
     @Json(name = "profile_path")
-    val profilePath: String // /d9HyjGMCt4wgJIOxAGlaYWhKsiN.jpg
+    val profilePath: String? // /d9HyjGMCt4wgJIOxAGlaYWhKsiN.jpg
 )
 
 fun CastRaw.mapToDomain() = Cast(

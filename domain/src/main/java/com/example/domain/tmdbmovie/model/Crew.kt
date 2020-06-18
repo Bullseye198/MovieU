@@ -7,5 +7,5 @@ data class Crew(
     val id: Int, // 123
     val job: String, // Executive Producer
     val name: String, // Barrie M. Osborne
-    val profilePath: String // /xWtXYk6M5NFroddcQDviLlxOnkU.jpg
+    val profilePath: String? // /xWtXYk6M5NFroddcQDviLlxOnkU.jpg
 )

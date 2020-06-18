@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.usecases.FetchTMDbCastUseCase
 import com.example.domain.tmdbmovie.usecases.ObserveTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.RefreshTMDbMovieDetailUseCase
 import io.reactivex.subscribers.DisposableSubscriber
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
     private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
-    private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase
+    private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase,
+    private val fetchTMDbCastUseCase: FetchTMDbCastUseCase
 ) : ViewModel() {
 
     private val movieState = MutableLiveData(MovieDetailState())
@@ -44,9 +46,10 @@ class MovieDetailViewModel @Inject constructor(
 
                 override fun onNext(t: TMDbMovieDetail?) {
                     movieState.value = movieState.value!!.copy(tmDbMovieDetail = t)
-                    if(t?.imdbId != null && !fetchedOmdbInformation){
+                    if (t?.imdbId != null && !fetchedOmdbInformation) {
                         refreshOMDbBaseInformation(t.imdbId!!)
                         fetchedOmdbInformation = true
+                        refreshTMDbCast(t.id)
                     }
                 }
 
@@ -73,6 +76,14 @@ class MovieDetailViewModel @Inject constructor(
                 refreshMovieDetailUseCase.invokeUseCase(
                     params = RefreshMovieDetailUseCase.Params(imdbID)
                 )
+            }
+        }
+    }
+
+    private fun refreshTMDbCast(id: Int) {
+        viewModelScope.launch {
+            currentMovieDetail.let {
+                fetchTMDbCastUseCase.fetchCast(id)
             }
         }
     }
