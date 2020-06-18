@@ -2,7 +2,6 @@ package com.example.data.tmdbmovie
 
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.TMDbMovieRepository
-import com.example.domain.tmdbmovie.model.Cast
 import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
@@ -20,10 +19,6 @@ class TMDbMovieRepoImpl @Inject constructor(
 
     override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
         return tmDbMovieCache.observeTMDbMovieDetail(id)
-    }
-
-    override fun observeTMDbCredits(id: Int): Flowable<Credits> {
-        TODO("Not yet implemented")
     }
 
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {
@@ -47,7 +42,7 @@ class TMDbMovieRepoImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbCredits(credits: Credits) {
-        TODO("Not yet implemented")
+        return tmDbMovieCache.storeTMDbCredits(credits)
     }
 
 

@@ -1,14 +1,10 @@
 package com.example.cache.tmdbmovies
 
-import com.example.cache.tmdbmovies.dao.TMDbGenreDao
-import com.example.cache.tmdbmovies.dao.TMDbMovieDao
-import com.example.cache.tmdbmovies.dao.TMDbSpokenLanguageDao
+import com.example.cache.tmdbmovies.dao.*
 import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
-import com.example.domain.tmdbmovie.model.Credits
-import com.example.domain.tmdbmovie.model.Result
-import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.*
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,7 +13,9 @@ import javax.inject.Singleton
 class TMDbMovieCacheImpl @Inject constructor(
     private val tmDbMovieDao: TMDbMovieDao,
     private val genreDao: TMDbGenreDao,
-    private val spokenLanguageDao: TMDbSpokenLanguageDao
+    private val spokenLanguageDao: TMDbSpokenLanguageDao,
+    private val castDao: TMDbCastDao,
+    private val crewDao: TMDbCrewDao
 ) : TMDbMovieCache {
 
     override fun observeTMDbMovies(): Flowable<List<Result>> {
@@ -30,9 +28,6 @@ class TMDbMovieCacheImpl @Inject constructor(
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 
-    override fun observeTMDbCredits(id: Int): Flowable<Credits> {
-        TODO("Not yet implemented")
-    }
 
     override suspend fun storeTMDbMovies(tmdbMovies: List<Result>) {
         tmDbMovieDao.insertAllIgnore(tmdbMovies.map { domainTMDbMovie ->
@@ -59,7 +54,13 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override suspend fun storeTMDbCredits(credits: Credits) {
-        TODO("Not yet implemented")
+
+        castDao.InserCast(credits.cast.map { cast: Cast -> cast.mapToRoomCast(credits.id.toString()) })
+        crewDao.InserCrew(credits.crew.map { crew: Crew ->
+            crew.mapToRoomCrew(crew.id.toString())
+        })
+
+
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {

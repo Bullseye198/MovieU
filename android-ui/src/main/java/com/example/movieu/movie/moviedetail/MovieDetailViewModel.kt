@@ -49,7 +49,6 @@ class MovieDetailViewModel @Inject constructor(
                     if (t?.imdbId != null && !fetchedOmdbInformation) {
                         refreshOMDbBaseInformation(t.imdbId!!)
                         fetchedOmdbInformation = true
-                        refreshTMDbCast(t.id)
                     }
                 }
 
@@ -66,6 +65,9 @@ class MovieDetailViewModel @Inject constructor(
                 refreshTMDbMovieDetailUseCase.invokeUseCase(
                     params = RefreshTMDbMovieDetailUseCase.Params(id = id)
                 )
+                refreshTMDbCreditsUseCase.invokeUseCase(
+                    params = RefreshTMDbCreditsUseCase.Params(id = id)
+                )
             }
         }
     }
@@ -75,16 +77,6 @@ class MovieDetailViewModel @Inject constructor(
             currentMovieDetail.let {
                 refreshMovieDetailUseCase.invokeUseCase(
                     params = RefreshMovieDetailUseCase.Params(imdbID)
-                )
-            }
-        }
-    }
-
-    private fun refreshTMDbCast(id: Int) {
-        viewModelScope.launch {
-            currentMovieDetail.let {
-                refreshTMDbCreditsUseCase.invokeUseCase(
-                    params = RefreshTMDbCreditsUseCase.Params(id)
                 )
             }
         }

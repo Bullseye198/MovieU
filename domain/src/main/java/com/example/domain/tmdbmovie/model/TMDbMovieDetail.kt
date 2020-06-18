@@ -26,6 +26,8 @@ data class TMDbMovieDetail(
     val video: Boolean, // false
     val voteAverage: Double, // 7.7
     val voteCount: Int,
+    val cast: List<Cast>,
+    val crew: List<Crew>,
 
     //OMDb
     val imdbID: String?, // tt0133093

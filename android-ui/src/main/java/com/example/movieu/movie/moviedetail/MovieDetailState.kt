@@ -7,5 +7,5 @@ import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 data class MovieDetailState(
     val OMDbBaseInformation: OMDbBaseInformation? = null,
     val tmDbMovieDetail: TMDbMovieDetail? = null,
-    val tmdbCast: Credits? = null
+    val tmdbCredits: Credits? = null
 )

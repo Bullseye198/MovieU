@@ -12,8 +12,6 @@ interface TMDbMovieRepository {
 
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
-    fun observeTMDbCredits(id: Int): Flowable<Credits>
-
     suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result>
 
     suspend fun fetchTMDbMovieDetail(id: Int): TMDbMovieDetail

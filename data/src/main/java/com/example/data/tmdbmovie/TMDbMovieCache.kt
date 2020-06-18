@@ -12,13 +12,11 @@ interface TMDbMovieCache {
 
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
-    fun observeTMDbCredits(id: Int): Flowable<Credits>
-
     suspend fun storeTMDbMovies(tmdbMovies: List<Result>)
 
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
 
-    suspend fun storeTMDbCredits(cast: Credits)
+    suspend fun storeTMDbCredits(credits: Credits)
 
     suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation)
 }
