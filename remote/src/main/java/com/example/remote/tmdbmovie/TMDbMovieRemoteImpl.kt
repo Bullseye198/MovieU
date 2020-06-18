@@ -1,6 +1,7 @@
 package com.example.remote.tmdbmovie
 
 import com.example.data.tmdbmovie.TMDbMovieRemote
+import com.example.domain.tmdbmovie.model.Cast
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.remote.tmdbmovie.model.mapToDomain
@@ -38,5 +39,23 @@ class TMDbMovieRemoteImpl @Inject constructor(
             id = id,
             apikey = "2797198b75a6557cae56bdfdb2dd1b52"
         ).mapToDomain()
+    }
+
+    override suspend fun fetchTMDbCast(id: Int): List<Cast> {
+        return tmDbMovieService.getTMDbMovieCast(
+            id = id,
+            apikey = "2797198b75a6557cae56bdfdb2dd1b52"
+        ).cast.map {
+            Cast(
+                it.castId,
+                it.character,
+                it.creditId,
+                it.gender,
+                it.id,
+                it.name,
+                it.order,
+                it.profilePath
+            )
+        }
     }
 }

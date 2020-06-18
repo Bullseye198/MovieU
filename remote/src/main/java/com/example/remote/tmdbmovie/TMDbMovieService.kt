@@ -1,5 +1,6 @@
 package com.example.remote.tmdbmovie
 
+import com.example.remote.tmdbmovie.model.CastListRaw
 import com.example.remote.tmdbmovie.model.TMDbMovieDetailRaw
 import com.example.remote.tmdbmovie.model.TMDbMovieSearchResultsRaw
 import retrofit2.http.GET
@@ -25,4 +26,10 @@ interface TMDbMovieService {
         @Path("id") id: Int,
         @Query("api_key") apikey: String
     ): TMDbMovieDetailRaw
+
+    @GET("movie/{id}/credits")
+    suspend fun getTMDbMovieCast(
+        @Path("id") id: Int,
+        @Query("api_key") apikey: String
+    ): CastListRaw
 }
