@@ -5,6 +5,7 @@ import com.example.domain.tmdbmovie.model.Cast
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.remote.tmdbmovie.model.mapToDomain
+import com.example.remote.tmdbmovie.model.mapToDomainCastList
 import javax.inject.Inject
 
 class TMDbMovieRemoteImpl @Inject constructor(
@@ -45,17 +46,6 @@ class TMDbMovieRemoteImpl @Inject constructor(
         return tmDbMovieService.getTMDbMovieCast(
             id = id,
             apikey = "2797198b75a6557cae56bdfdb2dd1b52"
-        ).cast.map {
-            Cast(
-                it.castId,
-                it.character,
-                it.creditId,
-                it.gender,
-                it.id,
-                it.name,
-                it.order,
-                it.profilePath
-            )
-        }
+        ).mapToDomainCastList().cast
     }
 }

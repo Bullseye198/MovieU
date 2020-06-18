@@ -15,7 +15,7 @@ data class CastListRaw(
     val id: Int // 603
 )
 
-fun CastListRaw.mapToDomain() = CastList(
+fun CastListRaw.mapToDomainCastList() = CastList(
     cast = cast.map { it.mapToDomain() },
     crew = crew.map { it.mapDomainCrewModel() },
     id = id
