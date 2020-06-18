@@ -201,27 +201,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_popularity" />
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollViewCast"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_cast"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCast">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rec_list_cast"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
-            </HorizontalScrollView>
+                app:layout_constraintTop_toBottomOf="@+id/txtCast" />
 
             <TextView
                 android:id="@+id/txtCrew"
@@ -233,29 +222,20 @@
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollViewCast" />
+                app:layout_constraintTop_toBottomOf="@+id/rec_list_cast" />
 
-            <HorizontalScrollView
-                android:id="@+id/HorizontalScrollViewCrew"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_crew"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCrew">
+                app:layout_constraintTop_toBottomOf="@+id/txtCrew" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rec_list_crew"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
-            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
