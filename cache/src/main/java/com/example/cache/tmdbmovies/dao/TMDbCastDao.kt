@@ -9,5 +9,5 @@ import com.example.cache.tmdbmovies.model.RoomCast
 interface TMDbCastDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun InserCast(entities: List<RoomCast>?)
+    suspend fun InsertCast(entities: List<RoomCast>?)
 }

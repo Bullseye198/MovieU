@@ -9,5 +9,5 @@ import com.example.cache.tmdbmovies.model.RoomCrew
 interface TMDbCrewDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun InserCrew(entitites: List<RoomCrew>)
+    suspend fun InsertCrew(entitites: List<RoomCrew>?)
 }

@@ -55,9 +55,9 @@ class TMDbMovieCacheImpl @Inject constructor(
 
     override suspend fun storeTMDbCredits(credits: Credits) {
 
-        castDao.InserCast(credits.cast.map { cast: Cast -> cast.mapToRoomCast(credits.id.toString()) })
-        crewDao.InserCrew(credits.crew.map { crew: Crew ->
-            crew.mapToRoomCrew(crew.id.toString())
+        castDao.InsertCast(credits.cast.map { cast: Cast -> cast.mapToRoomCast(credits.id.toString()) })
+        crewDao.InsertCrew(credits.crew.map { crew: Crew ->
+            crew.mapToRoomCrew(credits.id.toString())
         })
 
 
