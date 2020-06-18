@@ -33,7 +33,7 @@ data class TMDbMovieDetail(
     val imdbVotes: String?,
 
     //Credits
-    val cast: List<Cast>,
-    val crew: List<Crew>
+    val cast: List<Cast>?,
+    val crew: List<Crew>?
 
 )

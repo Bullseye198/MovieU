@@ -58,10 +58,7 @@ data class TMDbMovieDetailRaw(
     @Json(name = "vote_average")
     val voteAverage: Double, // 7.7
     @Json(name = "vote_count")
-    val voteCount: Int, // 11
-
-    val cast: List<Cast>,
-    val crew: List<Crew>
+    val voteCount: Int // 11
 )
 
 fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
@@ -93,6 +90,6 @@ fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
     imdbVotes = null,
     imdbRating = null,
     imdbID = null,
-    cast = cast,
-    crew = crew
+    cast = null,
+    crew = null
 )
