@@ -28,6 +28,10 @@ object DaoModule {
         tmDbRoomMovieDatabase.tmdbRoomCrewDao()
 
     @Provides
+    fun provideTMDbTvSeries(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tmdbTvSeriesDao()
+
+    @Provides
     fun provideTvDetailCreatedBy(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
         tmDbRoomMovieDatabase.tvDetailCreatedByDao()
 

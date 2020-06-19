@@ -23,6 +23,14 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieCache.observeTMDbMovieDetail(id)
     }
 
+    override fun observeTMDbTvList(): Flowable<List<TvListResult>> {
+        return tmDbMovieCache.observeTMDbTvList()
+    }
+
+    override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
+        return tmDbMovieCache.observeTMDbTvDetail(id)
+    }
+
     override suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result> {
         return tmDbMovieRemote.fetchTMDbMovies(tmdbTitleToSearchFor)
     }

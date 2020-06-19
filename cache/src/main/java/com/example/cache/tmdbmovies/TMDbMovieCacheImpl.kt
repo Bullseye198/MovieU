@@ -1,7 +1,7 @@
 package com.example.cache.tmdbmovies
 
-import com.example.cache.tmdbmovies.dao.*
-import com.example.cache.tmdbmovies.dao.tvdetaildao.*
+import com.example.cache.tmdbmovies.dao.tmdbmoviesdao.*
+import com.example.cache.tmdbmovies.dao.tmdbtvseriesdao.*
 import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
@@ -19,6 +19,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val spokenLanguageDao: TMDbSpokenLanguageDao,
     private val castDao: TMDbCastDao,
     private val crewDao: TMDbCrewDao,
+    private val tmDbTvSeriesDao: TMDbTvSeriesDao,
     private val tvDetailCreatedByDao: TvDetailCreatedByDao,
     private val tvDetailGenreDao: TvDetailGenreDao,
     private val tvDetailLastEpisodeToAirDao: TvDetailLastEpisodeToAirDao,
@@ -35,6 +36,14 @@ class TMDbMovieCacheImpl @Inject constructor(
     override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
         return tmDbMovieDao.observeTMDbMovieDetail(id)
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
+    }
+
+    override fun observeTMDbTvList(): Flowable<List<TvListResult>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
+        TODO("Not yet implemented")
     }
 
 

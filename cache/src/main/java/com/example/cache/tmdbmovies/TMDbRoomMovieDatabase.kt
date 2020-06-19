@@ -2,8 +2,8 @@ package com.example.cache.tmdbmovies
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.cache.tmdbmovies.dao.*
-import com.example.cache.tmdbmovies.dao.tvdetaildao.*
+import com.example.cache.tmdbmovies.dao.tmdbmoviesdao.*
+import com.example.cache.tmdbmovies.dao.tmdbtvseriesdao.*
 import com.example.cache.tmdbmovies.model.*
 import com.example.cache.tmdbmovies.model.roomtvdetail.*
 import com.example.cache.tmdbmovies.model.roomtvlist.RoomTvListResult
@@ -34,6 +34,7 @@ abstract class TMDbRoomMovieDatabase : RoomDatabase() {
     abstract fun tmdbRoomSpokenLanguageDao(): TMDbSpokenLanguageDao
     abstract fun tmdbRoomCastDao(): TMDbCastDao
     abstract fun tmdbRoomCrewDao(): TMDbCrewDao
+    abstract fun tmdbTvSeriesDao(): TMDbTvSeriesDao
     abstract fun tvDetailCreatedByDao(): TvDetailCreatedByDao
     abstract fun tvDetailGenreDao(): TvDetailGenreDao
     abstract fun tvDetailLastEpisodeToAirDao(): TvDetailLastEpisodeToAirDao

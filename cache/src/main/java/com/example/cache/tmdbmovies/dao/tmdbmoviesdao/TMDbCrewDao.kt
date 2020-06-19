@@ -1,4 +1,4 @@
-package com.example.cache.tmdbmovies.dao
+package com.example.cache.tmdbmovies.dao.tmdbmoviesdao
 
 import androidx.room.Dao
 import androidx.room.Insert

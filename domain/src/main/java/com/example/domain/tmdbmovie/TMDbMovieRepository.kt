@@ -14,6 +14,10 @@ interface TMDbMovieRepository {
 
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
+    fun observeTMDbTvList(): Flowable<List<TvListResult>>
+
+    fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail>
+
     suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result>
 
     suspend fun fetchTMDbMovieDetail(id: Int): TMDbMovieDetail

@@ -1,9 +1,8 @@
-package com.example.cache.tmdbmovies.dao.tvdetaildao
+package com.example.cache.tmdbmovies.dao.tmdbtvseriesdao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.cache.tmdbmovies.model.roomtvdetail.RoomTvDetailCreatedBy
 import com.example.cache.tmdbmovies.model.roomtvdetail.RoomTvDetailNetwork
 
 @Dao

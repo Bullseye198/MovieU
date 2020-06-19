@@ -14,6 +14,10 @@ interface TMDbMovieCache {
 
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
+    fun observeTMDbTvList(): Flowable<List<TvListResult>>
+
+    fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail>
+
     suspend fun storeTMDbMovies(tmdbMovies: List<Result>)
 
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)

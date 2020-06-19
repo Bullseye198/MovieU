@@ -8,7 +8,7 @@ import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 data class TMDbMovieGenresSpokenLanguagesCastAndCrew(
     @Embedded
     var roomTMDbMovie: TMDbCachedRoomResultFull,
-    @Relation(parentColumn = "id", entityColumn = "genreTMDbID", entity = RoomTvListAndDetail::class)
+    @Relation(parentColumn = "id", entityColumn = "genreTMDbID")
     var roomGenres: List<RoomGenre>,
     @Relation(parentColumn = "id", entityColumn = "spokenLanguageTMDbID")
     var roomSpokenLanguage: List<RoomSpokenLanguage>,
