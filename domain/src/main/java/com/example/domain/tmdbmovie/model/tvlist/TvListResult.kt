@@ -1,6 +1,6 @@
 package com.example.domain.tmdbmovie.model.tvlist
 
-data class Result(
+data class TvListResult(
     val backdropPath: String, // /1qVOS9wcChP1Bt4Dnnxrb25aSJa.jpg
     val firstAirDate: String, // 2009-09-10
     val genreIds: List<Int>,

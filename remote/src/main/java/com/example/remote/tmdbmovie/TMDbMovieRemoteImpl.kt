@@ -5,11 +5,11 @@ import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
-import com.example.domain.tmdbmovie.model.tvlist.TMDbTvList
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import com.example.remote.tmdbmovie.model.credits.mapToDomainCredits
 import com.example.remote.tmdbmovie.model.mapToDomain
 import com.example.remote.tmdbmovie.model.tvdetail.mapToDomainTMDbTvDetail
-import com.example.remote.tmdbmovie.model.tvlist.mapToDomainTMDbTvList
+import com.example.remote.tmdbmovie.model.tvlist.mapToDomainResult
 import javax.inject.Inject
 
 class TMDbMovieRemoteImpl @Inject constructor(
@@ -53,11 +53,11 @@ class TMDbMovieRemoteImpl @Inject constructor(
         ).mapToDomainCredits()
     }
 
-    override suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): TMDbTvList {
+    override suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): List<TvListResult> {
         return tmDbMovieService.getTMDbTvList(
             tmdbTvToSearchFor = tmdbTvToSearchFor,
             apikey = "2797198b75a6557cae56bdfdb2dd1b52"
-        ).mapToDomainTMDbTvList()
+        ).resultsRaw.map { it.mapToDomainResult() }
     }
 
     override suspend fun fetchTMDbTvDetail(id: Int): TMDbTvDetail {

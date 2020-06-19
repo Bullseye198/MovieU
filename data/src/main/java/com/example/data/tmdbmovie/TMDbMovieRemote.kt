@@ -5,6 +5,7 @@ import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.model.tvlist.TMDbTvList
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 
 interface TMDbMovieRemote {
 
@@ -14,7 +15,7 @@ interface TMDbMovieRemote {
 
     suspend fun fetchTMDbCredits(id: Int): Credits
 
-    suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): TMDbTvList
+    suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): List<TvListResult>
 
     suspend fun fetchTMDbTvDetail(id: Int): TMDbTvDetail
 }

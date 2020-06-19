@@ -5,6 +5,8 @@ import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import io.reactivex.Flowable
 import javax.inject.Inject
 
@@ -37,6 +39,14 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieRemote.fetchTMDbCredits(id)
     }
 
+    override suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): List<TvListResult> {
+        return tmDbMovieRemote.fetchTMDbTvList(tmdbTvToSearchFor)
+    }
+
+    override suspend fun fetchTMDbTvDetail(id: Int): TMDbTvDetail {
+        return tmDbMovieRemote.fetchTMDbTvDetail(id)
+    }
+
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
         return tmDbMovieCache.storeTMDbMovieDetail(tmDbMovieDetail)
     }
@@ -45,10 +55,15 @@ class TMDbMovieRepoImpl @Inject constructor(
         return tmDbMovieCache.storeTMDbCredits(credits)
     }
 
+    override suspend fun storeTMDbTvList(tmdbTvList: List<TvListResult>) {
+        return tmDbMovieCache.storeTMDbTvList(tmdbTvList)
+    }
+
+    override suspend fun storeTMDbTvDetail(tmdbTvDetail: TMDbTvDetail) {
+        return tmDbMovieCache.storeTMDbTvDetail(tmdbTvDetail)
+    }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {
         return tmDbMovieCache.addOmdbInformation(omdbOMDbBaseInformation)
     }
-
-
 }

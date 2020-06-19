@@ -5,7 +5,7 @@ import com.example.domain.tmdbmovie.model.Credits
 import com.example.domain.tmdbmovie.model.Result
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
-import com.example.domain.tmdbmovie.model.tvlist.TMDbTvList
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import io.reactivex.Flowable
 
 interface TMDbMovieRepository {
@@ -20,7 +20,7 @@ interface TMDbMovieRepository {
 
     suspend fun fetchTMDbCredits(id: Int): Credits
 
-    suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): TMDbTvList
+    suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): List<TvListResult>
 
     suspend fun fetchTMDbTvDetail(id: Int): TMDbTvDetail
 
@@ -29,6 +29,10 @@ interface TMDbMovieRepository {
     suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail)
 
     suspend fun storeTMDbCredits(credits: Credits)
+
+    suspend fun storeTMDbTvList(tmdbTvList: List<TvListResult>)
+
+    suspend fun storeTMDbTvDetail(tmdbTvDetail: TMDbTvDetail)
 
     suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation)
 }

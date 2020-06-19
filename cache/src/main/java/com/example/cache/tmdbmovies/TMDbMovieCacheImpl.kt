@@ -5,6 +5,8 @@ import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.model.*
+import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -61,6 +63,14 @@ class TMDbMovieCacheImpl @Inject constructor(
         })
 
 
+    }
+
+    override suspend fun storeTMDbTvList(tmdbTvList: List<TvListResult>) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun storeTMDbTvDetail(tmdbTvDetail: TMDbTvDetail) {
+        TODO("Not yet implemented")
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {

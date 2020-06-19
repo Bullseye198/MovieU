@@ -1,12 +1,12 @@
 package com.example.remote.tmdbmovie.model.tvlist
 
 
-import com.example.domain.tmdbmovie.model.tvlist.Result
+import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ResultRaw(
+data class TvListResultRaw(
     @Json(name = "backdrop_path")
     val backdropPath: String, // /1qVOS9wcChP1Bt4Dnnxrb25aSJa.jpg
     @Json(name = "first_air_date")
@@ -35,7 +35,7 @@ data class ResultRaw(
     val voteCount: Int // 2139
 )
 
-fun ResultRaw.mapToDomainResult() = Result(
+fun TvListResultRaw.mapToDomainResult() = TvListResult(
     backdropPath = backdropPath,
     firstAirDate = firstAirDate,
     genreIds = genreIds,
