@@ -10,13 +10,13 @@ data class TMDbTvDetailRaw(
     @Json(name = "backdrop_path")
     val backdropPath: String, // /1qVOS9wcChP1Bt4Dnnxrb25aSJa.jpg
     @Json(name = "created_by")
-    val createdBy: List<CreatedByRaw>,
+    val tvDetailCreatedBy: List<TvDetailCreatedByRaw>,
     @Json(name = "episode_run_time")
     val episodeRunTime: List<Int>,
     @Json(name = "first_air_date")
     val firstAirDate: String, // 2009-09-10
     @Json(name = "genres")
-    val genres: List<GenreRaw>,
+    val tvDetailGenres: List<TvDetailGenreRaw>,
     @Json(name = "homepage")
     val homepage: String, // http://www.cwtv.com/shows/the-vampire-diaries
     @Json(name = "id")
@@ -28,11 +28,11 @@ data class TMDbTvDetailRaw(
     @Json(name = "last_air_date")
     val lastAirDate: String, // 2017-03-10
     @Json(name = "last_episode_to_air")
-    val lastEpisodeToAir: LastEpisodeToAirRaw,
+    val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAirRaw,
     @Json(name = "name")
     val name: String, // The Vampire Diaries
     @Json(name = "networks")
-    val networks: List<NetworkRaw>,
+    val tvDetailNetworks: List<TvDetailNetworkRaw>,
     @Json(name = "next_episode_to_air")
     val nextEpisodeToAir: Any, // null
     @Json(name = "number_of_episodes")
@@ -52,9 +52,9 @@ data class TMDbTvDetailRaw(
     @Json(name = "poster_path")
     val posterPath: String, // /aBkVgChtyyJaHyZh1gfd8DbzQon.jpg
     @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompanyRaw>,
+    val tvDetailProductionCompanies: List<TvDetailProductionCompanyRaw>,
     @Json(name = "seasons")
-    val seasonsRaw: List<SeasonRaw>,
+    val TvDetailseasonsRaw: List<TvDetailSeasonRaw>,
     @Json(name = "status")
     val status: String, // Ended
     @Json(name = "type")
@@ -67,18 +67,18 @@ data class TMDbTvDetailRaw(
 
 fun TMDbTvDetailRaw.mapToDomainTMDbTvDetail() = TMDbTvDetail(
      backdropPath = backdropPath,
-     createdBy = createdBy.map { it.mapToDomainCreatedBy() },
+     tvDetailCreatedBy = tvDetailCreatedBy.map { it.mapToDomainCreatedBy() },
      episodeRunTime = episodeRunTime,
      firstAirDate = firstAirDate,
-     genres = genres.map { it.mapToDomainGenre() },
+     tvDetailGenres = tvDetailGenres.map { it.mapToDomainGenre() },
      homepage = homepage,
      id = id,
      inProduction = inProduction,
      languages = languages,
      lastAirDate = lastAirDate,
-     lastEpisodeToAir = lastEpisodeToAir.mapToDomainLastEpisodeToAir(),
+     tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainLastEpisodeToAir(),
      name = name,
-     networks = networks.map { it.mapToDomainNetwork() },
+     tvDetailNetworks = tvDetailNetworks.map { it.mapToDomainNetwork() },
      nextEpisodeToAir = nextEpisodeToAir,
      numberOfEpisodes = numberOfEpisodes,
      numberOfSeasons = numberOfSeasons,
@@ -88,8 +88,8 @@ fun TMDbTvDetailRaw.mapToDomainTMDbTvDetail() = TMDbTvDetail(
      overview = overview,
      popularity = popularity,
      posterPath = posterPath,
-     productionCompanies = productionCompanies.map { it.mapToDomainProductionCompany() },
-     seasons = seasonsRaw.map { it.mapToDomainSeason() },
+     tvDetailProductionCompanies = tvDetailProductionCompanies.map { it.mapToDomainProductionCompany() },
+     tvDetailSeasons = TvDetailseasonsRaw.map { it.mapToDomainSeason() },
      status = status,
      type = type,
      voteAverage = voteAverage,

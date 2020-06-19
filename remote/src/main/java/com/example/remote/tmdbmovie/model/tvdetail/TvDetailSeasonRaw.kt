@@ -1,12 +1,12 @@
 package com.example.remote.tmdbmovie.model.tvdetail
 
 
-import com.example.domain.tmdbmovie.model.tvdetail.Season
+import com.example.domain.tmdbmovie.model.tvdetail.TvDetailSeason
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SeasonRaw(
+data class TvDetailSeasonRaw(
     @Json(name = "air_date")
     val airDate: String, // 2009-08-25
     @Json(name = "episode_count")
@@ -23,7 +23,7 @@ data class SeasonRaw(
     val seasonNumber: Int // 0
 )
 
-fun SeasonRaw.mapToDomainSeason() = Season(
+fun TvDetailSeasonRaw.mapToDomainSeason() = TvDetailSeason(
     airDate = airDate,
     episodeCount = episodeCount,
     id = id,

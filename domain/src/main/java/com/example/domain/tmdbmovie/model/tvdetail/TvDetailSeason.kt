@@ -1,6 +1,6 @@
 package com.example.domain.tmdbmovie.model.tvdetail
 
-data class Season(
+data class TvDetailSeason(
     val airDate: String, // 2009-08-25
     val episodeCount: Int, // 5
     val id: Int, // 28881

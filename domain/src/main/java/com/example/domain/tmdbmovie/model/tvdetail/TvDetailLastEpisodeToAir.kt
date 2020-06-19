@@ -1,6 +1,6 @@
 package com.example.domain.tmdbmovie.model.tvdetail
 
-data class LastEpisodeToAir(
+data class TvDetailLastEpisodeToAir(
     val airDate: String, // 2017-03-10
     val episodeNumber: Int, // 16
     val id: Int, // 1264246

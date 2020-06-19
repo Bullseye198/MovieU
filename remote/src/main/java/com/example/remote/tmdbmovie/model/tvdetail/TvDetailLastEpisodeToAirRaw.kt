@@ -1,12 +1,12 @@
 package com.example.remote.tmdbmovie.model.tvdetail
 
 
-import com.example.domain.tmdbmovie.model.tvdetail.LastEpisodeToAir
+import com.example.domain.tmdbmovie.model.tvdetail.TvDetailLastEpisodeToAir
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class LastEpisodeToAirRaw(
+data class TvDetailLastEpisodeToAirRaw(
     @Json(name = "air_date")
     val airDate: String, // 2017-03-10
     @Json(name = "episode_number")
@@ -31,7 +31,7 @@ data class LastEpisodeToAirRaw(
     val voteCount: Int // 5
 )
 
-fun LastEpisodeToAirRaw.mapToDomainLastEpisodeToAir() = LastEpisodeToAir(
+fun TvDetailLastEpisodeToAirRaw.mapToDomainLastEpisodeToAir() = TvDetailLastEpisodeToAir(
     airDate = airDate,
     episodeNumber = episodeNumber,
     id = id,

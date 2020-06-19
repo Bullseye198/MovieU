@@ -1,12 +1,12 @@
 package com.example.remote.tmdbmovie.model.tvdetail
 
 
-import com.example.domain.tmdbmovie.model.tvdetail.CreatedBy
+import com.example.domain.tmdbmovie.model.tvdetail.TvDetailCreatedBy
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class CreatedByRaw(
+data class TvDetailCreatedByRaw(
     @Json(name = "credit_id")
     val creditId: String, // 52585551760ee346610970f5
     @Json(name = "gender")
@@ -19,7 +19,7 @@ data class CreatedByRaw(
     val profilePath: Any // null
 )
 
-fun CreatedByRaw.mapToDomainCreatedBy() = CreatedBy(
+fun TvDetailCreatedByRaw.mapToDomainCreatedBy() = TvDetailCreatedBy(
     creditId = creditId,
     gender = gender,
     id = id,
