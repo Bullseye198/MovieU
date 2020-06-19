@@ -1,6 +1,7 @@
 package com.example.cache.tmdbmovies
 
 import com.example.cache.tmdbmovies.dao.*
+import com.example.cache.tmdbmovies.dao.tvdetaildao.*
 import com.example.cache.tmdbmovies.model.*
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
@@ -17,7 +18,13 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val genreDao: TMDbGenreDao,
     private val spokenLanguageDao: TMDbSpokenLanguageDao,
     private val castDao: TMDbCastDao,
-    private val crewDao: TMDbCrewDao
+    private val crewDao: TMDbCrewDao,
+    private val tvDetailCreatedByDao: TvDetailCreatedByDao,
+    private val tvDetailGenreDao: TvDetailGenreDao,
+    private val tvDetailLastEpisodeToAirDao: TvDetailLastEpisodeToAirDao,
+    private val tvDetailNetworkDao: TvDetailNetworkDao,
+    private val tvDetailProductionCompanyDao: TvDetailProductionCompanyDao,
+    private val tvDetailSeasonDao: TvDetailSeasonDao
 ) : TMDbMovieCache {
 
     override fun observeTMDbMovies(): Flowable<List<Result>> {
