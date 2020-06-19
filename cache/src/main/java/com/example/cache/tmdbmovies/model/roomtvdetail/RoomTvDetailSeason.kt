@@ -18,10 +18,9 @@ data class RoomTvDetailSeason(
     val seasonNumber: Int // 0
 )
 
-fun RoomTvDetailSeason.mapToDomainTvDetailSeason(): RoomTvDetailSeason {
-    return RoomTvDetailSeason(
+fun RoomTvDetailSeason.mapToDomainTvDetailSeason(): TvDetailSeason {
+    return TvDetailSeason(
         airDate = airDate,
-        seasonID = seasonID,
         episodeCount = episodeCount,
         id = id,
         name = name,
