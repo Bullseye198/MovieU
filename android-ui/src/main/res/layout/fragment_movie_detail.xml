@@ -35,7 +35,7 @@
                 android:id="@+id/movieDetailBackdrop"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="64dp"
+                android:layout_marginBottom="32dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="@+id/movieDetailView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/movieDetailView"
                 android:layout_width="195dp"
                 android:layout_height="274dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 android:adjustViewBounds="true"
                 android:focusable="true"
                 android:scaleType="centerCrop"
@@ -188,6 +188,54 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_movie_budget" />
+
+            <TextView
+                android:id="@+id/txtCast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Cast"
+                android:textColor="@color/grey600"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_movie_popularity" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_cast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCast" />
+
+            <TextView
+                android:id="@+id/txtCrew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Crew"
+                android:textColor="@color/grey600"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rec_list_cast" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_crew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCrew" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
