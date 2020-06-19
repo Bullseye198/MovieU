@@ -2,12 +2,13 @@ package com.example.cache.tmdbmovies.model
 
 import androidx.room.Embedded
 import androidx.room.Relation
+import com.example.cache.tmdbmovies.model.roomtvlist.RoomTvListAndDetail
 import com.example.domain.tmdbmovie.model.TMDbMovieDetail
 
 data class TMDbMovieGenresSpokenLanguagesCastAndCrew(
     @Embedded
     var roomTMDbMovie: TMDbCachedRoomResultFull,
-    @Relation(parentColumn = "id", entityColumn = "genreTMDbID")
+    @Relation(parentColumn = "id", entityColumn = "genreTMDbID", entity = RoomTvListAndDetail::class)
     var roomGenres: List<RoomGenre>,
     @Relation(parentColumn = "id", entityColumn = "spokenLanguageTMDbID")
     var roomSpokenLanguage: List<RoomSpokenLanguage>,

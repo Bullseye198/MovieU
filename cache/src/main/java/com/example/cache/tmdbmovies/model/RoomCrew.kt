@@ -31,7 +31,7 @@ fun RoomCrew.mapToDomainCrew(): Crew {
     )
 }
 
-fun Crew.mapToRoomCrew(crewTMDbID: String): RoomCrew{
+fun Crew.mapToRoomCrew(crewTMDbID: String): RoomCrew {
     return RoomCrew(
         creditId = creditId,
         department = department,
