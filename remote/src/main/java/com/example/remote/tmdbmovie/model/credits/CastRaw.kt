@@ -1,4 +1,4 @@
-package com.example.remote.tmdbmovie.model
+package com.example.remote.tmdbmovie.model.credits
 
 
 import com.example.domain.tmdbmovie.model.Cast
