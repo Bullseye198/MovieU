@@ -40,3 +40,5 @@ Done:
 - [x] Migrate to state pattern
 - [x] More RxJava Stuff
 - [x] Integrate TMDb API
+- [x] Added IMDb Ratings
+- [x] Added Cast and Crew
