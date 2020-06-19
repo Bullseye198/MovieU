@@ -88,13 +88,13 @@ fun RoomTvListResult.mapToDomainTMDbTvDetail(
         nextEpisodeToAir = nextEpisodeToAir,
         numberOfEpisodes = numberOfEpisodes,
         numberOfSeasons = numberOfSeasons,
+        episodeRunTime = emptyList(),
         tvDetailCreatedBy = tvDetailCreatedBy.map { it.mapToDomainTvDetailCreatedBy() },
         tvDetailGenres = tvDetailgenre.map { it.mapToDomainTvDetailGenre() },
         tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainTvDetailLastEpisodeToAir(),
         tvDetailNetworks = tvDetailNetwork.map { it.mapToDomainTvDetailNetwork() },
         tvDetailProductionCompanies = tvDetailProductionCompany.map { it.mapToDomainTvDetailProductionCompany() },
-        tvDetailSeasons = tvDetailSeason.map { it.mapToDomainTvDetailSeason() },
-        episodeRunTime = emptyList()
+        tvDetailSeasons = tvDetailSeason.map { it.mapToDomainTvDetailSeason() }
     )
 }
 
