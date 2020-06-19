@@ -18,6 +18,7 @@ class MovieDetailFragment : DaggerFragment() {
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var genreAdapter: MovieGenreAdapter
     private lateinit var castAdapter: MovieCastAdapter
+    private lateinit var crewAdapter: MovieCrewAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
     @Inject
@@ -51,6 +52,7 @@ class MovieDetailFragment : DaggerFragment() {
         observeViewModel()
         setUPMovieGenreAdapter()
         setUpMovieCastAdapter()
+        setUpMovieCrewAdapter()
     }
 
 
@@ -77,6 +79,20 @@ class MovieDetailFragment : DaggerFragment() {
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
                     castAdapter.submitList(movieDetailState.tmDbMovieDetail?.cast)
+                }
+            }
+        )
+    }
+
+    private fun setUpMovieCrewAdapter() {
+        crewAdapter = MovieCrewAdapter()
+        binding.recListCrew.adapter = crewAdapter
+
+        viewModel.getState().observe(
+            viewLifecycleOwner,
+            Observer { movieDetailState ->
+                if (movieDetailState != null) {
+                    crewAdapter.submitList(movieDetailState.tmDbMovieDetail?.crew)
                 }
             }
         )
