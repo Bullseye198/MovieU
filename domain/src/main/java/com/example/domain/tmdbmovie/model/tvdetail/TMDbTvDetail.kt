@@ -9,12 +9,12 @@ data class TMDbTvDetail(
     val homepage: String?, // http://www.cwtv.com/shows/the-vampire-diaries
     val id: Int, // 18165
     val inProduction: Boolean?, // false
-    val languages: List<String>?,
+    val languages: List<TMDbTvDetailLanguages>?,
     val lastAirDate: String?, // 2017-03-10
     val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAir,
     val name: String, // The Vampire Diaries
     val tvDetailNetworks: List<TvDetailNetwork>,
-    val nextEpisodeToAir: Any?, // null
+    val nextEpisodeToAir: String?, // null
     val numberOfEpisodes: Int?, // 171
     val numberOfSeasons: Int?, // 8
     val originCountry: List<String>,

@@ -10,7 +10,7 @@ import com.example.domain.tmdbmovie.model.Crew
 
 data class RoomCrew(
     val id: Int, // 123
-    val crewTMDbID: String,
+    val crewTMDbID: Int,
     val creditId: String, // 5831cc6d92514162d2027340
     val department: String, // Production
     val gender: Int, // 2
@@ -31,7 +31,7 @@ fun RoomCrew.mapToDomainCrew(): Crew {
     )
 }
 
-fun Crew.mapToRoomCrew(crewTMDbID: String): RoomCrew {
+fun Crew.mapToRoomCrew(crewTMDbID: Int): RoomCrew {
     return RoomCrew(
         creditId = creditId,
         department = department,

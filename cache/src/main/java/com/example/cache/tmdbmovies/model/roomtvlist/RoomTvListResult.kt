@@ -17,9 +17,7 @@ data class RoomTvListResult(
     val id: Int,
     val backdropPath: String?,
     val firstAirDate: String,
-    val genreIds: List<Int>,
     val name: String,
-    val originCountry: List<String>,
     val originalLanguage: String,
     val originalName: String,
     val overview: String,
@@ -31,10 +29,10 @@ data class RoomTvListResult(
     //tvDetail
     val homepage: String?,
     val inProduction: Boolean?,
-    val languages: List<String>?,
+   // val languages: List<String>?,
     val lastAirDate: String?,
-    val nextEpisodeToAir: Any?,
     val numberOfEpisodes: Int?,
+    val nextEpisodeToAir: String?,
     val numberOfSeasons: Int?,
     val status: String?,
     val type: String?
@@ -45,16 +43,16 @@ fun RoomTvListResult.mapToDomainTvListResult(): TvListResult {
         id = id,
         backdropPath = backdropPath,
         firstAirDate = firstAirDate,
-        genreIds = genreIds,
+        genreIds = emptyList(),
         name = name,
-        originCountry = originCountry,
         originalLanguage = originalLanguage,
         originalName = originalName,
         overview = overview,
         popularity = popularity,
         posterPath = posterPath,
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
+        originCountry = emptyList()
     )
 }
 
@@ -64,20 +62,19 @@ fun RoomTvListResult.mapToDomainTMDbTvDetail(
     tvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir,
     tvDetailNetwork: List<RoomTvDetailNetwork>,
     tvDetailProductionCompany: List<RoomTvDetailProductionCompany>,
-    tvDetailSeason: List<RoomTvDetailSeason>
+    tvDetailSeason: List<RoomTvDetailSeason>,
+    tvDetailLanguages: List<RoomTvDetailLanguages>
 ): TMDbTvDetail {
     return TMDbTvDetail(
         id = id,
         posterPath = posterPath,
         overview = overview,
         name = name,
-        languages = languages,
         voteCount = voteCount,
         voteAverage = voteAverage,
         popularity = popularity,
         originalName = originalName,
         originalLanguage = originalLanguage,
-        originCountry = originCountry,
         firstAirDate = firstAirDate,
         type = type,
         homepage = homepage,
@@ -85,10 +82,12 @@ fun RoomTvListResult.mapToDomainTMDbTvDetail(
         backdropPath = backdropPath,
         inProduction = inProduction,
         lastAirDate = lastAirDate,
-        nextEpisodeToAir = nextEpisodeToAir,
         numberOfEpisodes = numberOfEpisodes,
         numberOfSeasons = numberOfSeasons,
+        nextEpisodeToAir = nextEpisodeToAir,
+        originCountry = emptyList(),
         episodeRunTime = emptyList(),
+        languages = tvDetailLanguages.map { it.mapToDomainTvDetailLanguages() },
         tvDetailCreatedBy = tvDetailCreatedBy.map { it.mapToDomainTvDetailCreatedBy() },
         tvDetailGenres = tvDetailgenre.map { it.mapToDomainTvDetailGenre() },
         tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainTvDetailLastEpisodeToAir(),
@@ -104,14 +103,11 @@ fun TMDbTvDetail.mapToRoomTvListResult(): RoomTvListResult {
         posterPath = posterPath,
         overview = overview,
         name = name,
-        languages = languages,
         voteCount = voteCount,
         voteAverage = voteAverage,
         popularity = popularity,
         originalName = originalName,
         originalLanguage = originalLanguage,
-        originCountry = originCountry,
-        genreIds = emptyList(),
         firstAirDate = firstAirDate,
         type = type,
         homepage = homepage,
@@ -119,10 +115,9 @@ fun TMDbTvDetail.mapToRoomTvListResult(): RoomTvListResult {
         backdropPath = backdropPath,
         inProduction = inProduction,
         lastAirDate = lastAirDate,
-        nextEpisodeToAir = nextEpisodeToAir,
         numberOfEpisodes = numberOfEpisodes,
-        numberOfSeasons = numberOfSeasons
-
+        numberOfSeasons = numberOfSeasons,
+        nextEpisodeToAir = nextEpisodeToAir
     )
 }
 
@@ -131,9 +126,7 @@ fun TvListResult.mapToRoomTvListResult(): RoomTvListResult {
         id = id,
         backdropPath = backdropPath,
         firstAirDate = firstAirDate,
-        genreIds = genreIds,
         name = name,
-        originCountry = originCountry,
         originalLanguage = originalLanguage,
         originalName = originalName,
         overview = overview,
@@ -145,12 +138,11 @@ fun TvListResult.mapToRoomTvListResult(): RoomTvListResult {
         //tvDetail
         homepage = null,
         inProduction = null,
-        languages = null,
         lastAirDate = null,
-        nextEpisodeToAir = null,
         numberOfEpisodes = null,
         numberOfSeasons = null,
         status = null,
-        type = null
+        type = null,
+        nextEpisodeToAir = null
     )
 }

@@ -22,9 +22,10 @@ private const val DATABASE = "tmdbMovie"
         RoomTvDetailLastEpisodeToAir::class,
         RoomTvDetailNetwork::class,
         RoomTvDetailProductionCompany::class,
-        RoomTvDetailSeason::class
+        RoomTvDetailSeason::class,
+        RoomTvDetailLanguages::class
     ],
-    version = 5,
+    version = 7,
     exportSchema = false
 )
 
@@ -41,4 +42,5 @@ abstract class TMDbRoomMovieDatabase : RoomDatabase() {
     abstract fun tvDetailNetworkDao(): TvDetailNetworkDao
     abstract fun tvDetailProductionCompanyDao(): TvDetailProductionCompanyDao
     abstract fun tvDetailSeasonDao(): TvDetailSeasonDao
+    abstract fun tvDetailLanguagesDao(): TvDetailLanguagesDao
 }

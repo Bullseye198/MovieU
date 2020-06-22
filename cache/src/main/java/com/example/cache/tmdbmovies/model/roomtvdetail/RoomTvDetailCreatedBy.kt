@@ -13,7 +13,7 @@ data class RoomTvDetailCreatedBy(
     val creditId: String, // 52585551760ee346610970f5
     val gender: Int, // 2
     val name: String, // Kevin Williamson
-    val profilePath: Any // null
+    val profilePath: String? // null
 )
 
 fun RoomTvDetailCreatedBy.mapToDomainTvDetailCreatedBy(): TvDetailCreatedBy {

@@ -54,4 +54,8 @@ object DaoModule {
     @Provides
     fun provideTvDetailSeason(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
         tmDbRoomMovieDatabase.tvDetailSeasonDao()
+
+    @Provides
+    fun provideTvDetailLanguages(tmDbRoomMovieDatabase: TMDbRoomMovieDatabase) =
+        tmDbRoomMovieDatabase.tvDetailLanguagesDao()
 }

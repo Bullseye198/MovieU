@@ -19,7 +19,9 @@ data class RoomTvListAndDetail(
     @Relation(parentColumn = "id", entityColumn = "productionCompanyID")
     var roomTvDetailProductionCompany: List<RoomTvDetailProductionCompany>,
     @Relation(parentColumn = "id", entityColumn = "seasonID")
-    var roomTvDetailSeason: List<RoomTvDetailSeason>
+    var roomTvDetailSeason: List<RoomTvDetailSeason>,
+    @Relation(parentColumn = "id", entityColumn = "languagesID")
+    var roomTvDetailLanguages: List<RoomTvDetailLanguages>
 )
 
 fun RoomTvListAndDetail.mapToDomainTvDetailResult(): TMDbTvDetail {
@@ -29,6 +31,7 @@ fun RoomTvListAndDetail.mapToDomainTvDetailResult(): TMDbTvDetail {
         roomTvDetailLastEpisodeToAir,
         roomTvDetailNetwork,
         roomTvDetailProductionCompany,
-        roomTvDetailSeason
+        roomTvDetailSeason,
+        roomTvDetailLanguages
     )
 }

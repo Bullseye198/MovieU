@@ -5,5 +5,5 @@ data class TvDetailCreatedBy(
     val gender: Int, // 2
     val id: Int, // 26458
     val name: String, // Kevin Williamson
-    val profilePath: Any // null
+    val profilePath: String? // null
 )

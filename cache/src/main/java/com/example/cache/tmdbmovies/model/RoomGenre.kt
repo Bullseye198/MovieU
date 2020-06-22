@@ -9,11 +9,11 @@ import com.example.domain.tmdbmovie.model.Genre
 )
 data class RoomGenre(
     val id: Int,
-    val genreTMDbID: String,
+    val genreTMDbID: Int,
     val name: String
 )
 
-fun Genre.mapToRoomGenre(genreTMDbID: String): RoomGenre {
+fun Genre.mapToRoomGenre(genreTMDbID: Int): RoomGenre {
     return RoomGenre(
         id = id,
         genreTMDbID = genreTMDbID,

@@ -2,6 +2,7 @@ package com.example.remote.tmdbmovie.model.tvdetail
 
 
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
+import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetailLanguages
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -34,7 +35,7 @@ data class TMDbTvDetailRaw(
     @Json(name = "networks")
     val tvDetailNetworks: List<TvDetailNetworkRaw>,
     @Json(name = "next_episode_to_air")
-    val nextEpisodeToAir: Any, // null
+    val nextEpisodeToAir: String, // null
     @Json(name = "number_of_episodes")
     val numberOfEpisodes: Int, // 171
     @Json(name = "number_of_seasons")
@@ -74,7 +75,7 @@ fun TMDbTvDetailRaw.mapToDomainTMDbTvDetail() = TMDbTvDetail(
      homepage = homepage,
      id = id,
      inProduction = inProduction,
-     languages = languages,
+     languages = languages.map { TMDbTvDetailLanguages(it) },
      lastAirDate = lastAirDate,
      tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainLastEpisodeToAir(),
      name = name,

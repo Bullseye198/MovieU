@@ -10,7 +10,7 @@ import com.example.domain.tmdbmovie.model.Cast
 
 data class RoomCast (
     val castId: Int, // 34
-    val castTMDbID: String,
+    val castTMDbID: Int,
     val character: String, // Thomas A. Anderson / Neo
     val creditId: String, // 52fe425bc3a36847f80181c1
     val gender: Int, // 2
@@ -33,7 +33,7 @@ fun RoomCast.mapToDomainCast(): Cast{
     )
 }
 
-fun Cast.mapToRoomCast(castTMDbID: String): RoomCast{
+fun Cast.mapToRoomCast(castTMDbID: Int): RoomCast{
     return RoomCast(
         castId = castId,
         character = character,

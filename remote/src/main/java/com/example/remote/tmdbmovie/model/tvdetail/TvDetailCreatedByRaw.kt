@@ -16,7 +16,7 @@ data class TvDetailCreatedByRaw(
     @Json(name = "name")
     val name: String, // Kevin Williamson
     @Json(name = "profile_path")
-    val profilePath: Any // null
+    val profilePath: String? // null
 )
 
 fun TvDetailCreatedByRaw.mapToDomainCreatedBy() = TvDetailCreatedBy(

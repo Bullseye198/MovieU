@@ -29,7 +29,8 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val tvDetailLastEpisodeToAirDao: TvDetailLastEpisodeToAirDao,
     private val tvDetailNetworkDao: TvDetailNetworkDao,
     private val tvDetailProductionCompanyDao: TvDetailProductionCompanyDao,
-    private val tvDetailSeasonDao: TvDetailSeasonDao
+    private val tvDetailSeasonDao: TvDetailSeasonDao,
+    private val tvDetailLanguagesDao: TvDetailLanguagesDao
 ) : TMDbMovieCache {
 
     override fun observeTMDbMovies(): Flowable<List<Result>> {
@@ -62,7 +63,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
         tmDbMovieDao.insertOneSuspend(tmDbMovieDetail.mapToFullRoomModel())
         genreDao.InsertGenre(tmDbMovieDetail.genres.map { tmdbMovieRatings ->
-            tmdbMovieRatings.mapToRoomGenre(tmDbMovieDetail.id.toString())
+            tmdbMovieRatings.mapToRoomGenre(tmDbMovieDetail.id)
         })
         spokenLanguageDao.InsertSpokenLanguage(tmDbMovieDetail.spokenLanguages.map { tmdbMovieSpokenLanguages ->
             tmdbMovieSpokenLanguages.mapToRoomSpokenLanguage(tmDbMovieDetail.id)
@@ -71,9 +72,9 @@ class TMDbMovieCacheImpl @Inject constructor(
 
     override suspend fun storeTMDbCredits(credits: Credits) {
 
-        castDao.InsertCast(credits.cast.map { cast: Cast -> cast.mapToRoomCast(credits.id.toString()) })
+        castDao.InsertCast(credits.cast.map { cast: Cast -> cast.mapToRoomCast(credits.id) })
         crewDao.InsertCrew(credits.crew.map { crew: Crew ->
-            crew.mapToRoomCrew(credits.id.toString())
+            crew.mapToRoomCrew(credits.id)
         })
     }
 
@@ -114,6 +115,10 @@ class TMDbMovieCacheImpl @Inject constructor(
 
         tvDetailSeasonDao.insertTvDetailSeason(tmdbTvDetail.tvDetailSeasons.map { tmdbTvDetailSeason ->
             tmdbTvDetailSeason.mapToRoomTvDetailSeason(tmdbTvDetail.id.toString())
+        })
+
+        tvDetailLanguagesDao.insertTvDetailLanguages(tmdbTvDetail.languages?.map { tmdbTvDetailLanguages ->
+            tmdbTvDetailLanguages.mapToRoomTvDetailLanguages(tmdbTvDetail.id.toString())
         })
     }
 
