@@ -91,17 +91,5 @@ class MovieListFragment : DaggerFragment() {
             }
         )
     }
-/*
-    private fun observeViewModel() {
-        viewModel.getState().observe(
-            viewLifecycleOwner,
-            Observer { movieListState ->
-                if (movieListState != null) {
-                    adapter.submitList(movieListState.feed)
-                }
-            }
-        )
-    }
-    */
 }
 
