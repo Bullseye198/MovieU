@@ -21,6 +21,8 @@ class MediaDetailFragment : DaggerFragment() {
     private lateinit var crewAdapter: MovieCrewAdapter
     private lateinit var binding: FragmentMovieDetailBinding
 
+    var fetchedMovieDetailInformation: Boolean = false
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -60,11 +62,11 @@ class MediaDetailFragment : DaggerFragment() {
         genreAdapter = MovieGenreAdapter()
         binding.recListGenre.adapter = genreAdapter
 
-        viewModel.getMovieState().observe(
+        viewModel.getMediaState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
-                    genreAdapter.submitList(movieDetailState.tmDbMovieDetail?.genres)
+                    genreAdapter.submitList(movieDetailState.uiMediaDetail?.genres)
                 }
             }
         )
@@ -74,11 +76,11 @@ class MediaDetailFragment : DaggerFragment() {
         castAdapter = MovieCastAdapter()
         binding.recListCast.adapter = castAdapter
 
-        viewModel.getMovieState().observe(
+        viewModel.getMediaState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
-                    castAdapter.submitList(movieDetailState.tmDbMovieDetail?.cast)
+                    castAdapter.submitList(movieDetailState.uiMediaDetail?.cast)
                 }
             }
         )
@@ -88,11 +90,11 @@ class MediaDetailFragment : DaggerFragment() {
         crewAdapter = MovieCrewAdapter()
         binding.recListCrew.adapter = crewAdapter
 
-        viewModel.getMovieState().observe(
+        viewModel.getMediaState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
-                    crewAdapter.submitList(movieDetailState.tmDbMovieDetail?.crew)
+                    crewAdapter.submitList(movieDetailState.uiMediaDetail?.crew)
                 }
             }
         )
@@ -100,48 +102,69 @@ class MediaDetailFragment : DaggerFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
-        viewModel.getMovieState().observe(
+        viewModel.getMediaState().observe(
             viewLifecycleOwner,
             Observer { t ->
-                if (t != null) {
-                    val posterPath =
-                        "http://image.tmdb.org/t/p/w500/${t.tmDbMovieDetail?.posterPath}"
-                    binding.movieDetailView.load(posterPath)
-                    val backdropPath =
-                        "https://image.tmdb.org/t/p/w780/${t.tmDbMovieDetail?.backdropPath}"
-                    binding.movieDetailBackdrop.load(backdropPath)
-                    binding.lblMovieTitle.text = t.tmDbMovieDetail?.title
-                    binding.lblMovieYear.text = t.tmDbMovieDetail?.releaseDate
+                val posterPath =
+                    "http://image.tmdb.org/t/p/w500/${t.uiMediaDetail?.posterPath}"
+                binding.movieDetailView.load(posterPath)
 
-                    if (t.tmDbMovieDetail?.runtime == null) {
-                        binding.lblMovieRuntime.text = ""
-                    } else {
-                        binding.lblMovieRuntime.text =
-                            t.tmDbMovieDetail?.runtime.toString() + " Min"
-                    }
+                val backdropPath =
+                    "https://image.tmdb.org/t/p/w780/${t.uiMediaDetail?.backdropPath}"
 
-                    binding.lblMoviePlot.text = t.tmDbMovieDetail?.overview
-                    binding.lblMovieGenre.text = "Genre: "
-                    binding.lblMovieLanguage.text =
-                        "Language: " + t.tmDbMovieDetail?.originalLanguage
+                binding.movieDetailBackdrop.load(backdropPath)
 
-                    if (t.tmDbMovieDetail?.budget == null) {
-                        binding.lblMovieBudget.text = "Budget: Unknown"
-                    } else {
-                        binding.lblMovieBudget.text =
-                            "Budget: " + t.tmDbMovieDetail?.budget + " Dollars"
-                    }
+                if (t.uiMediaDetail?.title != null) {
+                    binding.lblMovieTitle.text = t.uiMediaDetail?.title
 
-                    if (t.tmDbMovieDetail?.imdbId == null) {
-                        binding.lblMovieImdbRating.text = "IMDb Rating: Unknown"
-                    } else {
-                        binding.lblMovieImdbRating.text =
-                            "IMDb Rating: " + t.tmDbMovieDetail?.imdbRating
-                    }
+                } else {
+                    binding.lblMovieTitle.text = t.uiMediaDetail?.name
 
-                    binding.lblMoviePopularity.text = "Popularity: " + t.tmDbMovieDetail?.popularity
                 }
-            }
-        )
+
+                if (t.uiMediaDetail?.releaseDate != null) {
+                    binding.lblMovieYear.text = t.uiMediaDetail?.releaseDate
+
+                } else {
+                    binding.lblMovieYear.text = t.uiMediaDetail?.firstAirDate
+
+                }
+
+                if (t.uiMediaDetail?.runtime != null) {
+                    binding.lblMovieRuntime.text =
+                        t.uiMediaDetail.runtime.toString() + " Min"
+                } else if (t.uiMediaDetail?.numberOfSeasons != null) {
+                    binding.lblMovieRuntime.text =
+                        t.uiMediaDetail.numberOfSeasons.toString() + " Seasons"
+
+                } else {
+                    binding.lblMovieRuntime.text = "0 Min"
+                }
+
+                binding.lblMoviePlot.text = t.uiMediaDetail?.overview
+                binding.lblMovieGenre.text = "Genre: "
+                binding.lblMovieLanguage.text =
+                    "Language: " + t.uiMediaDetail?.originalLanguage
+
+                if (t.uiMediaDetail?.budget == null) {
+                    binding.lblMovieBudget.text = "Budget: Unknown"
+                } else {
+                    binding.lblMovieBudget.text =
+                        "Budget: " + t.uiMediaDetail.budget + " Dollars"
+                }
+
+                if (t.uiMediaDetail?.imdbId != null) {
+                    binding.lblMovieImdbRating.text =
+                        "IMDb Rating: " + t.uiMediaDetail.imdbRating
+                } else if (t.uiMediaDetail?.voteAverage != null) {
+                    binding.lblMovieImdbRating.text = "Vote Average: " + t.uiMediaDetail.voteAverage.toString()
+                } else {
+
+                    binding.lblMovieImdbRating.text = "IMDb Rating: Unknown"
+
+                }
+
+                binding.lblMoviePopularity.text = "Popularity: " + t.uiMediaDetail?.popularity
+            })
     }
 }
