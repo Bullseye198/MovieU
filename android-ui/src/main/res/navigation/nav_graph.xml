@@ -12,7 +12,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/movieDetail"
-        android:name="com.example.movieu.movie.moviedetail.MovieDetailFragment"
+        android:name="com.example.movieu.movie.moviedetail.MediaDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail">
 

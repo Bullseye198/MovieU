@@ -13,7 +13,7 @@ import com.example.movieu.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MovieDetailFragment : DaggerFragment() {
+class MediaDetailFragment : DaggerFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var genreAdapter: MovieGenreAdapter
