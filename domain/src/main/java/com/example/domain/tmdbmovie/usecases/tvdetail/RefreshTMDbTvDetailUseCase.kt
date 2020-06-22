@@ -16,6 +16,7 @@ class RefreshTMDbTvDetailUseCase @Inject constructor(
             val tmdbTvServerDetail = tmDbMovieRepository.fetchTMDbTvDetail(params!!.id)
             tmDbMovieRepository.storeTMDbTvDetail(tmdbTvServerDetail)
         } catch (e: Exception) {
+            val x = e
         }
     }
 

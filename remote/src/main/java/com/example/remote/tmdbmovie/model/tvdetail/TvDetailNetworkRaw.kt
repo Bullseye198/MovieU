@@ -10,7 +10,7 @@ data class TvDetailNetworkRaw(
     @Json(name = "id")
     val id: Int, // 71
     @Json(name = "logo_path")
-    val logoPath: String, // /ge9hzeaU7nMtQ4PjkFlc68dGAJ9.png
+    val logoPath: String?, // /ge9hzeaU7nMtQ4PjkFlc68dGAJ9.png
     @Json(name = "name")
     val name: String, // The CW
     @Json(name = "origin_country")

@@ -29,13 +29,13 @@ data class TMDbTvDetailRaw(
     @Json(name = "last_air_date")
     val lastAirDate: String, // 2017-03-10
     @Json(name = "last_episode_to_air")
-    val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAirRaw,
+    val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAirRaw?,
     @Json(name = "name")
     val name: String, // The Vampire Diaries
     @Json(name = "networks")
     val tvDetailNetworks: List<TvDetailNetworkRaw>,
     @Json(name = "next_episode_to_air")
-    val nextEpisodeToAir: String, // null
+    val nextEpisodeToAir: String?, // null
     @Json(name = "number_of_episodes")
     val numberOfEpisodes: Int, // 171
     @Json(name = "number_of_seasons")
@@ -77,7 +77,7 @@ fun TMDbTvDetailRaw.mapToDomainTMDbTvDetail() = TMDbTvDetail(
      inProduction = inProduction,
      languages = languages.map { TMDbTvDetailLanguages(it) },
      lastAirDate = lastAirDate,
-     tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainLastEpisodeToAir(),
+     tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir?.mapToDomainLastEpisodeToAir(),
      name = name,
      tvDetailNetworks = tvDetailNetworks.map { it.mapToDomainNetwork() },
      nextEpisodeToAir = nextEpisodeToAir,

@@ -10,7 +10,7 @@ data class TvDetailProductionCompanyRaw(
     @Json(name = "id")
     val id: Int, // 1957
     @Json(name = "logo_path")
-    val logoPath: String, // /nmcNfPq03WLtOyufJzQbiPu2Enc.png
+    val logoPath: String?, // /nmcNfPq03WLtOyufJzQbiPu2Enc.png
     @Json(name = "name")
     val name: String, // Warner Bros. Television
     @Json(name = "origin_country")

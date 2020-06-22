@@ -10,7 +10,7 @@ import com.example.domain.tmdbmovie.model.tvdetail.TvDetailProductionCompany
 data class RoomTvDetailProductionCompany(
     val id: Int, // 1957
     val productionCompanyID: String,
-    val logoPath: String, // /nmcNfPq03WLtOyufJzQbiPu2Enc.png
+    val logoPath: String?, // /nmcNfPq03WLtOyufJzQbiPu2Enc.png
     val name: String, // Warner Bros. Television
     val originCountry: String // US
 )
