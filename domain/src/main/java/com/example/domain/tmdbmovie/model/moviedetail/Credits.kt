@@ -1,6 +1,4 @@
-package com.example.domain.tmdbmovie.model
-
-import com.squareup.moshi.Json
+package com.example.domain.tmdbmovie.model.moviedetail
 
 data class Credits(
     val cast: List<Cast>,

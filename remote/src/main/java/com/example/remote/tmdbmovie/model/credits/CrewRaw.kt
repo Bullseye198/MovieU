@@ -1,7 +1,7 @@
 package com.example.remote.tmdbmovie.model.credits
 
 
-import com.example.domain.tmdbmovie.model.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -23,12 +23,13 @@ data class CrewRaw(
     val profilePath: String? // /xWtXYk6M5NFroddcQDviLlxOnkU.jpg
 )
 
-fun CrewRaw.mapDomainCrewModel() = Crew(
-    creditId = creditId,
-    department = department,
-    gender = gender,
-    id = id,
-    job = job,
-    name = name,
-    profilePath = profilePath
-)
+fun CrewRaw.mapDomainCrewModel() =
+    Crew(
+        creditId = creditId,
+        department = department,
+        gender = gender,
+        id = id,
+        job = job,
+        name = name,
+        profilePath = profilePath
+    )

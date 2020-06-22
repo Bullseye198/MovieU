@@ -1,7 +1,7 @@
 package com.example.remote.tmdbmovie.model.credits
 
 
-import com.example.domain.tmdbmovie.model.Cast
+import com.example.domain.tmdbmovie.model.moviedetail.Cast
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

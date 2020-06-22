@@ -1,7 +1,7 @@
 package com.example.remote.tmdbmovie.model.credits
 
 
-import com.example.domain.tmdbmovie.model.Credits
+import com.example.domain.tmdbmovie.model.moviedetail.Credits
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -15,9 +15,10 @@ data class CreditsRaw(
     val id: Int // 603
 )
 
-fun CreditsRaw.mapToDomainCredits() = Credits(
-    cast = cast.map { it.mapToDomain() },
-    crew = crew.map { it.mapDomainCrewModel() },
-    id = id
-)
+fun CreditsRaw.mapToDomainCredits() =
+    Credits(
+        cast = cast.map { it.mapToDomain() },
+        crew = crew.map { it.mapDomainCrewModel() },
+        id = id
+    )
 

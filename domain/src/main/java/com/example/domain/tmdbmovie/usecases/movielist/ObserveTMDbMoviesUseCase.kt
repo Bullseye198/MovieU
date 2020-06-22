@@ -3,7 +3,7 @@ package com.example.domain.tmdbmovie.usecases.movielist
 import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowableUseCase
 import com.example.domain.tmdbmovie.TMDbMovieRepository
-import com.example.domain.tmdbmovie.model.Result
+import com.example.domain.tmdbmovie.model.movielist.Result
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.rxkotlin.combineLatest

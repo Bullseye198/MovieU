@@ -3,7 +3,10 @@ package com.example.cache.tmdbmovies.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.domain.tmdbmovie.model.*
+import com.example.domain.tmdbmovie.model.moviedetail.Genre
+import com.example.domain.tmdbmovie.model.moviedetail.SpokenLanguage
+import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.movielist.Result
 
 @Entity(
     tableName = "tmdbMovie"
@@ -73,7 +76,12 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
         title = title,
         tagline = tagline,
         status = status,
-        spokenLanguages = spokenLanguages.map { SpokenLanguage(it.iso6391, it.name) },
+        spokenLanguages = spokenLanguages.map {
+            SpokenLanguage(
+                it.iso6391,
+                it.name
+            )
+        },
         runtime = runtime,
         revenue = revenue,
         releaseDate = releaseDate,
@@ -86,7 +94,12 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
         originalLanguage = originalLanguage,
         imdbId = imdbId,
         homepage = homepage,
-        genres = genres.map { Genre(it.id, it.name) },
+        genres = genres.map {
+            Genre(
+                it.id,
+                it.name
+            )
+        },
         budget = budget,
         backdropPath = backdropPath,
         video = video,

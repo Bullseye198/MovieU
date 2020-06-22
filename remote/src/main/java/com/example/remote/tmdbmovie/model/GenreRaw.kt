@@ -1,7 +1,7 @@
 package com.example.remote.tmdbmovie.model
 
 
-import com.example.domain.tmdbmovie.model.Genre
+import com.example.domain.tmdbmovie.model.moviedetail.Genre
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -13,7 +13,8 @@ data class GenreRaw(
     val name: String // Documentary
 )
 
-fun GenreRaw.mapDomainGenresModel() = Genre(
-    id = id,
-    name = name
-)
+fun GenreRaw.mapDomainGenresModel() =
+    Genre(
+        id = id,
+        name = name
+    )

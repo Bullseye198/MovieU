@@ -1,4 +1,4 @@
-package com.example.domain.tmdbmovie.model
+package com.example.domain.tmdbmovie.model.movielist
 
 data class Result(
     val adult: Boolean, // false

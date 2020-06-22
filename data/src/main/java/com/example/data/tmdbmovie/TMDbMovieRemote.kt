@@ -1,10 +1,9 @@
 package com.example.data.tmdbmovie
 
-import com.example.domain.tmdbmovie.model.Credits
-import com.example.domain.tmdbmovie.model.Result
-import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.moviedetail.Credits
+import com.example.domain.tmdbmovie.model.movielist.Result
+import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
-import com.example.domain.tmdbmovie.model.tvlist.TMDbTvList
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 
 interface TMDbMovieRemote {

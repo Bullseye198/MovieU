@@ -1,7 +1,7 @@
 package com.example.cache.tmdbmovies.model
 
 import androidx.room.Entity
-import com.example.domain.tmdbmovie.model.Cast
+import com.example.domain.tmdbmovie.model.moviedetail.Cast
 
 @Entity(
     tableName = "cast",
@@ -20,7 +20,7 @@ data class RoomCast (
     val profilePath: String? // /d9HyjGMCt4wgJIOxAGlaYWhKsiN.jpg
 )
 
-fun RoomCast.mapToDomainCast(): Cast{
+fun RoomCast.mapToDomainCast(): Cast {
     return Cast(
         castId = castId,
         character = character,

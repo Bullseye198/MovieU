@@ -1,4 +1,9 @@
-package com.example.domain.tmdbmovie.model
+package com.example.domain.tmdbmovie.model.moviedetail
+
+import com.example.domain.tmdbmovie.model.moviedetail.Cast
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.Genre
+import com.example.domain.tmdbmovie.model.moviedetail.SpokenLanguage
 
 data class TMDbMovieDetail(
     val adult: Boolean, // false

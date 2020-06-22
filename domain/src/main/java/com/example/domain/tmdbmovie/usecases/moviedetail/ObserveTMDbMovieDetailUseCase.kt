@@ -3,7 +3,7 @@ package com.example.domain.tmdbmovie.usecases.moviedetail
 import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowableUseCase
 import com.example.domain.tmdbmovie.TMDbMovieRepository
-import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import io.reactivex.Flowable
 import javax.inject.Inject
 

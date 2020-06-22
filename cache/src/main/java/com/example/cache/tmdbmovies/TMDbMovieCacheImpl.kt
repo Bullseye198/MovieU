@@ -9,8 +9,12 @@ import com.example.cache.tmdbmovies.model.roomtvlist.mapToDomainTvListResult
 import com.example.cache.tmdbmovies.model.roomtvlist.mapToRoomTvListResult
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
-import com.example.domain.tmdbmovie.model.*
+import com.example.domain.tmdbmovie.model.moviedetail.Cast
+import com.example.domain.tmdbmovie.model.moviedetail.Credits
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
+import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import io.reactivex.Flowable
 import javax.inject.Inject

@@ -1,7 +1,7 @@
 package com.example.cache.tmdbmovies.model
 
 import androidx.room.Entity
-import com.example.domain.tmdbmovie.model.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
 
 @Entity(
     tableName = "crew",

@@ -1,7 +1,7 @@
 package com.example.cache.tmdbmovies.model
 
 import androidx.room.Entity
-import com.example.domain.tmdbmovie.model.SpokenLanguage
+import com.example.domain.tmdbmovie.model.moviedetail.SpokenLanguage
 
 @Entity(
     tableName = "spokenLanguage",

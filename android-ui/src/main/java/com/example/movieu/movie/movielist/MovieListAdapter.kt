@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.example.domain.tmdbmovie.model.Result
+import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.movieu.R
 import kotlinx.android.synthetic.main.movie_item.view.*
 

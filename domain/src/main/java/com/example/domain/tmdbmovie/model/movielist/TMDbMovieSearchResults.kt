@@ -1,4 +1,6 @@
-package com.example.domain.tmdbmovie.model
+package com.example.domain.tmdbmovie.model.movielist
+
+import com.example.domain.tmdbmovie.model.movielist.Result
 
 data class TMDbMovieSearchResults(
     val page: Int, // 1

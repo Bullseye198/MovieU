@@ -1,4 +1,4 @@
-package com.example.domain.tmdbmovie.model
+package com.example.domain.tmdbmovie.model.moviedetail
 
 data class Crew(
     val creditId: String, // 5831cc6d92514162d2027340
