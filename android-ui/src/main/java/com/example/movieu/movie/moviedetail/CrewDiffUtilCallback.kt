@@ -1,7 +1,7 @@
 package com.example.movieu.movie.moviedetail
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.domain.tmdbmovie.model.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
 
 class CrewDiffUtilCallback : DiffUtil.ItemCallback<Crew>() {
     override fun areItemsTheSame(oldItem: Crew, newItem: Crew): Boolean {

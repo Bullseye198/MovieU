@@ -1,7 +1,7 @@
 package com.example.remote.tmdbmovie.model
 
 
-import com.example.domain.tmdbmovie.model.SpokenLanguage
+import com.example.domain.tmdbmovie.model.moviedetail.SpokenLanguage
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -13,7 +13,8 @@ data class SpokenLanguageRaw(
     val name: String // English
 )
 
-fun SpokenLanguageRaw.domainSpokenLanguagesModel() = SpokenLanguage(
-    iso6391 = iso6391,
-    name = name
-)
+fun SpokenLanguageRaw.domainSpokenLanguagesModel() =
+    SpokenLanguage(
+        iso6391 = iso6391,
+        name = name
+    )

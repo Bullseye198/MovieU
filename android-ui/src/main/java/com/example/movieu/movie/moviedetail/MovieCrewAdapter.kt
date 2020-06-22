@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.example.domain.tmdbmovie.model.Crew
+import com.example.domain.tmdbmovie.model.moviedetail.Crew
 import com.example.movieu.R
 import kotlinx.android.synthetic.main.credits_item.view.*
 

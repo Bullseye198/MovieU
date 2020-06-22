@@ -1,9 +1,7 @@
 package com.example.remote.tmdbmovie.model
 
 
-import com.example.domain.tmdbmovie.model.Cast
-import com.example.domain.tmdbmovie.model.Crew
-import com.example.domain.tmdbmovie.model.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -61,35 +59,36 @@ data class TMDbMovieDetailRaw(
     val voteCount: Int // 11
 )
 
-fun TMDbMovieDetailRaw.mapToDomain() = TMDbMovieDetail(
-    adult = adult,
-    backdropPath = backdropPath,
-    belongsToCollection = belongsToCollection,
-    budget = budget,
-    genres = genres.map { it.mapDomainGenresModel() },
-    homepage = homepage,
-    id = id,
-    imdbId = imdbId,
-    originalLanguage = originalLanguage,
-    originalTitle = originalTitle,
-    overview = overview,
-    popularity = popularity,
-    posterPath = posterPath,
-    productionCompanies = productionCompanies,
-    productionCountries = productionCountries,
-    releaseDate = releaseDate,
-    revenue = revenue,
-    runtime = runtime,
-    spokenLanguages = spokenLanguages.map { it.domainSpokenLanguagesModel() },
-    status = status,
-    tagline = tagline,
-    title = title,
-    video = video,
-    voteAverage = voteAverage,
-    voteCount = voteCount,
-    imdbVotes = null,
-    imdbRating = null,
-    imdbID = null,
-    cast = null,
-    crew = null
-)
+fun TMDbMovieDetailRaw.mapToDomain() =
+    TMDbMovieDetail(
+        adult = adult,
+        backdropPath = backdropPath,
+        belongsToCollection = belongsToCollection,
+        budget = budget,
+        genres = genres.map { it.mapDomainGenresModel() },
+        homepage = homepage,
+        id = id,
+        imdbId = imdbId,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        productionCompanies = productionCompanies,
+        productionCountries = productionCountries,
+        releaseDate = releaseDate,
+        revenue = revenue,
+        runtime = runtime,
+        spokenLanguages = spokenLanguages.map { it.domainSpokenLanguagesModel() },
+        status = status,
+        tagline = tagline,
+        title = title,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount,
+        imdbVotes = null,
+        imdbRating = null,
+        imdbID = null,
+        cast = null,
+        crew = null
+    )

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.tmdbmovie.model.Genre
+import com.example.domain.tmdbmovie.model.moviedetail.Genre
 import com.example.movieu.R
 import kotlinx.android.synthetic.main.ratings_item.view.*
 

@@ -10,13 +10,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieu.databinding.FragmentMovieListBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
+import com.example.movieu.movie.media.MediaListAdapter
+import com.example.movieu.movie.media.MediaListEvent
+import com.example.movieu.movie.media.MediaListViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class MovieListFragment : DaggerFragment() {
 
-    private lateinit var viewModel: MovieListViewModel
-    private lateinit var adapter: MovieListAdapter
+    private lateinit var viewModel: MediaListViewModel
+    private lateinit var adapter: MediaListAdapter
+
+    //private lateinit var viewModel: MovieListViewModel
+    //private lateinit var adapter: MovieListAdapter
     private lateinit var binding: FragmentMovieListBinding
 
     @Inject
@@ -25,7 +31,7 @@ class MovieListFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
-        setUpMovieListAdapter()
+        setUpMediaListAdapter()
         onMovieSearched()
     }
 
@@ -34,7 +40,7 @@ class MovieListFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMovieListBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MediaListViewModel::class.java)
         return binding.root
     }
 
@@ -48,27 +54,27 @@ class MovieListFragment : DaggerFragment() {
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.onNewMoviesSearched(newMovies = query.toString())
+                viewModel.onNewMediaSearched(newMedia = query.toString())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.onNewMoviesSearched(newMovies = newText.toString())
+                viewModel.onNewMediaSearched(newMedia = newText.toString())
                 return true
             }
         })
     }
 
-    private fun setUpMovieListAdapter() {
-        adapter = MovieListAdapter()
+    private fun setUpMediaListAdapter() {
+        adapter = MediaListAdapter()
         binding.recListFragment.adapter = adapter
         binding.recListFragment.layoutManager = GridLayoutManager(requireContext(), 3)
 
         adapter.event.observe(
             viewLifecycleOwner, Observer {
-                if (it is MovieListEvent.OnMovieItemClick) {
+                if (it is MediaListEvent.OnMediaItemClick) {
                     val direction =
-                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.movieId)
+                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.mediaId)
                     findNavController().navigate(direction)
                 }
             }
@@ -78,9 +84,9 @@ class MovieListFragment : DaggerFragment() {
     private fun observeViewModel() {
         viewModel.getState().observe(
             viewLifecycleOwner,
-            Observer { movieListState ->
-                if (movieListState != null) {
-                    adapter.submitList(movieListState.feed)
+            Observer { mediaListState ->
+                if (mediaListState != null) {
+                    adapter.submitList(mediaListState.feed)
                 }
             }
         )
