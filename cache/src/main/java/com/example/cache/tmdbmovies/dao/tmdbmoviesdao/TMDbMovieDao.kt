@@ -1,8 +1,8 @@
 package com.example.cache.tmdbmovies.dao.tmdbmoviesdao
 
 import androidx.room.*
-import com.example.cache.tmdbmovies.model.TMDbCachedRoomResultFull
-import com.example.cache.tmdbmovies.model.TMDbMovieGenresSpokenLanguagesCastAndCrew
+import com.example.cache.tmdbmovies.model.roommovielist.TMDbCachedRoomResultFull
+import com.example.cache.tmdbmovies.model.roommovielist.TMDbMovieGenresSpokenLanguagesCastAndCrew
 import io.reactivex.Flowable
 
 @Dao

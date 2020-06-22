@@ -3,7 +3,7 @@ package com.example.cache.tmdbmovies.dao.tmdbmoviesdao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.cache.tmdbmovies.model.RoomCast
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomCast
 
 @Dao
 interface TMDbCastDao {

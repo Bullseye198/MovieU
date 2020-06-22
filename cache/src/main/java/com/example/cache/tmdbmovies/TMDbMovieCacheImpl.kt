@@ -2,7 +2,14 @@ package com.example.cache.tmdbmovies
 
 import com.example.cache.tmdbmovies.dao.tmdbmoviesdao.*
 import com.example.cache.tmdbmovies.dao.tmdbtvseriesdao.*
-import com.example.cache.tmdbmovies.model.*
+import com.example.cache.tmdbmovies.model.roommoviedetail.mapToRoomCast
+import com.example.cache.tmdbmovies.model.roommoviedetail.mapToRoomCrew
+import com.example.cache.tmdbmovies.model.roommoviedetail.mapToRoomGenre
+import com.example.cache.tmdbmovies.model.roommoviedetail.mapToRoomSpokenLanguage
+import com.example.cache.tmdbmovies.model.roommovielist.mapToDomainModel
+import com.example.cache.tmdbmovies.model.roommovielist.mapToDomainModelList
+import com.example.cache.tmdbmovies.model.roommovielist.mapToFullRoomModel
+import com.example.cache.tmdbmovies.model.roommovielist.mapToRoomModel
 import com.example.cache.tmdbmovies.model.roomtvdetail.*
 import com.example.cache.tmdbmovies.model.roomtvlist.mapToDomainTvDetailResult
 import com.example.cache.tmdbmovies.model.roomtvlist.mapToDomainTvListResult
@@ -100,7 +107,7 @@ class TMDbMovieCacheImpl @Inject constructor(
         })
 
         tvDetailLastEpisodeToAirDao.insertTvDetailLastEpisodeToAir(
-            tmdbTvDetail.tvDetailLastEpisodeToAir.mapToRoomTvDetailLastEpisodeToAir(
+            tmdbTvDetail.tvDetailLastEpisodeToAir?.mapToRoomTvDetailLastEpisodeToAir(
                 tmdbTvDetail.id.toString()
             )
         )

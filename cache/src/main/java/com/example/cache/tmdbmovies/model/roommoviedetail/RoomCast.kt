@@ -1,4 +1,4 @@
-package com.example.cache.tmdbmovies.model
+package com.example.cache.tmdbmovies.model.roommoviedetail
 
 import androidx.room.Entity
 import com.example.domain.tmdbmovie.model.moviedetail.Cast
@@ -33,7 +33,7 @@ fun RoomCast.mapToDomainCast(): Cast {
     )
 }
 
-fun Cast.mapToRoomCast(castTMDbID: Int): RoomCast{
+fun Cast.mapToRoomCast(castTMDbID: Int): RoomCast {
     return RoomCast(
         castId = castId,
         character = character,

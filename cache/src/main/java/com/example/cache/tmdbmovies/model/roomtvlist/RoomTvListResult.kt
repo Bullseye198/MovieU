@@ -29,7 +29,6 @@ data class RoomTvListResult(
     //tvDetail
     val homepage: String?,
     val inProduction: Boolean?,
-   // val languages: List<String>?,
     val lastAirDate: String?,
     val numberOfEpisodes: Int?,
     val nextEpisodeToAir: String?,
@@ -59,7 +58,7 @@ fun RoomTvListResult.mapToDomainTvListResult(): TvListResult {
 fun RoomTvListResult.mapToDomainTMDbTvDetail(
     tvDetailCreatedBy: List<RoomTvDetailCreatedBy>,
     tvDetailgenre: List<RoomTvDetailGenre>,
-    tvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir,
+    tvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir?,
     tvDetailNetwork: List<RoomTvDetailNetwork>,
     tvDetailProductionCompany: List<RoomTvDetailProductionCompany>,
     tvDetailSeason: List<RoomTvDetailSeason>,
@@ -90,7 +89,7 @@ fun RoomTvListResult.mapToDomainTMDbTvDetail(
         languages = tvDetailLanguages.map { it.mapToDomainTvDetailLanguages() },
         tvDetailCreatedBy = tvDetailCreatedBy.map { it.mapToDomainTvDetailCreatedBy() },
         tvDetailGenres = tvDetailgenre.map { it.mapToDomainTvDetailGenre() },
-        tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir.mapToDomainTvDetailLastEpisodeToAir(),
+        tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir?.mapToDomainTvDetailLastEpisodeToAir(),
         tvDetailNetworks = tvDetailNetwork.map { it.mapToDomainTvDetailNetwork() },
         tvDetailProductionCompanies = tvDetailProductionCompany.map { it.mapToDomainTvDetailProductionCompany() },
         tvDetailSeasons = tvDetailSeason.map { it.mapToDomainTvDetailSeason() }

@@ -11,7 +11,7 @@ data class TMDbTvDetail(
     val inProduction: Boolean?, // false
     val languages: List<TMDbTvDetailLanguages>?,
     val lastAirDate: String?, // 2017-03-10
-    val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAir,
+    val tvDetailLastEpisodeToAir: TvDetailLastEpisodeToAir?,
     val name: String, // The Vampire Diaries
     val tvDetailNetworks: List<TvDetailNetwork>,
     val nextEpisodeToAir: String?, // null

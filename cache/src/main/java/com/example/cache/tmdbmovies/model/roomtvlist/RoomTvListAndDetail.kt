@@ -13,7 +13,7 @@ data class RoomTvListAndDetail(
     @Relation(parentColumn = "id", entityColumn = "genreID")
     var roomTvDetailGenre: List<RoomTvDetailGenre>,
     @Relation(parentColumn = "id", entityColumn = "lastEpisodeToAirID")
-    var roomTvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir,
+    var roomTvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir?,
     @Relation(parentColumn = "id", entityColumn = "networkID")
     var roomTvDetailNetwork: List<RoomTvDetailNetwork>,
     @Relation(parentColumn = "id", entityColumn = "productionCompanyID")

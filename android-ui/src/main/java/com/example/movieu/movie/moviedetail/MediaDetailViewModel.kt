@@ -6,23 +6,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.movie.usecases.RefreshMovieDetailUseCase
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.usecases.moviedetail.RefreshTMDbCreditsUseCase
 import com.example.domain.tmdbmovie.usecases.moviedetail.ObserveTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.moviedetail.RefreshTMDbMovieDetailUseCase
+import com.example.domain.tmdbmovie.usecases.tvdetail.ObserveTMDbTvDetailUseCase
+import com.example.domain.tmdbmovie.usecases.tvdetail.RefreshTMDbTvDetailUseCase
+import com.example.movieu.movie.tvdetail.TvDetailState
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieDetailViewModel @Inject constructor(
+class MediaDetailViewModel @Inject constructor(
     private val observeTMDbMovieDetailUseCase: ObserveTMDbMovieDetailUseCase,
+    private val observeTMDbTvDetailUseCase: ObserveTMDbTvDetailUseCase,
     private val refreshMovieDetailUseCase: RefreshMovieDetailUseCase,
     private val refreshTMDbMovieDetailUseCase: RefreshTMDbMovieDetailUseCase,
-    private val refreshTMDbCreditsUseCase: RefreshTMDbCreditsUseCase
+    private val refreshTMDbCreditsUseCase: RefreshTMDbCreditsUseCase,
+    private val refreshTMDbTvDetailUseCase: RefreshTMDbTvDetailUseCase
 ) : ViewModel() {
 
     private val movieState = MutableLiveData(MovieDetailState())
+    fun getMovieState(): LiveData<MovieDetailState> = movieState
 
-    fun getState(): LiveData<MovieDetailState> = movieState
+    private val tvState = MutableLiveData(TvDetailState())
+    fun getTvState(): LiveData<TvDetailState> = tvState
 
     val currentMovieDetail: String? = null
 
@@ -32,7 +40,9 @@ class MovieDetailViewModel @Inject constructor(
         when (event) {
             is MovieDetailEvent.OnStart -> {
                 observeMovieDetail(id = event.id)
+                observeTMDbTvDetail(id = event.id)
                 refresh(event.id)
+
             }
         }
     }
@@ -59,6 +69,23 @@ class MovieDetailViewModel @Inject constructor(
         )
     }
 
+    private fun observeTMDbTvDetail(id: Int) {
+        observeTMDbTvDetailUseCase.invokeUseCase(
+            object : DisposableSubscriber<TMDbTvDetail>() {
+                override fun onComplete() {
+                }
+
+                override fun onNext(t: TMDbTvDetail?) {
+                    tvState.value = tvState.value!!.copy(tmbTvDetail = t)
+                }
+
+                override fun onError(t: Throwable?) {
+                    throw Exception("Subscription failed at ${t?.localizedMessage}")
+                }
+            }, ObserveTMDbTvDetailUseCase.Params(id)
+        )
+    }
+
     private fun refresh(id: Int) {
         viewModelScope.launch {
             currentMovieDetail.let {
@@ -67,6 +94,9 @@ class MovieDetailViewModel @Inject constructor(
                 )
                 refreshTMDbCreditsUseCase.invokeUseCase(
                     params = RefreshTMDbCreditsUseCase.Params(id = id)
+                )
+                refreshTMDbTvDetailUseCase.invokeUseCase(
+                    params = RefreshTMDbTvDetailUseCase.Params(id = id)
                 )
             }
         }

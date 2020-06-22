@@ -1,7 +1,11 @@
-package com.example.cache.tmdbmovies.model
+package com.example.cache.tmdbmovies.model.roommovielist
 
 import androidx.room.Embedded
 import androidx.room.Relation
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomCast
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomCrew
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomGenre
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomSpokenLanguage
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 
 data class TMDbMovieGenresSpokenLanguagesCastAndCrew(

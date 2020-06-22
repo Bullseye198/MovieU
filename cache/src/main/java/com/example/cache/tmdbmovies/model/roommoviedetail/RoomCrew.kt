@@ -1,4 +1,4 @@
-package com.example.cache.tmdbmovies.model
+package com.example.cache.tmdbmovies.model.roommoviedetail
 
 import androidx.room.Entity
 import com.example.domain.tmdbmovie.model.moviedetail.Crew

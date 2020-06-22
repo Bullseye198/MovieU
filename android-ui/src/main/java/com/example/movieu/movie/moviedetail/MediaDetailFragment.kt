@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class MediaDetailFragment : DaggerFragment() {
 
-    private lateinit var viewModel: MovieDetailViewModel
+    private lateinit var viewModel: MediaDetailViewModel
     private lateinit var genreAdapter: MovieGenreAdapter
     private lateinit var castAdapter: MovieCastAdapter
     private lateinit var crewAdapter: MovieCrewAdapter
@@ -28,7 +28,7 @@ class MediaDetailFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imdbID = MovieDetailFragmentArgs.fromBundle(requireArguments()).movieID
+        imdbID = MediaDetailFragmentArgs.fromBundle(requireArguments()).movieID
     }
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ class MediaDetailFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MediaDetailViewModel::class.java)
         viewModel.handleEvent(MovieDetailEvent.OnStart(imdbID))
         return binding.root
     }
@@ -60,7 +60,7 @@ class MediaDetailFragment : DaggerFragment() {
         genreAdapter = MovieGenreAdapter()
         binding.recListGenre.adapter = genreAdapter
 
-        viewModel.getState().observe(
+        viewModel.getMovieState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
@@ -74,7 +74,7 @@ class MediaDetailFragment : DaggerFragment() {
         castAdapter = MovieCastAdapter()
         binding.recListCast.adapter = castAdapter
 
-        viewModel.getState().observe(
+        viewModel.getMovieState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
@@ -88,7 +88,7 @@ class MediaDetailFragment : DaggerFragment() {
         crewAdapter = MovieCrewAdapter()
         binding.recListCrew.adapter = crewAdapter
 
-        viewModel.getState().observe(
+        viewModel.getMovieState().observe(
             viewLifecycleOwner,
             Observer { movieDetailState ->
                 if (movieDetailState != null) {
@@ -100,7 +100,7 @@ class MediaDetailFragment : DaggerFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
-        viewModel.getState().observe(
+        viewModel.getMovieState().observe(
             viewLifecycleOwner,
             Observer { t ->
                 if (t != null) {

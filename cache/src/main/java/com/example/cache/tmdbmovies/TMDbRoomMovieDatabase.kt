@@ -4,7 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.cache.tmdbmovies.dao.tmdbmoviesdao.*
 import com.example.cache.tmdbmovies.dao.tmdbtvseriesdao.*
-import com.example.cache.tmdbmovies.model.*
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomCast
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomCrew
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomGenre
+import com.example.cache.tmdbmovies.model.roommoviedetail.RoomSpokenLanguage
+import com.example.cache.tmdbmovies.model.roommovielist.TMDbCachedRoomResultFull
 import com.example.cache.tmdbmovies.model.roomtvdetail.*
 import com.example.cache.tmdbmovies.model.roomtvlist.RoomTvListResult
 

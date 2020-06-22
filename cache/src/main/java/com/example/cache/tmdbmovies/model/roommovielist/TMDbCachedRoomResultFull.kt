@@ -1,8 +1,9 @@
-package com.example.cache.tmdbmovies.model
+package com.example.cache.tmdbmovies.model.roommovielist
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.cache.tmdbmovies.model.roommoviedetail.*
 import com.example.domain.tmdbmovie.model.moviedetail.Genre
 import com.example.domain.tmdbmovie.model.moviedetail.SpokenLanguage
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
