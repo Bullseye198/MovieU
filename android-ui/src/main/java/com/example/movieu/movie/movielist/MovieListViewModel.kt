@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.tmdbmovie.model.Result
-import com.example.domain.tmdbmovie.usecases.RefreshTMDbMoviesUseCase
-import com.example.domain.tmdbmovie.usecases.ObserveTMDbMoviesUseCase
+import com.example.domain.tmdbmovie.usecases.movielist.RefreshTMDbMoviesUseCase
+import com.example.domain.tmdbmovie.usecases.movielist.ObserveTMDbMoviesUseCase
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,20 +1,19 @@
-package com.example.domain.tmdbmovie.usecases
+package com.example.domain.tmdbmovie.usecases.moviedetail
 
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.cm.base.interactors.base.CoroutineCompletableUseCase
 import com.example.domain.tmdbmovie.TMDbMovieRepository
-import java.lang.Exception
 import javax.inject.Inject
 
-class RefreshTMDbTvDetailUseCase @Inject constructor(
+class RefreshTMDbCreditsUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository,
     appCoroutineDispatchers: AppCoroutineDispatchers
-) : CoroutineCompletableUseCase<RefreshTMDbTvDetailUseCase.Params>(appCoroutineDispatchers) {
+) : CoroutineCompletableUseCase<RefreshTMDbCreditsUseCase.Params>(appCoroutineDispatchers) {
 
     override suspend fun execute(params: Params?) {
         try {
-            val tmdbTvServerDetail = tmDbMovieRepository.fetchTMDbTvDetail(params!!.id)
-            tmDbMovieRepository.storeTMDbTvDetail(tmdbTvServerDetail)
+            val serverCredits = tmDbMovieRepository.fetchTMDbCredits(params!!.id)
+            tmDbMovieRepository.storeTMDbCredits(serverCredits)
         } catch (e: Exception) {
         }
     }

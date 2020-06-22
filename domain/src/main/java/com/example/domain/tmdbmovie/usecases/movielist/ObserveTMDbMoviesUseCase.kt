@@ -1,4 +1,4 @@
-package com.example.domain.tmdbmovie.usecases
+package com.example.domain.tmdbmovie.usecases.movielist
 
 import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowableUseCase

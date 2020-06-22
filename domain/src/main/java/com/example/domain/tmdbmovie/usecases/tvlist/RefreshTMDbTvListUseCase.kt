@@ -1,4 +1,4 @@
-package com.example.domain.tmdbmovie.usecases
+package com.example.domain.tmdbmovie.usecases.tvlist
 
 import com.cm.base.executor.AppCoroutineDispatchers
 import com.cm.base.interactors.base.CoroutineCompletableUseCase
