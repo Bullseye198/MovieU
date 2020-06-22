@@ -8,5 +8,5 @@ import com.example.cache.tmdbmovies.model.roomtvdetail.RoomTvDetailLastEpisodeTo
 @Dao
 interface TvDetailLastEpisodeToAirDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTvDetailLastEpisodeToAir(entities: List<RoomTvDetailLastEpisodeToAir>)
+    suspend fun insertTvDetailLastEpisodeToAir(entities: RoomTvDetailLastEpisodeToAir)
 }

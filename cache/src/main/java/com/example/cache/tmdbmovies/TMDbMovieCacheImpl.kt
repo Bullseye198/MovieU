@@ -3,6 +3,10 @@ package com.example.cache.tmdbmovies
 import com.example.cache.tmdbmovies.dao.tmdbmoviesdao.*
 import com.example.cache.tmdbmovies.dao.tmdbtvseriesdao.*
 import com.example.cache.tmdbmovies.model.*
+import com.example.cache.tmdbmovies.model.roomtvdetail.*
+import com.example.cache.tmdbmovies.model.roomtvlist.mapToDomainTvDetailResult
+import com.example.cache.tmdbmovies.model.roomtvlist.mapToDomainTvListResult
+import com.example.cache.tmdbmovies.model.roomtvlist.mapToRoomTvListResult
 import com.example.data.tmdbmovie.TMDbMovieCache
 import com.example.domain.movie.model.OMDbBaseInformation
 import com.example.domain.tmdbmovie.model.*
@@ -19,7 +23,7 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val spokenLanguageDao: TMDbSpokenLanguageDao,
     private val castDao: TMDbCastDao,
     private val crewDao: TMDbCrewDao,
-    private val tmDbTvSeriesDao: TMDbTvSeriesDao,
+    private val tmdbTvSeriesDao: TMDbTvSeriesDao,
     private val tvDetailCreatedByDao: TvDetailCreatedByDao,
     private val tvDetailGenreDao: TvDetailGenreDao,
     private val tvDetailLastEpisodeToAirDao: TvDetailLastEpisodeToAirDao,
@@ -39,11 +43,13 @@ class TMDbMovieCacheImpl @Inject constructor(
     }
 
     override fun observeTMDbTvList(): Flowable<List<TvListResult>> {
-        TODO("Not yet implemented")
+        return tmdbTvSeriesDao.observeTMDbTvList()
+            .map { roomTvList -> roomTvList.map { it.mapToDomainTvListResult() } }
     }
 
     override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
-        TODO("Not yet implemented")
+        return tmdbTvSeriesDao.observeTMDbTvDetail(id)
+            .map { roomTvDetail -> roomTvDetail.mapToDomainTvDetailResult() }
     }
 
 
@@ -55,19 +61,11 @@ class TMDbMovieCacheImpl @Inject constructor(
 
     override suspend fun storeTMDbMovieDetail(tmDbMovieDetail: TMDbMovieDetail) {
         tmDbMovieDao.insertOneSuspend(tmDbMovieDetail.mapToFullRoomModel())
-        genreDao.InsertGenre(tmDbMovieDetail.genres?.map { tmdbMovieRatings ->
-            RoomGenre(
-                tmdbMovieRatings.id,
-                tmDbMovieDetail.id.toString(),
-                tmdbMovieRatings.name
-            )
+        genreDao.InsertGenre(tmDbMovieDetail.genres.map { tmdbMovieRatings ->
+            tmdbMovieRatings.mapToRoomGenre(tmDbMovieDetail.id.toString())
         })
-        spokenLanguageDao.InsertSpokenLanguage(tmDbMovieDetail.spokenLanguages?.map { tmdbMovieSpokenLanguages ->
-            RoomSpokenLanguage(
-                tmdbMovieSpokenLanguages.iso6391,
-                tmDbMovieDetail.id,
-                tmdbMovieSpokenLanguages.name
-            )
+        spokenLanguageDao.InsertSpokenLanguage(tmDbMovieDetail.spokenLanguages.map { tmdbMovieSpokenLanguages ->
+            tmdbMovieSpokenLanguages.mapToRoomSpokenLanguage(tmDbMovieDetail.id)
         })
     }
 
@@ -77,16 +75,46 @@ class TMDbMovieCacheImpl @Inject constructor(
         crewDao.InsertCrew(credits.crew.map { crew: Crew ->
             crew.mapToRoomCrew(credits.id.toString())
         })
-
-
     }
 
     override suspend fun storeTMDbTvList(tmdbTvList: List<TvListResult>) {
-        TODO("Not yet implemented")
+        tmdbTvSeriesDao.insertAllIgnore(tmdbTvList.map { domainTvList ->
+            domainTvList.mapToRoomTvListResult()
+        })
     }
 
     override suspend fun storeTMDbTvDetail(tmdbTvDetail: TMDbTvDetail) {
-        TODO("Not yet implemented")
+        tmdbTvSeriesDao.insertOneSuspend(tmdbTvDetail.mapToRoomTvListResult())
+
+        tvDetailCreatedByDao.insertTvDetailCreatedBy(tmdbTvDetail.tvDetailCreatedBy.map { tmdbTvDetailCreatedBy ->
+            tmdbTvDetailCreatedBy.mapToRoomTvDetailCreatedBy(tmdbTvDetail.id.toString())
+        })
+
+        tvDetailGenreDao.insertTvDetailGenre(tmdbTvDetail.tvDetailGenres.map { tmdbTvDetailGenre ->
+            tmdbTvDetailGenre.mapToRoomTvDetailGenre(tmdbTvDetail.id.toString())
+        })
+
+        tvDetailLastEpisodeToAirDao.insertTvDetailLastEpisodeToAir(
+            tmdbTvDetail.tvDetailLastEpisodeToAir.mapToRoomTvDetailLastEpisodeToAir(
+                tmdbTvDetail.id.toString()
+            )
+        )
+
+        tvDetailNetworkDao.insertTvDetailNetwork(tmdbTvDetail.tvDetailNetworks.map { tmdbTvDetailNetwork ->
+            tmdbTvDetailNetwork.mapToRoomTvDetailNetwork(
+                tmdbTvDetail.id.toString()
+            )
+        })
+
+        tvDetailProductionCompanyDao.insertTvDetailProductionCompany(tmdbTvDetail.tvDetailProductionCompanies.map { tmdbTvDetailProductionCompanies ->
+            tmdbTvDetailProductionCompanies.mapToRoomTvDetailProductionCompany(
+                tmdbTvDetail.id.toString()
+            )
+        })
+
+        tvDetailSeasonDao.insertTvDetailSeason(tmdbTvDetail.tvDetailSeasons.map { tmdbTvDetailSeason ->
+            tmdbTvDetailSeason.mapToRoomTvDetailSeason(tmdbTvDetail.id.toString())
+        })
     }
 
     override suspend fun addOmdbInformation(omdbOMDbBaseInformation: OMDbBaseInformation) {

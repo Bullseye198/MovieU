@@ -1,6 +1,7 @@
 package com.example.cache.tmdbmovies.model
 
 import androidx.room.Entity
+import com.example.domain.tmdbmovie.model.Genre
 
 @Entity(
     tableName = "genre",
@@ -11,3 +12,11 @@ data class RoomGenre(
     val genreTMDbID: String,
     val name: String
 )
+
+fun Genre.mapToRoomGenre(genreTMDbID: String): RoomGenre {
+    return RoomGenre(
+        id = id,
+        genreTMDbID = genreTMDbID,
+        name = name
+    )
+}
