@@ -21,6 +21,9 @@ interface TMDbMovieDao {
     @Query("SELECT * FROM tmdbMovie")
     fun observeTMDbMovies(): Flowable<List<TMDbCachedRoomResultFull>>
 
+    @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
+    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<TMDbCachedRoomResultFull>>
+
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieGenresSpokenLanguagesCastAndCrew>
 

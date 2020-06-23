@@ -19,6 +19,9 @@
         <argument
             android:name="movieID"
             app:argType="integer" />
+        <argument
+            android:name="isSeries"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/movieListFragment"

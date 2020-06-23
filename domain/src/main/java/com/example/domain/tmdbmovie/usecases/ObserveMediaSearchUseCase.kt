@@ -11,7 +11,7 @@ import io.reactivex.subjects.BehaviorSubject
 import java.util.*
 import javax.inject.Inject
 
-class ObserveCurrentSearchUseCase @Inject constructor(
+class ObserveMediaSearchUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository,
     rxSchedulers: AppRxSchedulers
 ) : FlowableUseCase<List<MediaList>, Void?>(rxSchedulers) {
@@ -20,43 +20,44 @@ class ObserveCurrentSearchUseCase @Inject constructor(
 
     override fun buildUseCaseObservable(params: Void?): Flowable<List<MediaList>> {
         return tmDbMovieRepository.observeTMDbTvList()
-            .combineLatest(tmDbMovieRepository.observeTMDbMovies())
-            .combineLatest(localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST))
+            .combineLatest(tmDbMovieRepository.observeTMDbMovies(), localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST))
             .map {
-                val movies = it.first.first
-                val series = it.first.second
-                val searchTerm = it.second
+                val series = it.first
+                val  movies = it.second
+                val searchTerm = it.third
                 val mappedMovies = movies
                     .filter { movie ->
-                        movie.name.toLowerCase(Locale.ROOT).contains(
+                        movie.title.toLowerCase(Locale.ROOT).contains(
                             searchTerm.toLowerCase(
                                 Locale.ROOT
                             )
                         )
                     }
-                    .sortedWith(compareBy({ it.id }, { it.name }))
+                    .sortedWith(compareBy({ it.id }, { it.title }))
                     .map { movie ->
                         MediaList(
                             movie.posterPath,
                             movie.id,
-                            movie.name,
-                            movie.firstAirDate
+                            movie.title,
+                            movie.releaseDate,
+                            false
                         )
                     }
                 val mappedSeries = series.filter { tvSeries ->
-                    tvSeries.title.toLowerCase(Locale.ROOT).contains(
+                    tvSeries.name.toLowerCase(Locale.ROOT).contains(
                         searchTerm.toLowerCase(
                             Locale.ROOT
                         )
                     )
                 }
-                    .sortedWith(compareBy({ it.id }, { it.title }))
+                    .sortedWith(compareBy({ it.id }, { it.name }))
                     .map {
                         MediaList(
                             it.posterPath,
                             it.id,
-                            it.title,
-                            it.releaseDate
+                            it.name,
+                            it.firstAirDate,
+                            true
                         )
                     }
                 mappedMovies + mappedSeries

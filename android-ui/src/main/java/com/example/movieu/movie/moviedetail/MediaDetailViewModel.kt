@@ -37,10 +37,13 @@ class MediaDetailViewModel @Inject constructor(
     fun handleEvent(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.OnStart -> {
-                observeMovieDetail(id = event.id)
-                observeTMDbTvDetail(id = event.id)
-                refreshMovieDetail(event.id)
-                refreshTvDetail(event.id)
+                if(event.isSeries){
+                    observeTMDbTvDetail(id = event.id)
+                    refreshTvDetail(event.id)
+                } else {
+                    observeMovieDetail(id = event.id)
+                    refreshMovieDetail(event.id)
+                }
             }
         }
     }

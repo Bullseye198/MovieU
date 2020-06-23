@@ -27,10 +27,12 @@ class MediaDetailFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private var imdbID: Int = 0
+    private var isSeries: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         imdbID = MediaDetailFragmentArgs.fromBundle(requireArguments()).movieID
+        isSeries = MediaDetailFragmentArgs.fromBundle(requireArguments()).isSeries
     }
 
     override fun onCreateView(
@@ -39,7 +41,7 @@ class MediaDetailFragment : DaggerFragment() {
     ): View? {
         binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MediaDetailViewModel::class.java)
-        viewModel.handleEvent(MovieDetailEvent.OnStart(imdbID))
+        viewModel.handleEvent(MovieDetailEvent.OnStart(imdbID, isSeries))
         return binding.root
     }
 

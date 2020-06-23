@@ -26,7 +26,7 @@ class MediaListAdapter(val event: MutableLiveData<MediaListEvent> = MutableLiveD
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediaViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        return MediaListAdapter.MediaViewHolder(
+        return MediaViewHolder(
             inflater.inflate(R.layout.movie_item, parent, false)
         )
     }
@@ -42,7 +42,7 @@ class MediaListAdapter(val event: MutableLiveData<MediaListEvent> = MutableLiveD
                 holder.year.isVisible = true
             }
             holder.itemView.setOnClickListener {
-                event.value = MediaListEvent.OnMediaItemClick(position, media.id)
+                event.value = MediaListEvent.OnMediaItemClick(position, media.id, media.isSeries)
             }
         }
     }

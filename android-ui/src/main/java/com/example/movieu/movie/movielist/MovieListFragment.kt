@@ -74,7 +74,7 @@ class MovieListFragment : DaggerFragment() {
             viewLifecycleOwner, Observer {
                 if (it is MediaListEvent.OnMediaItemClick) {
                     val direction =
-                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.mediaId)
+                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.mediaId, it.isSeries)
                     findNavController().navigate(direction)
                 }
             }

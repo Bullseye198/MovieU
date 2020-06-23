@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.tmdbmovie.model.MediaList
-import com.example.domain.tmdbmovie.usecases.ObserveCurrentSearchUseCase
+import com.example.domain.tmdbmovie.usecases.ObserveMediaSearchUseCase
 import com.example.domain.tmdbmovie.usecases.movielist.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.tvlist.RefreshTMDbTvListUseCase
 import io.reactivex.subscribers.DisposableSubscriber
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class MediaListViewModel @Inject constructor(
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
     private val refreshTMDbTvListUseCase: RefreshTMDbTvListUseCase,
-    private val observeCurrentSearchUseCase: ObserveCurrentSearchUseCase
+    private val observeMediaSearchUseCase: ObserveMediaSearchUseCase
 ) : ViewModel() {
 
     var currentMedia: String? = null
@@ -30,12 +30,12 @@ class MediaListViewModel @Inject constructor(
 
     fun onNewMediaSearched(newMedia: String) {
         this.currentMedia = newMedia
-        observeCurrentSearchUseCase.onSearchTermChanged(newMedia)
+        observeMediaSearchUseCase.onSearchTermChanged(newMedia)
         refreshTMDbMediaAndUpdate()
     }
 
     private fun observeTMDbMedia() {
-        observeCurrentSearchUseCase.invokeUseCase(object : DisposableSubscriber<List<MediaList>>() {
+        observeMediaSearchUseCase.invokeUseCase(object : DisposableSubscriber<List<MediaList>>() {
             override fun onComplete() {
 
             }
@@ -69,6 +69,6 @@ class MediaListViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        observeCurrentSearchUseCase.dispose()
+        observeMediaSearchUseCase.dispose()
     }
 }
