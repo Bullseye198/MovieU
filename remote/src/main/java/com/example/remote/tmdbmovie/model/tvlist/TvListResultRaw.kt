@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class TvListResultRaw(
     @Json(name = "backdrop_path")
-    val backdropPath: String, // /1qVOS9wcChP1Bt4Dnnxrb25aSJa.jpg
+    val backdropPath: String?, // /1qVOS9wcChP1Bt4Dnnxrb25aSJa.jpg
     @Json(name = "first_air_date")
     val firstAirDate: String, // 2009-09-10
     @Json(name = "genre_ids")
@@ -28,7 +28,7 @@ data class TvListResultRaw(
     @Json(name = "popularity")
     val popularity: Double, // 65.142
     @Json(name = "poster_path")
-    val posterPath: String, // /aBkVgChtyyJaHyZh1gfd8DbzQon.jpg
+    val posterPath: String?, // /aBkVgChtyyJaHyZh1gfd8DbzQon.jpg
     @Json(name = "vote_average")
     val voteAverage: Double, // 8.1
     @Json(name = "vote_count")

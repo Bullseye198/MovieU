@@ -32,7 +32,7 @@ class MovieListFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         setUpMediaListAdapter()
-        onMovieSearched()
+        onMediaSearched()
     }
 
     override fun onCreateView(
@@ -50,7 +50,7 @@ class MovieListFragment : DaggerFragment() {
         binding.recListFragment.adapter = null
     }
 
-    private fun onMovieSearched() {
+    private fun onMediaSearched() {
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

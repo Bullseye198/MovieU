@@ -20,16 +20,9 @@ class MovieListViewModel @Inject constructor(
 
     private val movieState = MutableLiveData(MovieListState())
 
-    fun getState(): LiveData<MovieListState> = movieState
 
     init {
         observeTMDbMovies()
-    }
-
-    fun onNewMoviesSearched(newMovies: String) {
-        this.currentMovies = newMovies
-        observeTMDbMoviesUseCase.onSearchTermChanged(newMovies)
-        refreshTMDbMoviesAndUpdate()
     }
 
     private fun observeTMDbMovies() {

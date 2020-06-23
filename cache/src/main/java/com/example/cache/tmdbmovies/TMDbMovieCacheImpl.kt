@@ -44,8 +44,8 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val tvDetailLanguagesDao: TvDetailLanguagesDao
 ) : TMDbMovieCache {
 
-    override fun observeTMDbMovies(): Flowable<List<Result>> {
-        return tmDbMovieDao.observeTMDbMovies()
+    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>> {
+        return tmDbMovieDao.observeTMDbMoviesForTitle(titleToSearchFor)
             .map { roomTMDbMovies -> roomTMDbMovies.map { it.mapToDomainModelList() } }
     }
 
@@ -54,8 +54,8 @@ class TMDbMovieCacheImpl @Inject constructor(
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 
-    override fun observeTMDbTvList(): Flowable<List<TvListResult>> {
-        return tmdbTvSeriesDao.observeTMDbTvList()
+    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>> {
+        return tmdbTvSeriesDao.observeTMDbTvListForName(nameToSearchFor)
             .map { roomTvList -> roomTvList.map { it.mapToDomainTvListResult() } }
     }
 

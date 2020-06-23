@@ -10,11 +10,11 @@ import io.reactivex.Flowable
 
 interface TMDbMovieCache {
 
-    fun observeTMDbMovies(): Flowable<List<Result>>
+    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>>
 
     fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
 
-    fun observeTMDbTvList(): Flowable<List<TvListResult>>
+    fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>>
 
     fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail>
 

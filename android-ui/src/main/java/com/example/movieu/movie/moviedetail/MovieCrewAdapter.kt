@@ -33,7 +33,7 @@ class MovieCrewAdapter :
         getItem(position).let { crew ->
             holder.content.text = crew.name
             holder.value.text = crew.job
-            val profilePath = "https://image.tmdb.org/t/p/original/${crew.profilePath}"
+            val profilePath = "https://image.tmdb.org/t/p/w154/${crew.profilePath}"
             holder.image.load(profilePath)
         }
     }

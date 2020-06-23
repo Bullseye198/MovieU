@@ -11,8 +11,11 @@ import io.reactivex.Flowable
 @Dao
 interface TMDbTvSeriesDao {
 
-    @Query("SELECT * FROM tmdbTv")
-    fun observeTMDbTvList(): Flowable<List<RoomTvListResult>>
+    //@Query("SELECT * FROM tmdbTv")
+    //fun observeTMDbTvList(): Flowable<List<RoomTvListResult>>
+
+    @Query("SELECT * FROM tmdbTv WHERE name LIKE :nameToSearchFor")
+    fun observeTMDbTvListForName(nameToSearchFor: String): Flowable<List<RoomTvListResult>>
 
     @Query("SELECT * FROM tmdbTv WHERE id =:id")
     fun observeTMDbTvDetail(id: Int): Flowable<RoomTvListAndDetail>

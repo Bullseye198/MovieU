@@ -10,20 +10,25 @@ import io.reactivex.rxkotlin.combineLatest
 import io.reactivex.subjects.BehaviorSubject
 import java.util.*
 import javax.inject.Inject
+import kotlin.math.min
 
 class ObserveMediaSearchUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository,
     rxSchedulers: AppRxSchedulers
-) : FlowableUseCase<List<MediaList>, Void?>(rxSchedulers) {
+) : FlowableUseCase<List<MediaList>, ObserveMediaSearchUseCase.Params>(rxSchedulers) {
 
     private val localDatabaseSearchStream: BehaviorSubject<String> = BehaviorSubject.create()
 
-    override fun buildUseCaseObservable(params: Void?): Flowable<List<MediaList>> {
-        return tmDbMovieRepository.observeTMDbTvList()
-            .combineLatest(tmDbMovieRepository.observeTMDbMovies(), localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST))
+    override fun buildUseCaseObservable(params: Params?): Flowable<List<MediaList>> {
+        clear()
+        return tmDbMovieRepository.observeTMDbTvListForTitle("%${params!!.mediaToSearchFor}%")
+            .combineLatest(
+                tmDbMovieRepository.observeTMDbMoviesForTitle("%${params.mediaToSearchFor}%"),
+                localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST)
+            )
             .map {
                 val series = it.first
-                val  movies = it.second
+                val movies = it.second
                 val searchTerm = it.third
                 val mappedMovies = movies
                     .filter { movie ->
@@ -60,7 +65,8 @@ class ObserveMediaSearchUseCase @Inject constructor(
                             true
                         )
                     }
-                mappedMovies + mappedSeries
+                val list = mappedMovies + mappedSeries
+                list.subList(0, min(20, list.size))
             }
 
     }
@@ -68,4 +74,8 @@ class ObserveMediaSearchUseCase @Inject constructor(
     fun onSearchTermChanged(newSearchTerm: String) {
         localDatabaseSearchStream.onNext(newSearchTerm)
     }
+
+    data class Params(
+        val mediaToSearchFor: String
+    )
 }

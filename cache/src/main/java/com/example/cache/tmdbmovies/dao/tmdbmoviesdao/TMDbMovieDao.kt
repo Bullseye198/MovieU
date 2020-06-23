@@ -11,15 +11,11 @@ interface TMDbMovieDao {
     @Query("SELECT * FROM tmdbMovie")
     suspend fun getTMDbMovies(): List<TMDbCachedRoomResultFull>
 
-
     @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
     suspend fun getTMDbMoviesForTitle(titleToSearchFor: String): List<TMDbCachedRoomResultFull>
 
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
     suspend fun getTMDbMovieByID(id: Int): TMDbCachedRoomResultFull
-
-    @Query("SELECT * FROM tmdbMovie")
-    fun observeTMDbMovies(): Flowable<List<TMDbCachedRoomResultFull>>
 
     @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
     fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<TMDbCachedRoomResultFull>>

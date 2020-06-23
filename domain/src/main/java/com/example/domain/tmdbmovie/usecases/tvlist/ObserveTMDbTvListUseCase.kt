@@ -14,12 +14,12 @@ import javax.inject.Inject
 class ObserveTMDbTvListUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository,
     rxSchedulers: AppRxSchedulers
-) : FlowableUseCase<List<TvListResult>, Void?>(rxSchedulers) {
+) : FlowableUseCase<List<TvListResult>, ObserveTMDbTvListUseCase.Params>(rxSchedulers) {
 
     private val localDatabaseSearchStream: BehaviorSubject<String> = BehaviorSubject.create()
 
-    override fun buildUseCaseObservable(params: Void?): Flowable<List<TvListResult>> {
-        return tmDbMovieRepository.observeTMDbTvList()
+    override fun buildUseCaseObservable(params: Params?): Flowable<List<TvListResult>> {
+        return tmDbMovieRepository.observeTMDbTvListForTitle(params!!.nameToSearchFor)
             .combineLatest(localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST))
             .map { tmdbTvWithSearchTerm ->
                 val tv = tmdbTvWithSearchTerm.first
@@ -32,7 +32,8 @@ class ObserveTMDbTvListUseCase @Inject constructor(
             }
     }
 
-    fun onSearchTermChanged(newSearchTerm: String) {
-        localDatabaseSearchStream.onNext(newSearchTerm)
-    }
+    data class Params(
+        val titleToSearchFor: String,
+        val nameToSearchFor: String
+    )
 }

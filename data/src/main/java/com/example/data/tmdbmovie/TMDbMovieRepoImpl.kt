@@ -14,18 +14,19 @@ class TMDbMovieRepoImpl @Inject constructor(
     private val tmDbMovieRemote: TMDbMovieRemote,
     private val tmDbMovieCache: TMDbMovieCache
 ) : TMDbMovieRepository {
-
-    override fun observeTMDbMovies(): Flowable<List<Result>> {
-        return tmDbMovieCache.observeTMDbMovies()
+    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>> {
+        return tmDbMovieCache.observeTMDbMoviesForTitle(titleToSearchFor)
     }
+
 
     override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
         return tmDbMovieCache.observeTMDbMovieDetail(id)
     }
 
-    override fun observeTMDbTvList(): Flowable<List<TvListResult>> {
-        return tmDbMovieCache.observeTMDbTvList()
+    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>> {
+        return tmDbMovieCache.observeTMDbTvListForTitle(nameToSearchFor)
     }
+
 
     override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
         return tmDbMovieCache.observeTMDbTvDetail(id)

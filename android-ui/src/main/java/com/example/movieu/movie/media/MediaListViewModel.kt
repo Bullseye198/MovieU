@@ -18,7 +18,7 @@ class MediaListViewModel @Inject constructor(
     private val observeMediaSearchUseCase: ObserveMediaSearchUseCase
 ) : ViewModel() {
 
-    var currentMedia: String? = null
+    var currentMedia: String = ""
 
     private val mediaState = MutableLiveData(MediaListState())
 
@@ -32,23 +32,29 @@ class MediaListViewModel @Inject constructor(
         this.currentMedia = newMedia
         observeMediaSearchUseCase.onSearchTermChanged(newMedia)
         refreshTMDbMediaAndUpdate()
+        observeTMDbMedia()
     }
 
     private fun observeTMDbMedia() {
-        observeMediaSearchUseCase.invokeUseCase(object : DisposableSubscriber<List<MediaList>>() {
-            override fun onComplete() {
+        observeMediaSearchUseCase.invokeUseCase(
+            object : DisposableSubscriber<List<MediaList>>() {
+                override fun onComplete() {
 
-            }
+                }
 
-            override fun onNext(t: List<MediaList>?) {
-                mediaState.value = mediaState.value!!.copy(feed = t)
-            }
+                override fun onNext(t: List<MediaList>?) {
+                    mediaState.value = mediaState.value!!.copy(feed = t)
+                }
 
-            override fun onError(t: Throwable?) {
-                throw Exception("Subscription failed at ${t?.localizedMessage}")
-            }
+                override fun onError(t: Throwable?) {
+                    throw Exception("Subscription failed at ${t?.localizedMessage}")
+                }
 
-        }, params = null)
+            },
+            params = ObserveMediaSearchUseCase.Params(
+                mediaToSearchFor = currentMedia
+            )
+        )
     }
 
     private fun refreshTMDbMediaAndUpdate() {
@@ -61,7 +67,8 @@ class MediaListViewModel @Inject constructor(
                 )
                 refreshTMDbTvListUseCase.invokeUseCase(
                     params = RefreshTMDbTvListUseCase.Params(
-                        it)
+                        it
+                    )
                 )
             }
         }

@@ -33,7 +33,7 @@ class MovieCastAdapter :
         getItem(position).let { cast ->
             holder.content.text = cast.name
             holder.value.text = cast.character
-            val profilePath = "https://image.tmdb.org/t/p/original/${cast.profilePath}"
+            val profilePath = "https://image.tmdb.org/t/p/w154/${cast.profilePath}"
             holder.image.load(profilePath)
         }
     }
