@@ -12,7 +12,7 @@ data class TMDbMovieDetailRaw(
     @Json(name = "backdrop_path")
     val backdropPath: String, // /fHY9TfKwC702kPxEcjkxCoLqUv6.jpg
     @Json(name = "belongs_to_collection")
-    val belongsToCollection: Any, // null
+    val belongsToCollection: Any?, // null
     @Json(name = "budget")
     val budget: Int, // 0
     @Json(name = "genres")
@@ -40,7 +40,7 @@ data class TMDbMovieDetailRaw(
     @Json(name = "release_date")
     val releaseDate: String, // 2006-02-10
     @Json(name = "revenue")
-    val revenue: Int, // 0
+    val revenue: Long, // 0
     @Json(name = "runtime")
     val runtime: Int, // 99
     @Json(name = "spoken_languages")
@@ -77,7 +77,7 @@ fun TMDbMovieDetailRaw.mapToDomain() =
         productionCompanies = productionCompanies,
         productionCountries = productionCountries,
         releaseDate = releaseDate,
-        revenue = revenue,
+        revenue = revenue.toLong(),
         runtime = runtime,
         spokenLanguages = spokenLanguages.map { it.domainSpokenLanguagesModel() },
         status = status,

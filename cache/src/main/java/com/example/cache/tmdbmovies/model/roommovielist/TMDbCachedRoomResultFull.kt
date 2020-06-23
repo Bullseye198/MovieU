@@ -34,7 +34,7 @@ data class TMDbCachedRoomResultFull(
     val budget: Int?,
     val homepage: String?,
     val imdbId: String?,
-    val revenue: Int?,
+    val revenue: Long?,
     val runtime: Int?,
     val status: String?,
     val tagline: String?,
@@ -84,7 +84,7 @@ fun TMDbCachedRoomResultFull.mapToDomainModelDetail(
             )
         },
         runtime = runtime,
-        revenue = revenue,
+        revenue = revenue?.toLong(),
         releaseDate = releaseDate,
         productionCountries = emptyList(),
         productionCompanies = emptyList(),

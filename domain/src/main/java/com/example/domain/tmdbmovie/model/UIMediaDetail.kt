@@ -23,7 +23,7 @@ data class UIMediaDetail (
     val productionCompanies: List<Any>?,
     val productionCountries: List<Any>?,
     val releaseDate: String?, // 2006-02-10
-    val revenue: Int?, // 0
+    val revenue: Long?, // 0
     val runtime: Int?, // 99
     val spokenLanguages: List<SpokenLanguage>?,
     val status: String?, // Released
