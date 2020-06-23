@@ -20,7 +20,7 @@ Room,
 RxJava.
 
 To do:
--[ ] Add Tv Show Credits
+- [ ] Add Tv Show Credits
 
 In Progress:
 
