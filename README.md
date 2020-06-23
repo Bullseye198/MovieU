@@ -20,6 +20,7 @@ Room,
 RxJava.
 
 To do:
+-[ ] Add Tv Show Credits
 
 In Progress:
 
@@ -42,3 +43,4 @@ Done:
 - [x] Integrate TMDb API
 - [x] Added IMDb Ratings
 - [x] Added Cast and Crew
+- [x] Added Tv Shows List And Detail
