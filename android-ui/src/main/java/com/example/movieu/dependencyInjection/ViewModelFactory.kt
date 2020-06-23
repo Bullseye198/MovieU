@@ -2,9 +2,8 @@ package com.example.movieu.dependencyInjection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.movieu.movie.media.MediaListViewModel
+import com.example.movieu.movie.medialist.MediaListViewModel
 import com.example.movieu.movie.moviedetail.MediaDetailViewModel
-import com.example.movieu.movie.movielist.MovieListViewModel
 import com.example.movieu.userInterface.MainActivityViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -48,11 +47,6 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MediaDetailViewModel::class)
     internal abstract fun movieDetailViewModel(viewModel: MediaDetailViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MovieListViewModel::class)
-    internal abstract fun movieListViewModel(viewModel: MovieListViewModel): ViewModel
 
     @Binds
     @IntoMap

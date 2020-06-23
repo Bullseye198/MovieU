@@ -1,4 +1,4 @@
-package com.example.movieu.movie.media
+package com.example.movieu.movie.medialist
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.domain.tmdbmovie.model.MediaList

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieListFragment">
+    app:startDestination="@id/mediaListFragment">
 
     <activity
         android:id="@+id/mainActivity"
@@ -11,10 +11,10 @@
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
-        android:id="@+id/movieDetail"
+        android:id="@+id/mediaDetail"
         android:name="com.example.movieu.movie.moviedetail.MediaDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail">
+        tools:layout="@layout/fragment_media_detail">
 
         <argument
             android:name="movieID"
@@ -24,13 +24,13 @@
             app:argType="boolean" />
     </fragment>
     <fragment
-        android:id="@+id/movieListFragment"
-        android:name="com.example.movieu.movie.movielist.MovieListFragment"
+        android:id="@+id/mediaListFragment"
+        android:name="com.example.movieu.movie.medialist.MediaListFragment"
         android:label="fragment_movie_list"
-        tools:layout="@layout/fragment_movie_list" >
+        tools:layout="@layout/fragment_media_list" >
         <action
-            android:id="@+id/action_movieListFragment_to_movieDetail"
-            app:destination="@id/movieDetail" />
+            android:id="@+id/action_mediaListFragment_to_mediaDetail"
+            app:destination="@id/mediaDetail" />
     </fragment>
 
 </navigation>

@@ -1,7 +1,7 @@
 package com.example.movieu.dependencyInjection
 
 import com.example.movieu.movie.moviedetail.MediaDetailFragment
-import com.example.movieu.movie.movielist.MovieListFragment
+import com.example.movieu.movie.medialist.MediaListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 interface MovieUIModule {
 
     @ContributesAndroidInjector
-    fun contributesMovieListFragment(): MovieListFragment
+    fun contributesMovieListFragment(): MediaListFragment
 
     @ContributesAndroidInjector
     fun contributesMovieDetailFragment(): MediaDetailFragment

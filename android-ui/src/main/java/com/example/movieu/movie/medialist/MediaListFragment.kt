@@ -1,4 +1,4 @@
-package com.example.movieu.movie.movielist
+package com.example.movieu.movie.medialist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,22 +8,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.movieu.databinding.FragmentMovieListBinding
+import com.example.movieu.databinding.FragmentMediaListBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
-import com.example.movieu.movie.media.MediaListAdapter
-import com.example.movieu.movie.media.MediaListEvent
-import com.example.movieu.movie.media.MediaListViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MovieListFragment : DaggerFragment() {
+class MediaListFragment : DaggerFragment() {
 
     private lateinit var viewModel: MediaListViewModel
     private lateinit var adapter: MediaListAdapter
-
-    //private lateinit var viewModel: MovieListViewModel
-    //private lateinit var adapter: MovieListAdapter
-    private lateinit var binding: FragmentMovieListBinding
+    private lateinit var binding: FragmentMediaListBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -39,7 +33,7 @@ class MovieListFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        binding = FragmentMediaListBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MediaListViewModel::class.java)
         return binding.root
     }
@@ -74,7 +68,10 @@ class MovieListFragment : DaggerFragment() {
             viewLifecycleOwner, Observer {
                 if (it is MediaListEvent.OnMediaItemClick) {
                     val direction =
-                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetail(it.mediaId, it.isSeries)
+                        MediaListFragmentDirections.actionMediaListFragmentToMediaDetail(
+                            it.mediaId,
+                            it.isSeries
+                        )
                     findNavController().navigate(direction)
                 }
             }

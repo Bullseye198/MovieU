@@ -1,6 +1,4 @@
-package com.example.movieu.movie.media
-
-import com.example.movieu.movie.moviedetail.MovieDetailEvent
+package com.example.movieu.movie.medialist
 
 sealed class MediaListEvent {
     data class OnMediaItemClick(

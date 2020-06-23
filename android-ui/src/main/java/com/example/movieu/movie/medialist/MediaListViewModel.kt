@@ -1,4 +1,4 @@
-package com.example.movieu.movie.media
+package com.example.movieu.movie.medialist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -59,7 +59,7 @@ class MediaListViewModel @Inject constructor(
 
     private fun refreshTMDbMediaAndUpdate() {
         viewModelScope.launch {
-            currentMedia?.let {
+            currentMedia.let {
                 refreshTMDbMoviesUseCase.invokeUseCase(
                     params = RefreshTMDbMoviesUseCase.Params(
                         it

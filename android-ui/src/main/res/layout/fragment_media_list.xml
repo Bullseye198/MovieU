@@ -8,7 +8,7 @@
     android:accessibilityHeading="false"
     android:background="@color/colorPrimary"
     android:isScrollContainer="false"
-    tools:context=".movie.movielist.MovieListFragment">
+    tools:context=".movie.medialist.MediaListFragment">
 
     <TextView
         android:id="@+id/lbl_toolbar_title"

@@ -13,7 +13,6 @@ import com.example.domain.tmdbmovie.usecases.moviedetail.ObserveTMDbMovieDetailU
 import com.example.domain.tmdbmovie.usecases.moviedetail.RefreshTMDbMovieDetailUseCase
 import com.example.domain.tmdbmovie.usecases.tvdetail.ObserveTMDbTvDetailUseCase
 import com.example.domain.tmdbmovie.usecases.tvdetail.RefreshTMDbTvDetailUseCase
-import com.example.movieu.movie.tvdetail.MediaDetailState
 import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,9 +33,9 @@ class MediaDetailViewModel @Inject constructor(
 
     var fetchedOmdbInformation: Boolean = false
 
-    fun handleEvent(event: MovieDetailEvent) {
+    fun handleEvent(event: MediaDetailEvent) {
         when (event) {
-            is MovieDetailEvent.OnStart -> {
+            is MediaDetailEvent.OnStart -> {
                 if(event.isSeries){
                     observeTMDbTvDetail(id = event.id)
                     refreshTvDetail(event.id)

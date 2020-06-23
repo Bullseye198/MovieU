@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
-import com.example.movieu.databinding.FragmentMovieDetailBinding
+import com.example.movieu.databinding.FragmentMediaDetailBinding
 import com.example.movieu.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class MediaDetailFragment : DaggerFragment() {
     private lateinit var genreAdapter: MovieGenreAdapter
     private lateinit var castAdapter: MovieCastAdapter
     private lateinit var crewAdapter: MovieCrewAdapter
-    private lateinit var binding: FragmentMovieDetailBinding
+    private lateinit var binding: FragmentMediaDetailBinding
 
     var fetchedMovieDetailInformation: Boolean = false
 
@@ -39,9 +39,9 @@ class MediaDetailFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
+        binding = FragmentMediaDetailBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MediaDetailViewModel::class.java)
-        viewModel.handleEvent(MovieDetailEvent.OnStart(imdbID, isSeries))
+        viewModel.handleEvent(MediaDetailEvent.OnStart(imdbID, isSeries))
         return binding.root
     }
 
