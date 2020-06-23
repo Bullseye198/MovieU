@@ -39,8 +39,8 @@ class MediaDetailViewModel @Inject constructor(
             is MovieDetailEvent.OnStart -> {
                 observeMovieDetail(id = event.id)
                 observeTMDbTvDetail(id = event.id)
-                refresh(event.id)
-
+                refreshMovieDetail(event.id)
+                refreshTvDetail(event.id)
             }
         }
     }
@@ -184,7 +184,7 @@ class MediaDetailViewModel @Inject constructor(
         )
     }
 
-    private fun refresh(id: Int) {
+    private fun refreshMovieDetail(id: Int) {
         viewModelScope.launch {
             currentMovieDetail.let {
                 refreshTMDbMovieDetailUseCase.invokeUseCase(
@@ -193,6 +193,14 @@ class MediaDetailViewModel @Inject constructor(
                 refreshTMDbCreditsUseCase.invokeUseCase(
                     params = RefreshTMDbCreditsUseCase.Params(id = id)
                 )
+
+            }
+        }
+    }
+
+    private fun refreshTvDetail(id: Int) {
+        viewModelScope.launch {
+            currentMovieDetail.let {
                 refreshTMDbTvDetailUseCase.invokeUseCase(
                     params = RefreshTMDbTvDetailUseCase.Params(id = id)
                 )

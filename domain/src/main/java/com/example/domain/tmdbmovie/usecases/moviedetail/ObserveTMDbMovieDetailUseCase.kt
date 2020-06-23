@@ -8,12 +8,12 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 class ObserveTMDbMovieDetailUseCase @Inject constructor(
-    private val tmDbMovieRepository: TMDbMovieRepository,
+    private val tmdbMovieRepository: TMDbMovieRepository,
     rxSchedulers: AppRxSchedulers
 ) : FlowableUseCase<TMDbMovieDetail, ObserveTMDbMovieDetailUseCase.Params>(rxSchedulers) {
 
     override fun buildUseCaseObservable(params: Params?): Flowable<TMDbMovieDetail> {
-        return tmDbMovieRepository.observeTMDbMovieDetail(params!!.id)
+        return tmdbMovieRepository.observeTMDbMovieDetail(params!!.id)
     }
 
     data class Params(
