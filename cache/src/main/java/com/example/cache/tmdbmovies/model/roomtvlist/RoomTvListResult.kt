@@ -57,7 +57,7 @@ fun RoomTvListResult.mapToDomainTvListResult(): TvListResult {
 
 fun RoomTvListResult.mapToDomainTMDbTvDetail(
     tvDetailCreatedBy: List<RoomTvDetailCreatedBy>,
-    tvDetailgenre: List<RoomTvDetailGenre>,
+    tvDetailGenre: List<RoomTvDetailGenre>,
     tvDetailLastEpisodeToAir: RoomTvDetailLastEpisodeToAir?,
     tvDetailNetwork: List<RoomTvDetailNetwork>,
     tvDetailProductionCompany: List<RoomTvDetailProductionCompany>,
@@ -88,7 +88,7 @@ fun RoomTvListResult.mapToDomainTMDbTvDetail(
         episodeRunTime = emptyList(),
         languages = tvDetailLanguages.map { it.mapToDomainTvDetailLanguages() },
         tvDetailCreatedBy = tvDetailCreatedBy.map { it.mapToDomainTvDetailCreatedBy() },
-        tvDetailGenres = tvDetailgenre.map { it.mapToDomainTvDetailGenre() },
+        tvDetailGenres = tvDetailGenre.map { it.mapToDomainTvDetailGenre() },
         tvDetailLastEpisodeToAir = tvDetailLastEpisodeToAir?.mapToDomainTvDetailLastEpisodeToAir(),
         tvDetailNetworks = tvDetailNetwork.map { it.mapToDomainTvDetailNetwork() },
         tvDetailProductionCompanies = tvDetailProductionCompany.map { it.mapToDomainTvDetailProductionCompany() },
