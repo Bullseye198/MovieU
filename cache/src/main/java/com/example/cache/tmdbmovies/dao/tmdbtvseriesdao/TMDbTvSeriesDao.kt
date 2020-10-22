@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.cache.tmdbmovies.model.roomtvlist.RoomTvListAndDetail
 import com.example.cache.tmdbmovies.model.roomtvlist.RoomTvListResult
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TMDbTvSeriesDao {
@@ -15,10 +15,10 @@ interface TMDbTvSeriesDao {
     //fun observeTMDbTvList(): Flowable<List<RoomTvListResult>>
 
     @Query("SELECT * FROM tmdbTv WHERE name LIKE :nameToSearchFor")
-    fun observeTMDbTvListForName(nameToSearchFor: String): Flowable<List<RoomTvListResult>>
+    fun observeTMDbTvListForName(nameToSearchFor: String): Flow<List<RoomTvListResult>>
 
     @Query("SELECT * FROM tmdbTv WHERE id =:id")
-    fun observeTMDbTvDetail(id: Int): Flowable<RoomTvListAndDetail>
+    fun observeTMDbTvDetail(id: Int): Flow<RoomTvListAndDetail>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTvAllSuspend(entities: List<RoomTvListResult>)

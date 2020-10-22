@@ -6,17 +6,17 @@ import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 interface TMDbMovieRepository {
 
-    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>>
+    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flow<List<Result>>
 
-    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail>
+    fun observeTMDbMovieDetail(id: Int): Flow<TMDbMovieDetail>
 
-    fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>>
+    fun observeTMDbTvListForTitle(nameToSearchFor: String): Flow<List<TvListResult>>
 
-    fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail>
+    fun observeTMDbTvDetail(id: Int): Flow<TMDbTvDetail>
 
     suspend fun fetchTMDbMovies(tmdbTitleToSearchFor: String): List<Result>
 

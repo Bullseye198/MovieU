@@ -1,34 +1,31 @@
 package com.example.domain.tmdbmovie.usecases.tvlist
 
-import com.cm.base.executor.AppRxSchedulers
-import com.cm.base.interactors.base.FlowableUseCase
+import com.cm.base.executor.AppCoroutineDispatchers
+import com.cm.base.interactors.base.FlowUseCase
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.rxkotlin.combineLatest
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import java.util.*
 import javax.inject.Inject
 
 class ObserveTMDbTvListUseCase @Inject constructor(
     private val tmDbMovieRepository: TMDbMovieRepository,
-    rxSchedulers: AppRxSchedulers
-) : FlowableUseCase<List<TvListResult>, ObserveTMDbTvListUseCase.Params>(rxSchedulers) {
+    appCoroutineDispatchers: AppCoroutineDispatchers
+) : FlowUseCase<List<TvListResult>, ObserveTMDbTvListUseCase.Params>(appCoroutineDispatchers) {
 
-    private val localDatabaseSearchStream: BehaviorSubject<String> = BehaviorSubject.create()
+    @ExperimentalCoroutinesApi
+    private val localDatabaseSearchStream: MutableStateFlow<String> = MutableStateFlow("")
 
-    override fun buildUseCaseObservable(params: Params?): Flowable<List<TvListResult>> {
+    override fun buildStream(params: Params?): Flow<List<TvListResult>> {
         return tmDbMovieRepository.observeTMDbTvListForTitle(params!!.nameToSearchFor)
-            .combineLatest(localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST))
-            .map { tmdbTvWithSearchTerm ->
-                val tv = tmdbTvWithSearchTerm.first
-                val searchTerm = tmdbTvWithSearchTerm.second
-
-                val tmdbTvForSearchTerm = tv.filter {
+            .combine(localDatabaseSearchStream) { tv, searchTerm ->
+                tv.filter {
                     it.name.toLowerCase(Locale.ROOT).contains(searchTerm.toLowerCase(Locale.ROOT))
                 }
-                tmdbTvForSearchTerm.sortedWith(compareBy({ it.id }, { it.name }))
+                    .sortedWith(compareBy({ it.id }, { it.name }))
             }
     }
 

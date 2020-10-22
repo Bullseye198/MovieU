@@ -3,7 +3,7 @@ package com.example.cache.tmdbmovies.dao.tmdbmoviesdao
 import androidx.room.*
 import com.example.cache.tmdbmovies.model.roommovielist.TMDbCachedRoomResultFull
 import com.example.cache.tmdbmovies.model.roommovielist.TMDbMovieGenresSpokenLanguagesCastAndCrew
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TMDbMovieDao {
@@ -18,10 +18,10 @@ interface TMDbMovieDao {
     suspend fun getTMDbMovieByID(id: Int): TMDbCachedRoomResultFull
 
     @Query("SELECT * FROM tmdbMovie WHERE title LIKE :titleToSearchFor")
-    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<TMDbCachedRoomResultFull>>
+    fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flow<List<TMDbCachedRoomResultFull>>
 
     @Query("SELECT * FROM tmdbMovie WHERE id =:id")
-    fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieGenresSpokenLanguagesCastAndCrew>
+    fun observeTMDbMovieDetail(id: Int): Flow<TMDbMovieGenresSpokenLanguagesCastAndCrew>
 
     @Query("UPDATE tmdbMovie SET imdRating = :imdbRating WHERE imdbID =:imdbID ")
     fun updateTMDbMovie(imdbID: String, imdbRating: String?)

@@ -7,28 +7,28 @@ import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class TMDbMovieRepoImpl @Inject constructor(
     private val tmDbMovieRemote: TMDbMovieRemote,
     private val tmDbMovieCache: TMDbMovieCache
 ) : TMDbMovieRepository {
-    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>> {
+    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flow<List<Result>> {
         return tmDbMovieCache.observeTMDbMoviesForTitle(titleToSearchFor)
     }
 
 
-    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
+    override fun observeTMDbMovieDetail(id: Int): Flow<TMDbMovieDetail> {
         return tmDbMovieCache.observeTMDbMovieDetail(id)
     }
 
-    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>> {
+    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flow<List<TvListResult>> {
         return tmDbMovieCache.observeTMDbTvListForTitle(nameToSearchFor)
     }
 
 
-    override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
+    override fun observeTMDbTvDetail(id: Int): Flow<TMDbTvDetail> {
         return tmDbMovieCache.observeTMDbTvDetail(id)
     }
 

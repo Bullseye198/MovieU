@@ -9,6 +9,7 @@ import com.example.domain.tmdbmovie.usecases.ObserveMediaSearchUseCase
 import com.example.domain.tmdbmovie.usecases.movielist.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.tvlist.RefreshTMDbTvListUseCase
 import io.reactivex.subscribers.DisposableSubscriber
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

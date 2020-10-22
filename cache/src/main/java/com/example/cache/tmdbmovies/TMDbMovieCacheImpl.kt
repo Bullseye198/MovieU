@@ -23,7 +23,8 @@ import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -44,22 +45,22 @@ class TMDbMovieCacheImpl @Inject constructor(
     private val tvDetailLanguagesDao: TvDetailLanguagesDao
 ) : TMDbMovieCache {
 
-    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flowable<List<Result>> {
+    override fun observeTMDbMoviesForTitle(titleToSearchFor: String): Flow<List<Result>> {
         return tmDbMovieDao.observeTMDbMoviesForTitle(titleToSearchFor)
             .map { roomTMDbMovies -> roomTMDbMovies.map { it.mapToDomainModelList() } }
     }
 
-    override fun observeTMDbMovieDetail(id: Int): Flowable<TMDbMovieDetail> {
+    override fun observeTMDbMovieDetail(id: Int): Flow<TMDbMovieDetail> {
         return tmDbMovieDao.observeTMDbMovieDetail(id)
             .map { roomTMDbMovieDetail -> roomTMDbMovieDetail.mapToDomainModel() }
     }
 
-    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flowable<List<TvListResult>> {
+    override fun observeTMDbTvListForTitle(nameToSearchFor: String): Flow<List<TvListResult>> {
         return tmdbTvSeriesDao.observeTMDbTvListForName(nameToSearchFor)
             .map { roomTvList -> roomTvList.map { it.mapToDomainTvListResult() } }
     }
 
-    override fun observeTMDbTvDetail(id: Int): Flowable<TMDbTvDetail> {
+    override fun observeTMDbTvDetail(id: Int): Flow<TMDbTvDetail> {
         return tmdbTvSeriesDao.observeTMDbTvDetail(id)
             .map { roomTvDetail -> roomTvDetail.mapToDomainTvDetailResult() }
     }
