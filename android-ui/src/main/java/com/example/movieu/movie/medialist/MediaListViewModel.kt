@@ -4,15 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.tmdbmovie.model.MediaList
 import com.example.domain.tmdbmovie.usecases.ObserveMediaSearchUseCase
 import com.example.domain.tmdbmovie.usecases.movielist.RefreshTMDbMoviesUseCase
 import com.example.domain.tmdbmovie.usecases.tvlist.RefreshTMDbTvListUseCase
-import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class MediaListViewModel @Inject constructor(
     private val refreshTMDbMoviesUseCase: RefreshTMDbMoviesUseCase,
     private val refreshTMDbTvListUseCase: RefreshTMDbTvListUseCase,
@@ -37,25 +38,17 @@ class MediaListViewModel @Inject constructor(
     }
 
     private fun observeTMDbMedia() {
-        observeMediaSearchUseCase.invokeUseCase(
-            object : DisposableSubscriber<List<MediaList>>() {
-                override fun onComplete() {
-
-                }
-
-                override fun onNext(t: List<MediaList>?) {
-                    mediaState.value = mediaState.value!!.copy(feed = t)
-                }
-
-                override fun onError(t: Throwable?) {
-                    throw Exception("Subscription failed at ${t?.localizedMessage}")
-                }
-
-            },
-            params = ObserveMediaSearchUseCase.Params(
-                mediaToSearchFor = currentMedia
+        viewModelScope.launch {
+            observeMediaSearchUseCase.buildStream(
+                ObserveMediaSearchUseCase.Params(
+                    currentMedia
+                )
             )
-        )
+                .catch { }
+                .collect { TMDbMedia ->
+                    mediaState.value = mediaState.value!!.copy(feed = TMDbMedia)
+                }
+        }
     }
 
     private fun refreshTMDbMediaAndUpdate() {
@@ -73,10 +66,5 @@ class MediaListViewModel @Inject constructor(
                 )
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        observeMediaSearchUseCase.dispose()
     }
 }

@@ -1,15 +1,9 @@
 package com.example.domain.tmdbmovie.usecases
 
 import com.cm.base.executor.AppCoroutineDispatchers
-import com.cm.base.executor.AppRxSchedulers
 import com.cm.base.interactors.base.FlowUseCase
-import com.cm.base.interactors.base.FlowableUseCase
 import com.example.domain.tmdbmovie.TMDbMovieRepository
 import com.example.domain.tmdbmovie.model.MediaList
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.rxkotlin.combineLatest
-import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
