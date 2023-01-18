@@ -19,12 +19,6 @@ OkHttp3,
 Room,
 RxJava.
 
-To do:
-- [ ] Add Tv Show Credits
-
-In Progress:
-
-
 Done:
 - [x] Set up android-ui, cache, common, data, domain and remote modules with dependencies
 - [x] Dagger2 implementation
