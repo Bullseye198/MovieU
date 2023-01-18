@@ -39,7 +39,7 @@ Done:
 - [x] Work on the movie detail
 - [x] Work on Movie Ratings
 - [x] Migrate to state pattern
-- [x] More RxJava Stuff
+- [x] Migration to RxKotlin
 - [x] Integrate TMDb API
 - [x] Added IMDb Ratings
 - [x] Added Cast and Crew
