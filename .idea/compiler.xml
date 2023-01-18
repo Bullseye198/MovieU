@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="base" target="1.7" />
       <module name="base-android" target="1.7" />
       <module name="base-mvviewmodel" target="1.7" />
       <module name="cache" target="1.7" />
       <module name="data" target="1.7" />
       <module name="domain" target="1.7" />
+      <module name="MovieU.android-ui" target="1.8" />
+      <module name="MovieU.cache" target="1.8" />
+      <module name="MovieU.common.base-android" target="1.8" />
+      <module name="MovieU.common.base-mvviewmodel" target="1.8" />
+      <module name="MovieU.data" target="1.8" />
+      <module name="MovieU.domain" target="1.8" />
+      <module name="MovieU.remote" target="1.8" />
       <module name="remote" target="1.7" />
     </bytecodeTargetLevel>
   </component>

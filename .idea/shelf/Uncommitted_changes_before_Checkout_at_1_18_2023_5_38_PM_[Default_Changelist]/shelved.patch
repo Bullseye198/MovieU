@@ -1,0 +1,25 @@
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"1.7\">\r\n      <module name=\"base\" target=\"1.7\" />\r\n      <module name=\"base-android\" target=\"1.7\" />\r\n      <module name=\"base-mvviewmodel\" target=\"1.7\" />\r\n      <module name=\"cache\" target=\"1.7\" />\r\n      <module name=\"data\" target=\"1.7\" />\r\n      <module name=\"domain\" target=\"1.7\" />\r\n      <module name=\"MovieU.android-ui\" target=\"1.8\" />\r\n      <module name=\"MovieU.cache\" target=\"1.8\" />\r\n      <module name=\"MovieU.common.base-android\" target=\"1.8\" />\r\n      <module name=\"MovieU.common.base-mvviewmodel\" target=\"1.8\" />\r\n      <module name=\"MovieU.data\" target=\"1.8\" />\r\n      <module name=\"MovieU.domain\" target=\"1.8\" />\r\n      <module name=\"MovieU.remote\" target=\"1.8\" />\r\n      <module name=\"remote\" target=\"1.7\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/.idea/compiler.xml	(date 1674059692946)
+@@ -13,8 +13,14 @@
+       <module name="MovieU.common.base-android" target="1.8" />
+       <module name="MovieU.common.base-mvviewmodel" target="1.8" />
+       <module name="MovieU.data" target="1.8" />
++      <module name="MovieU.data.main" target="1.8" />
++      <module name="MovieU.data.test" target="1.8" />
+       <module name="MovieU.domain" target="1.8" />
++      <module name="MovieU.domain.main" target="1.8" />
++      <module name="MovieU.domain.test" target="1.8" />
+       <module name="MovieU.remote" target="1.8" />
++      <module name="MovieU.remote.main" target="1.8" />
++      <module name="MovieU.remote.test" target="1.8" />
+       <module name="remote" target="1.7" />
+     </bytecodeTargetLevel>
+   </component>

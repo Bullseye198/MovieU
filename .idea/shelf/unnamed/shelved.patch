@@ -1,0 +1,472 @@
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ /dev/null	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: data/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java-library'\r\n    id 'kotlin'\r\n    id 'kotlin-kapt'\r\n}\r\n\r\njava {\r\n    sourceCompatibility = JavaVersion.VERSION_1_8\r\n    targetCompatibility = JavaVersion.VERSION_1_8\r\n}\r\n\r\ndependencies {\r\n    implementation project(path: ':domain')\r\n    implementation project(':common:base')\r\n\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //Room\r\n    kapt \"androidx.room:room-compiler:2.2.5\"\r\n    implementation \"androidx.room:room-runtime:2.2.5\"\r\n    implementation \"androidx.room:room-ktx:2.2.5\"\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n\r\n    //Moshi\r\n    implementation(\"com.squareup.moshi:moshi:1.9.2\")\r\n\r\n    //OkHttp3\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n    //Coroutine\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/build.gradle b/data/build.gradle
+--- a/data/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/data/build.gradle	(date 1674058785234)
+@@ -17,8 +17,8 @@
+     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+ 
+Index: domain/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java-library'\r\n    id 'kotlin'\r\n    id 'kotlin-kapt'\r\n}\r\n\r\njava {\r\n    sourceCompatibility = JavaVersion.VERSION_1_8\r\n    targetCompatibility = JavaVersion.VERSION_1_8\r\n}\r\n\r\ndependencies {\r\n    implementation project(':common:base')\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n\r\n    //Moshi\r\n    implementation(\"com.squareup.moshi:moshi:1.9.2\")\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //OkHttp3\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n    //Coroutine\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/build.gradle b/domain/build.gradle
+--- a/domain/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/domain/build.gradle	(date 1674058785224)
+@@ -15,8 +15,8 @@
+     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+ 
+Index: remote/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java-library'\r\n    id 'kotlin'\r\n    id 'kotlin-kapt'\r\n}\r\n\r\njava {\r\n    sourceCompatibility = JavaVersion.VERSION_1_8\r\n    targetCompatibility = JavaVersion.VERSION_1_8\r\n}\r\n\r\ndependencies {\r\n    implementation project(path: ':domain')\r\n    implementation project(path: ':data')\r\n    implementation project(':common:base')\r\n\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n    implementation \"com.squareup.retrofit2:converter-moshi:2.8.1\"\r\n\r\n    //Moshi\r\n    implementation(\"com.squareup.moshi:moshi:1.9.2\")\r\n    kapt(\"com.squareup.moshi:moshi-kotlin-codegen:1.9.2\")\r\n\r\n    //OkHttp3\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/remote/build.gradle b/remote/build.gradle
+--- a/remote/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/remote/build.gradle	(date 1674059020251)
+@@ -18,8 +18,8 @@
+     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+ 
+@@ -29,7 +29,7 @@
+ 
+     //Moshi
+     implementation("com.squareup.moshi:moshi:1.9.2")
+-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.9.2")
++    annotationProcessor ("com.squareup.moshi:moshi-kotlin-codegen:1.9.2")
+ 
+     //OkHttp3
+     implementation("com.squareup.okhttp3:okhttp:4.6.0")
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"1.8\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/android-ui\" />\r\n            <option value=\"$PROJECT_DIR$/cache\" />\r\n            <option value=\"$PROJECT_DIR$/common\" />\r\n            <option value=\"$PROJECT_DIR$/common/base\" />\r\n            <option value=\"$PROJECT_DIR$/common/base-android\" />\r\n            <option value=\"$PROJECT_DIR$/common/base-mvviewmodel\" />\r\n            <option value=\"$PROJECT_DIR$/data\" />\r\n            <option value=\"$PROJECT_DIR$/domain\" />\r\n            <option value=\"$PROJECT_DIR$/remote\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/.idea/gradle.xml	(date 1674055022785)
+@@ -4,10 +4,10 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <option name="testRunner" value="PLATFORM" />
++        <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="gradleJvm" value="1.8" />
++        <option name="gradleJvm" value="corretto-11" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+@@ -22,8 +22,6 @@
+             <option value="$PROJECT_DIR$/remote" />
+           </set>
+         </option>
+-        <option name="resolveModulePerSourceSet" value="false" />
+-        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: android-ui/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'kotlin-android'\r\n    id 'kotlin-android-extensions'\r\n    id 'kotlin-kapt'\r\n    id 'androidx.navigation.safeargs'\r\n}\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    buildToolsVersion \"29.0.3\"\r\n    viewBinding {\r\n        enabled = true\r\n    }\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.movieu\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 29\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        debug {\r\n            minifyEnabled false\r\n        }\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation project(path: ':cache')\r\n    implementation project(path: ':remote')\r\n    implementation project(path: ':domain')\r\n    implementation project(path: ':data')\r\n\r\n    implementation project(':common:base')\r\n    implementation project(':common:base-android')\r\n    implementation project(':common:base-mvviewmodel')\r\n\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n    implementation 'androidx.core:core-ktx:1.2.0'\r\n    implementation 'androidx.appcompat:appcompat:1.1.0'\r\n    implementation 'com.google.android.material:material:1.2.0-alpha06'\r\n    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'\r\n    implementation 'com.android.support:cardview-v7:28.0.0'\r\n\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.1'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'\r\n\r\n    //Navigation\r\n    def nav_version = \"2.3.0-alpha05\"\r\n    implementation \"androidx.navigation:navigation-fragment-ktx:$nav_version\"\r\n    implementation \"androidx.navigation:navigation-ui-ktx:$nav_version\"\r\n\r\n    // Dynamic Feature Module Support\r\n    implementation \"androidx.navigation:navigation-dynamic-features-fragment:$nav_version\"\r\n\r\n    // Testing Navigation\r\n    androidTestImplementation \"androidx.navigation:navigation-testing:$nav_version\"\r\n\r\n    //Lifecycle\r\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger-android:2.27\"\r\n    implementation \"com.google.dagger:dagger-android-support:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n    kapt \"com.google.dagger:dagger-android-processor:2.27\"\r\n\r\n    //coil\r\n    implementation(\"io.coil-kt:coil:0.10.1\")\r\n\r\n    //Room\r\n    kapt \"androidx.room:room-compiler:2.2.5\"\r\n    implementation \"androidx.room:room-runtime:2.2.5\"\r\n    implementation \"androidx.room:room-ktx:2.2.5\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n    implementation \"com.squareup.retrofit2:converter-moshi:2.8.1\"\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //OkHttp3\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n    //DB Inspector\r\n    debugImplementation 'im.dino:dbinspector:4.0.0'\r\n\r\n    debugImplementation \"com.github.ChuckerTeam.Chucker:library:3.1.1\"\r\n    releaseImplementation \"com.github.ChuckerTeam.Chucker:library-no-op:3.1.1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android-ui/build.gradle b/android-ui/build.gradle
+--- a/android-ui/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/android-ui/build.gradle	(date 1674059551274)
+@@ -7,7 +7,7 @@
+ }
+ 
+ android {
+-    compileSdkVersion 29
++    compileSdkVersion 33
+     buildToolsVersion "29.0.3"
+     viewBinding {
+         enabled = true
+@@ -15,8 +15,8 @@
+ 
+     defaultConfig {
+         applicationId "com.example.movieu"
+-        minSdkVersion 21
+-        targetSdkVersion 29
++        minSdkVersion 28
++        targetSdkVersion 28
+         versionCode 1
+         versionName "1.0"
+ 
+@@ -81,10 +81,10 @@
+     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger-android:2.27"
+-    implementation "com.google.dagger:dagger-android-support:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
+-    kapt "com.google.dagger:dagger-android-processor:2.27"
++    implementation "com.google.dagger:dagger-android:2.34"
++    implementation "com.google.dagger:dagger-android-support:2.34"
++    kapt  "com.google.dagger:dagger-compiler:2.34"
++    kapt  "com.google.dagger:dagger-android-processor:2.34"
+ 
+     //coil
+     implementation("io.coil-kt:coil:0.10.1")
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"1.7\">\r\n      <module name=\"base\" target=\"1.7\" />\r\n      <module name=\"base-android\" target=\"1.7\" />\r\n      <module name=\"base-mvviewmodel\" target=\"1.7\" />\r\n      <module name=\"cache\" target=\"1.7\" />\r\n      <module name=\"data\" target=\"1.7\" />\r\n      <module name=\"domain\" target=\"1.7\" />\r\n      <module name=\"MovieU.android-ui\" target=\"1.8\" />\r\n      <module name=\"MovieU.cache\" target=\"1.8\" />\r\n      <module name=\"MovieU.common.base-android\" target=\"1.8\" />\r\n      <module name=\"MovieU.common.base-mvviewmodel\" target=\"1.8\" />\r\n      <module name=\"MovieU.data\" target=\"1.8\" />\r\n      <module name=\"MovieU.domain\" target=\"1.8\" />\r\n      <module name=\"MovieU.remote\" target=\"1.8\" />\r\n      <module name=\"remote\" target=\"1.7\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/.idea/compiler.xml	(date 1674059080320)
+@@ -1,6 +1,74 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
++    <annotationProcessing>
++      <profile name="Gradle Imported" enabled="true">
++        <outputRelativeToContentRoot value="true" />
++        <processorPath useClasspath="false">
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.34/90e8ae2fb9abb3aeb731d79ebf47a363cbf7c55a/dagger-compiler-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-spi/2.34/2a8b38a29cfb596be50da41d08e6204d58a95b42/dagger-spi-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-producers/2.34/689bc6ce932988de81bfac47f1891107e75fcaf1/dagger-producers-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.34/e14b074cd645c67c41c019847051e4d320aef186/dagger-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.googlejavaformat/google-java-format/1.5/fba7f130d29061d2d2ea384b4880c10cae92ef73/google-java-format-1.5.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/27.1-jre/e47b59c893079b87743cdcfb6f17ca95c08c592c/guava-27.1-jre.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javapoet/1.13.0/d6562d385049f35eb50403fa86bb11cce76b866a/javapoet-1.13.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/jsr250-api/1.0/5025422767732a1ab45d93abfea846513d742dcf/jsr250-api-1.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.ltgt.gradle.incap/incap/0.2/c73e3db9bee414d6ee27995d951fcdbee09acad/incap-0.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-compat-qual/2.5.3/45f92d2e0676d05ae9297269b8268f93a875d4a/checker-compat-qual-2.5.3.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-metadata-jvm/0.2.0/20a6668b7f8a5bd2cf8d22c6a2e89766c9ec9185/kotlinx-metadata-jvm-0.2.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.20/9be77b243a362b745e365f286627b8724337009c/kotlin-stdlib-1.4.20.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/javac-shaded/9-dev-r4023-3/72b688efd290280a0afde5f9892b0fde6f362d1d/javac-shaded-9-dev-r4023-3.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.5.2/cea74543d5904a30861a61b4643a5f2bb372efc4/checker-qual-2.5.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.2.0/88e3c593e9b3586e1c6177f89267da6fc6986f0c/error_prone_annotations-2.2.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.20/c6761d7805b5312302f2bbd78cda68c976ce0c70/kotlin-stdlib-common-1.4.20.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
++        </processorPath>
++        <module name="MovieU.data.main" />
++        <module name="MovieU.domain.main" />
++        <module name="MovieU.common.base.main" />
++      </profile>
++      <profile name="Gradle Imported" enabled="true">
++        <outputRelativeToContentRoot value="true" />
++        <processorPath useClasspath="false">
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.34/90e8ae2fb9abb3aeb731d79ebf47a363cbf7c55a/dagger-compiler-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.moshi/moshi-kotlin-codegen/1.9.2/e9e661783bfbca0b7b07231535153999e23c7239/moshi-kotlin-codegen-1.9.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-spi/2.34/2a8b38a29cfb596be50da41d08e6204d58a95b42/dagger-spi-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-producers/2.34/689bc6ce932988de81bfac47f1891107e75fcaf1/dagger-producers-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.34/e14b074cd645c67c41c019847051e4d320aef186/dagger-2.34.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.googlejavaformat/google-java-format/1.5/fba7f130d29061d2d2ea384b4880c10cae92ef73/google-java-format-1.5.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/27.1-jre/e47b59c893079b87743cdcfb6f17ca95c08c592c/guava-27.1-jre.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javapoet/1.13.0/d6562d385049f35eb50403fa86bb11cce76b866a/javapoet-1.13.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/jsr250-api/1.0/5025422767732a1ab45d93abfea846513d742dcf/jsr250-api-1.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.ltgt.gradle.incap/incap/0.2/c73e3db9bee414d6ee27995d951fcdbee09acad/incap-0.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-compat-qual/2.5.3/45f92d2e0676d05ae9297269b8268f93a875d4a/checker-compat-qual-2.5.3.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-metadata-jvm/0.2.0/20a6668b7f8a5bd2cf8d22c6a2e89766c9ec9185/kotlinx-metadata-jvm-0.2.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/kotlinpoet/1.4.4/87ddb26a6bd823a47edaffba3b3c9f79e34c1aa2/kotlinpoet-1.4.4.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.50/50ad05ea1c2595fb31b800e76db464d08d599af3/kotlin-stdlib-jdk7-1.3.50.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.3.50/b499f22fd7c3e9c2e5b6c4005221fa47fc7f9a7a/kotlin-reflect-1.3.50.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.20/9be77b243a362b745e365f286627b8724337009c/kotlin-stdlib-1.4.20.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.moshi/moshi/1.9.2/1b1336538beda8aa41cbfabf541b8a964e7f6045/moshi-1.9.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/javac-shaded/9-dev-r4023-3/72b688efd290280a0afde5f9892b0fde6f362d1d/javac-shaded-9-dev-r4023-3.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.5.2/cea74543d5904a30861a61b4643a5f2bb372efc4/checker-qual-2.5.2.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.2.0/88e3c593e9b3586e1c6177f89267da6fc6986f0c/error_prone_annotations-2.2.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.20/c6761d7805b5312302f2bbd78cda68c976ce0c70/kotlin-stdlib-common-1.4.20.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
++          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.16.0/975078d246baf08b0ba948c131a2ef6d5a227c71/okio-1.16.0.jar" />
++        </processorPath>
++        <module name="MovieU.remote.main" />
++      </profile>
++    </annotationProcessing>
+     <bytecodeTargetLevel target="1.7">
+       <module name="base" target="1.7" />
+       <module name="base-android" target="1.7" />
+@@ -8,13 +76,19 @@
+       <module name="cache" target="1.7" />
+       <module name="data" target="1.7" />
+       <module name="domain" target="1.7" />
+-      <module name="MovieU.android-ui" target="1.8" />
+-      <module name="MovieU.cache" target="1.8" />
+-      <module name="MovieU.common.base-android" target="1.8" />
+-      <module name="MovieU.common.base-mvviewmodel" target="1.8" />
++      <module name="MovieU.android-ui" target="11" />
++      <module name="MovieU.cache" target="11" />
++      <module name="MovieU.common.base-android" target="11" />
++      <module name="MovieU.common.base-mvviewmodel" target="11" />
+       <module name="MovieU.data" target="1.8" />
++      <module name="MovieU.data.main" target="1.8" />
++      <module name="MovieU.data.test" target="1.8" />
+       <module name="MovieU.domain" target="1.8" />
++      <module name="MovieU.domain.main" target="1.8" />
++      <module name="MovieU.domain.test" target="1.8" />
+       <module name="MovieU.remote" target="1.8" />
++      <module name="MovieU.remote.main" target="1.8" />
++      <module name="MovieU.remote.test" target="1.8" />
+       <module name="remote" target="1.7" />
+     </bytecodeTargetLevel>
+   </component>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" default=\"false\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/.idea/misc.xml	(date 1651597235925)
+@@ -1,6 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="DesignSurface">
++    <option name="filePathToZoomLevelMap">
++      <map>
++        <entry key="..\:/Users/marti/AndroidStudioProjects/MovieU/android-ui/src/main/res/layout/activity_main.xml" value="0.1" />
++        <entry key="..\:/Users/marti/AndroidStudioProjects/MovieU/android-ui/src/main/res/layout/fragment_media_list.xml" value="0.1524822695035461" />
++      </map>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: android-ui/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    package=\"com.example.movieu\">\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n\r\n    <application\r\n        android:name=\"com.example.movieu.MyApplication\"\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:ignore=\"Instantiatable\">\r\n        <activity android:name=\".features.main.MainActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android-ui/src/main/AndroidManifest.xml b/android-ui/src/main/AndroidManifest.xml
+--- a/android-ui/src/main/AndroidManifest.xml	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/android-ui/src/main/AndroidManifest.xml	(date 1674059480162)
+@@ -2,6 +2,7 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     package="com.example.movieu">
++
+     <uses-permission android:name="android.permission.INTERNET" />
+ 
+     <application
+@@ -14,10 +15,11 @@
+         android:theme="@style/AppTheme"
+         android:usesCleartextTraffic="true"
+         tools:ignore="Instantiatable">
+-        <activity android:name=".features.main.MainActivity">
++        <activity
++            android:name=".features.main.MainActivity"
++            android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+-
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Mon May 25 10:05:00 CEST 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.1.1-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1674055200957)
+@@ -3,4 +3,4 @@
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-all.zip
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    ext.kotlin_version = \"1.3.72\"\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven {\r\n            url 'https://maven.fabric.io/public'\r\n        }\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.0\"\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n        classpath \"androidx.navigation:navigation-safe-args-gradle-plugin:2.2.0-rc02\"\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven { url \"https://jitpack.io\" }\r\n        maven {\r\n            url 'https://maven.fabric.io/public'\r\n        }\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/build.gradle	(date 1674055490957)
+@@ -1,6 +1,7 @@
+ // Top-level build file where you can add configuration options common to all sub-projects/modules.
+ buildscript {
+-    ext.kotlin_version = "1.3.72"
++    ext.kotlin_version = '1.6.21'
++
+     repositories {
+         google()
+         jcenter()
+@@ -9,9 +10,9 @@
+         }
+     }
+     dependencies {
+-        classpath "com.android.tools.build:gradle:4.0.0"
++        classpath 'com.android.tools.build:gradle:7.4.0'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.2.0-rc02"
++        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.4.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: cache/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'kotlin-android-extensions'\r\napply plugin: 'kotlin-kapt'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\n\r\ndependencies {\r\n    implementation project(path: ':data')\r\n    implementation project(path: ':domain')\r\n\r\n    implementation project(':common:base')\r\n    implementation project(':common:base-android')\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n\r\n    //Room\r\n    kapt \"androidx.room:room-compiler:2.2.5\"\r\n    implementation \"androidx.room:room-runtime:2.2.5\"\r\n    implementation \"androidx.room:room-ktx:2.2.5\"\r\n    implementation \"androidx.room:room-rxjava2:2.2.5\"\r\n\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n\r\n    //Moshi\r\n    implementation(\"com.squareup.moshi:moshi:1.9.2\")\r\n\r\n    //OkHttp3\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n    //Coroutine\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cache/build.gradle b/cache/build.gradle
+--- a/cache/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/cache/build.gradle	(date 1674058785244)
+@@ -23,12 +23,12 @@
+     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+ 
+     //Room
+-    kapt "androidx.room:room-compiler:2.2.5"
++    annotationProcessor  "androidx.room:room-compiler:2.2.5"
+     implementation "androidx.room:room-runtime:2.2.5"
+     implementation "androidx.room:room-ktx:2.2.5"
+     implementation "androidx.room:room-rxjava2:2.2.5"
+Index: common/base/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java-library'\r\n    id 'kotlin'\r\n    id 'kotlin-kapt'\r\n}\r\n\r\njava {\r\n    sourceCompatibility = JavaVersion.VERSION_1_7\r\n    targetCompatibility = JavaVersion.VERSION_1_7\r\n}\r\n\r\ndependencies {\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //Coroutines\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n\r\n    //OkHttp3\r\n    // implementation(\"com.squareup.okhttp3:okhttp:4.6.0\")\r\n    // implementation(\"com.squareup.okhttp3:logging-interceptor:4.6.0\")\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/base/build.gradle b/common/base/build.gradle
+--- a/common/base/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/common/base/build.gradle	(date 1674058785239)
+@@ -20,8 +20,8 @@
+     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     //Retrofit
+     implementation "com.squareup.retrofit2:retrofit:2.8.1"
+Index: common/base-android/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'kotlin-kapt'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\ndependencies {\r\n    implementation project(\":common:base\")\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    //Coroutines\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //RxAndroid\r\n    implementation \"io.reactivex.rxjava2:rxandroid:2.1.1\"\r\n\r\n    //Room\r\n    kapt \"androidx.room:room-compiler:2.2.5\"\r\n    implementation \"androidx.room:room-runtime:2.2.5\"\r\n    implementation \"androidx.room:room-ktx:2.2.5\"\r\n    implementation \"androidx.room:room-rxjava2:2.2.5\"\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:2.8.1\"\r\n\r\n    //Livedata\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'\r\n\r\n    //Navigation\r\n    def nav_version = \"2.3.0-alpha05\"\r\n    implementation \"androidx.navigation:navigation-fragment-ktx:$nav_version\"\r\n    implementation \"androidx.navigation:navigation-ui-ktx:$nav_version\"\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/base-android/build.gradle b/common/base-android/build.gradle
+--- a/common/base-android/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/common/base-android/build.gradle	(date 1674058785218)
+@@ -16,8 +16,8 @@
+     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     //Coroutines
+     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+Index: common/base-mvviewmodel/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'kotlin-kapt'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\ndependencies {\r\n    implementation project(':common:base')\r\n    implementation project(':common:base-android')\r\n\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n\r\n    //Coroutines\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5\"\r\n\r\n    //RxJava\r\n    implementation \"io.reactivex.rxjava2:rxjava:2.2.19\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.4.0\"\r\n\r\n    //RxAndroid\r\n    implementation \"io.reactivex.rxjava2:rxandroid:2.1.1\"\r\n\r\n    //Dagger2\r\n    implementation \"com.google.dagger:dagger:2.27\"\r\n    kapt \"com.google.dagger:dagger-compiler:2.27\"\r\n\r\n    //Livedata\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'\r\n\r\n    //Lifecycle\r\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01\"\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/base-mvviewmodel/build.gradle b/common/base-mvviewmodel/build.gradle
+--- a/common/base-mvviewmodel/build.gradle	(revision b3bd7f3b32c50f8116ebe2cc8368a91e6f998d73)
++++ b/common/base-mvviewmodel/build.gradle	(date 1674058785212)
+@@ -27,8 +27,8 @@
+     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+ 
+     //Dagger2
+-    implementation "com.google.dagger:dagger:2.27"
+-    kapt "com.google.dagger:dagger-compiler:2.27"
++    implementation "com.google.dagger:dagger:2.34"
++    annotationProcessor "com.google.dagger:dagger-compiler:2.34"
+ 
+     //Livedata
+     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
